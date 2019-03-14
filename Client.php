@@ -16,7 +16,7 @@ $Table=new ListClient($_GET);
       <?php include 'html/sidebar.html'; ?>
       <div class="detail">
         <div class="titrepage">
-          Client list
+          Client
         </div>
         <div class="table">
           <div class="bartable">
