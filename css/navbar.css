@@ -1,0 +1,11 @@
+.navbar{
+  background-color:  #34495e;
+}
+.navbarbtnmenu{
+  padding:8px;
+  width: 32px;
+/*  border-right: 1px solid #eaeaea;
+  border-left: 1px solid #eaeaea;
+  background: #f7f9fa;*/
+  cursor: pointer;
+}

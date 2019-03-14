@@ -1,0 +1,120 @@
+:root{
+  --colorbleu:#34495e;
+}
+*{
+margin: 0px;
+padding: 0px;
+font-family: sans-serif;
+}
+html{
+  height: 100%;
+}
+body{
+  height: 100%;
+  background-color: #e7eaec;
+}
+.page{
+  display: flex;
+  justify-content: flex-start;
+  min-height: 100%;
+  width: 100%;
+}
+.detail{
+  width: inherit;
+  height: 100%;
+}
+.titrepage{
+  background-color: white;
+  padding: 4px;
+  font-size: 24px;
+}
+.barrecherche{
+  display: flex;
+}
+.barrecherche input{
+  border: 1px solid var(--colorbleu);
+  font-size: 22px;
+  width: 300px;
+  padding: 8px;
+  border-radius: 8px 0px 0px 8px;
+}
+.barrecherche button{
+  background-color: var(--colorbleu);
+  border:0;
+  padding: 4px;
+  border-radius: 0px 8px 8px 0px;
+}
+/* table  */
+.table{
+  border-top: 3px solid #26A65B;
+  padding: 4px;
+  margin:16px;
+  margin-top :16px;
+  background-color: white;
+}
+.bartable{
+  padding: 4px;
+  border-bottom: 1px solid black;
+}
+.barrecherche{
+  padding: 16px;
+}
+.infotable{
+  border-collapse: collapse;
+  text-align: left;
+  width: 100%;
+}
+.infotable tbody tr:hover{
+    background-color: #f4f4f4;
+}
+.infotable td,.infotable th{
+  padding: 16px;
+}
+/* btn table modifie supprime */
+.produitbtn{
+    color: white;
+    text-decoration: none;
+    padding: 6px;
+    border-radius: 8px;
+    width: 40px;
+    margin-right: 8px;
+    cursor: pointer;
+}
+.produitbtnedit{
+  background-color: #1f3853;
+}
+.produitbtnsupprime{
+  background-color: #f35958;
+}
+.produitbtnconsulter{
+  background-color: #0aa699;
+}
+
+/* bar page*/
+.suivprec img{
+  height: 16px;
+}
+.itemactiv{
+  background-color:  #34495e;
+  border-radius: 9px;
+  color: white;
+}
+.listitem a{
+  color: black;
+  text-decoration: none;
+}
+.itemactiv a{
+  text-decoration: none;
+  color: white;
+}
+.tableinfo{
+  display: flex;
+  justify-content: flex-end;
+}
+.tableinfo ul{
+  list-style: none;
+  display: flex;
+}
+.tableinfo ul li{
+  padding: 8px;
+}
