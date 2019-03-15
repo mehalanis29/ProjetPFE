@@ -1,0 +1,28 @@
+.controltable{
+  width: 50%;
+}
+.controltable td,.controltable th{
+  padding: 8px;
+  text-align: left;
+}
+.controlinput{
+  width: 100%;
+  padding: 8px;
+  font-size: 18px;
+}
+.controllabel{
+  font-size: 18px;
+}
+.controlbtn{
+  padding: 16px;
+}
+.controlModifiebtn{
+  background-color: #34495e;
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 20px;
+  width: 250px;
+  font-size: 24px;
+  font-weight: bold;
+}

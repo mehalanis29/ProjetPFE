@@ -3,10 +3,14 @@
 require "php/database.inc";
 require 'php/Client.inc';
 if(isset($_GET["idclient"])){
+$etat="Modifie";
 $database=new database();
 $result=$database->query("select * from client where client_id=".$_GET["idclient"]);
 $row=mysqli_fetch_assoc($result);
 $client = new Client($row["client_id"],$row["nom"],$row["prenom"],$row["date_naissance"]);
+}else{
+  $etat="Ajoute";
+  $client = new Client("","","","");
 }
 ?>
 <html lang="en" dir="ltr">
@@ -21,11 +25,10 @@ $client = new Client($row["client_id"],$row["nom"],$row["prenom"],$row["date_nai
       <?php include 'html/sidebar.html'; ?>
       <div class="detail">
         <div class="titrepage">
-          Client
+          <?php echo $etat; ?>  Client
         </div>
         <div class="table">
           <form class="" action="" method="post">
-            <?php if(isset($_GET["idclient"])){ ?>
              <table class="controltable">
                <tr>
                  <th width="140">
@@ -52,9 +55,8 @@ $client = new Client($row["client_id"],$row["nom"],$row["prenom"],$row["date_nai
              </table>
              <hr color="#34495e">
              <div class="controlbtn">
-               <button type="submit" class="controlmodifiebtn" name="controlmodifiebtn">Modifie</button>
+               <button type="submit" class="controlmodifiebtn" name="control<?php echo $etat; ?>btn"><?php echo $etat; ?></button>
              </div>
-           <?php }else{ echo "<label style='color:red;font-size:48px'>Erreur</label>"; } ?>
           </form>
         </div>
       </div>
