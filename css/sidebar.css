@@ -21,7 +21,6 @@
   height: auto;
   display: grid;
   grid-row-gap: 4px;
-
 }
 .sidebaritem{
   text-decoration: none;

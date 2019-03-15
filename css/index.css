@@ -7,7 +7,7 @@
 .item_page{
   display: flex;
   justify-content: space-between;
-  padding: 8px;
+  padding: 10px;
   border-radius: 12px;
   background-color: var(--colorbleu);
 }
@@ -16,10 +16,8 @@
 }
 .item_page_titre{
   font-size: 56px;
-  padding: 3px;
   color: white;
 }
 .item_page_icon{
-  padding: 2px;
   text-align: center;
 }
