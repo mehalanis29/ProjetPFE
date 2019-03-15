@@ -13,10 +13,10 @@
 .controllabel{
   font-size: 18px;
 }
-.controlbtn{
+.control_div_btn{
   padding: 16px;
 }
-.controlbtn{
+.control_btn{
   background-color: #34495e;
   color: white;
   border: none;

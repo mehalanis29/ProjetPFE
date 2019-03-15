@@ -54,8 +54,8 @@ $client = new Client($row["client_id"],$row["nom"],$row["prenom"],$row["date_nai
                </tr>
              </table>
              <hr color="#34495e">
-             <div class="controlbtn">
-               <button type="submit" class="controlbtn" name="control<?php echo $etat; ?>btn"><?php echo $etat; ?></button>
+             <div class="control_div_btn">
+               <button type="submit" class="control_btn" name="control<?php echo $etat; ?>btn"><?php echo $etat; ?></button>
              </div>
           </form>
         </div>
