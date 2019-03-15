@@ -33,6 +33,7 @@ $Table=new ListClient($_GET);
             <table class="infotable">
               <thead>
                 <tr>
+                	test 2eme user
                   <?php
                      $Table->head();
                    ?>
