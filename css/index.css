@@ -1,33 +1,25 @@
 .list_item{
   display: grid;
-  grid-template-columns: 12% 12% 12% 12% 12% 12% ;
-  grid-column-gap: 16px;
-  padding: 4px;
+  grid-template-columns: 18% 18% 18% 18% 18% ;
+  grid-column-gap: 24px;
+  padding: 8px;
 }
 .item_page{
   display: flex;
   justify-content: space-between;
-  padding: 4px;
+  padding: 8px;
   border-radius: 12px;
   background-color: var(--colorbleu);
 }
 .item_page_a{
   text-decoration: none;
-
 }
 .item_page_titre{
-  font-size: 25px;
+  font-size: 56px;
   padding: 3px;
   color: white;
 }
 .item_page_icon{
   padding: 2px;
-  border-width: thin;
-  border-style: solid;
-  border-radius: 8px;
-  border-color: white;
   text-align: center;
-  position: relative;
-  height: 30px;
-  width: 35px;
 }
