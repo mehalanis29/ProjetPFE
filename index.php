@@ -18,55 +18,14 @@
             <div class="list_item">
               <a href="Client.php" class="item_page_a">
                 <div class="item_page">
-                  <div class="item_page_titre">
-                     Client
-                  </div>
                   <div>
                     <img class="item_page_icon" src="img/clientxwhite62px.png" alt="">
                   </div>
-                </div>
-              </a>
-              <a href="Client.php" class="item_page_a">
-                <div class="item_page">
                   <div class="item_page_titre">
                      Client
                   </div>
-                  <div>
-                    <img class="item_page_icon" src="img/clientxwhite62px.png" alt="">
-                  </div>
                 </div>
               </a>
-              <a href="Client.php" class="item_page_a">
-                <div class="item_page">
-                  <div class="item_page_titre">
-                     Client
-                  </div>
-                  <div>
-                    <img class="item_page_icon" src="img/clientxwhite62px.png" alt="">
-                  </div>
-                </div>
-              </a>
-              <a href="Client.php" class="item_page_a">
-                <div class="item_page">
-                  <div class="item_page_titre">
-                     Client
-                  </div>
-                  <div>
-                    <img class="item_page_icon" src="img/clientxwhite62px.png" alt="">
-                  </div>
-                </div>
-              </a>
-              <a href="Client.php" class="item_page_a">
-                <div class="item_page">
-                  <div class="item_page_titre">
-                     Client
-                  </div>
-                  <div>
-                    <img class="item_page_icon" src="img/clientxwhite62px.png" alt="">
-                  </div>
-                </div>
-              </a>
-              
             </div>
           </div>
         </div>

@@ -1,23 +1,26 @@
 .list_item{
   display: grid;
+  justify-content: center;
   grid-template-columns: 18% 18% 18% 18% 18% ;
   grid-column-gap: 24px;
   padding: 8px;
 }
 .item_page{
   display: flex;
-  justify-content: space-between;
-  padding: 10px;
+  justify-content: flex-start;
+  overflow: hidden;
   border-radius: 12px;
-  background-color: var(--colorbleu);
+  border: 3px solid var(--colorbleu);
 }
 .item_page_a{
   text-decoration: none;
 }
 .item_page_titre{
   font-size: 56px;
-  color: white;
+  margin-left: 16px;
+  color: var(--colorbleu);
 }
 .item_page_icon{
-  text-align: center;
+  height: 100%;
+  background-color: var(--colorbleu);
 }
