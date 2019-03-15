@@ -12,4 +12,7 @@ class database{
     if(!$result) { die("error query");}
     return $result;
   }
+  public function insertid(){
+     return mysqli_insert_id($this->connection);
+  }
 }
