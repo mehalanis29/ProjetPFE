@@ -4,7 +4,7 @@ class ListClient extends Table{
   public $sql="select client_id,nom,prenom from client ";
   public function __construct($GET)
   {
-    $this->head=array('id','nom','prenom','opperation');
+    $this->head=array('ID','Nom','Prenom','Operation');
     $this->GET=$this->FilterGET($GET);
     $where="";
     if(isset($GET["rech"])){
