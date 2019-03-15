@@ -33,8 +33,9 @@ $Table=new ListClient($_GET);
             <table class="infotable">
               <thead>
                 <tr>
+                  affiche
                   <?php
-                     $Table->head();
+                     $Table->head(); 
                    ?>
                 </tr>
               </thead>
