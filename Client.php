@@ -11,6 +11,7 @@ $Table=new ListClient($_GET);
     <?php include 'php/css.php';?>
   </head>
   <body>
+    <!--rani nseyi bark-->
     <?php include 'html/navbar.html'; ?>
     <div class="page">
       <?php include 'html/sidebar.html'; ?>
@@ -35,7 +36,7 @@ $Table=new ListClient($_GET);
                 <tr>
                   affiche
                   <?php
-                     $Table->head(); 
+                     $Table->head();
                    ?>
                 </tr>
               </thead>
