@@ -15,8 +15,8 @@ $Table=new ListClient($_GET);
     <div class="page">
       <?php include 'html/sidebar.html'; ?>
       <div class="detail">
-        <div class="titrepage">
-          Client
+        <div class="titre_bar">
+          <label for="" class="titre_bar_label">Client</label>
         </div>
         <div class="table">
           <div class="bartable">
@@ -24,10 +24,10 @@ $Table=new ListClient($_GET);
             <a href="#remove"><img src="img/remove32px.png" alt=""></a>
           </div>
           <div class="divtable">
-            <form>
+            <form method="GET" action="Client.php">
               <div class="barrecherche">
-                <input type="text" name="" value="">
-                <button><img src="img/search24pxwhite.png"></button>
+                <input type="text" name="rech" value="">
+                <button type="submit"><img src="img/search24pxwhite.png"></button>
               </div>
             </form>
             <table class="infotable">
@@ -44,9 +44,13 @@ $Table=new ListClient($_GET);
                 ?>
               </tbody>
             </table>
-            <?php
-              $Table->bar('Client.php');
-            ?>
+            <div class="tableinfo" id="tableinfo">
+              <ul class="listinfo">
+                <?php
+                  $Table->bar('Client.php');
+                ?>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

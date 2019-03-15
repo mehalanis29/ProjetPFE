@@ -4,12 +4,15 @@ class ListClient extends Table{
   public $sql="select client_id,nom,prenom from client ";
   public function __construct($GET)
   {
-    $this->head=array('client_id','nom','prenom','opperation');
+    $this->head=array('id','nom','prenom','opperation');
     $this->GET=$this->FilterGET($GET);
-    $debut=$this->NumPage($GET)*10-10;
-    /* where recherche  */
+    $where="";
+    if(isset($GET["rech"])){
+      $where="where nom like '".$GET["rech"]."%' or prenom like '%".$GET["rech"]."%'";
+    }
     $database=new database();
-    $result=$database->query($this->sql." limit $debut,10");
+    $debut=$this->NumPage($GET)*10-10;
+    $result=$database->query($this->sql." $where limit $debut,10");
     while ($row=mysqli_fetch_assoc($result)) {
       $this->table[]=new Client($row["client_id"],$row["nom"],$row['prenom'],'');
     }

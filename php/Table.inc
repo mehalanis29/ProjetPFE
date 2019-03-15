@@ -3,10 +3,6 @@ class Table{
   public $table=array();
   public $head;
   public $GET;
-  public function __construct($data){
-    $this->table=$data["table"];
-    $this->head=$data['head'];
-  }
   public function head()
   {
     foreach ($this->head as $k => $v) {
@@ -43,15 +39,15 @@ class Table{
     return $s;
   }
   public function bar($nom){
-    echo '<div class="tableinfo" id="tableinfo"><ul class="listinfo">';
     $page=$this->NumPage($this->GET);
+    echo "<li class='suivprec'>";
     if($page>1){
           $precedant=$page-1;
-          echo "<li class='suivprec'><a href='$nom?".$this->GET."page=$precedant'><img src='img/precedant.png'/></a></li>";
+          echo "<a href='$nom?".$this->GET."page=$precedant'><img src='img/precedant.png'/></a></li>";
           $this->printitem($precedant,"listitem",$this->GET,$nom);
           $this->printitem($_GET['page'],"itemactiv",$this->GET,$nom);
     }else{
-        echo "<li class='suivprec'><a href='$nom?".$this->GET."page=1'><img src='img/precedant.png'/></a></li>";
+        echo "<a href='$nom?".$this->GET."page=1'><img src='img/precedant.png'/></a></li>";
         $this->printitem(1,"itemactiv",$this->GET,$nom);
     }
     $suivant=$page*10;
@@ -66,6 +62,6 @@ class Table{
     $this->printitem($suivant,"listitem",$this->GET,$nom);
     }
     */
-      echo "<li class='suivprec'><a href='$nom?".$this->GET."page=$suivant'><img src='img/suivant.png'/></a></li></ul></div>";
+      echo "<li class='suivprec'><a href='$nom?".$this->GET."page=$suivant'><img src='img/suivant.png'/></a></li>";
   }
 }

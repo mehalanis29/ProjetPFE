@@ -24,8 +24,8 @@ $client = new Client($row["client_id"],$row["nom"],$row["prenom"],$row["date_nai
     <div class="page">
       <?php include 'html/sidebar.html'; ?>
       <div class="detail">
-        <div class="titrepage">
-          <?php echo $etat; ?>  Client
+        <div class="titre_bar">
+          <label for="" class="titre_bar_label"> <?php echo $etat; ?> Client</label>
         </div>
         <div class="table">
           <form class="" action="" method="post">

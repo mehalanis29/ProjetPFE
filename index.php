@@ -10,7 +10,9 @@
     <div class="page">
       <?php include 'html/sidebar.html'; ?>
       <div class="detail">
-
+        <div class="titre_bar">
+          <label for="" class="titre_bar_label"> accueil </label>
+        </div>
       </div>
     </div>
   </body>
