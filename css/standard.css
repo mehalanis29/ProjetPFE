@@ -73,6 +73,10 @@ body{
 .infotable td,.infotable th{
   padding: 16px;
 }
+.infotable tr{
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+}
 /* btn table modifie supprime */
 .produitbtn{
     color: white;
@@ -111,6 +115,7 @@ body{
   color: white;
 }
 .tableinfo{
+  padding: 16px;
   display: flex;
   justify-content: flex-end;
 }

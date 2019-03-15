@@ -44,7 +44,7 @@ $Table=new ListClient($_GET);
                 ?>
               </tbody>
             </table>
-            <div class="tableinfo" id="tableinfo">
+            <div class="tableinfo">
               <ul class="listinfo">
                 <?php
                   $Table->bar('Client.php');
