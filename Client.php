@@ -11,7 +11,6 @@ $Table=new ListClient($_GET);
     <?php include 'php/css.php';?>
   </head>
   <body>
-    <!--test nrmlment temchi haka -->
     <?php include 'html/navbar.html'; ?>
     <div class="page">
       <?php include 'html/sidebar.html'; ?>
