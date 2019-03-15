@@ -6,21 +6,21 @@
   padding: 8px;
 }
 .item_page{
-  display: flex;
-  justify-content: flex-start;
-  overflow: hidden;
-  border-radius: 12px;
+  display: grid;
+  grid-template-columns: 35% 65%;
+  height: 70px;
   border: 3px solid var(--colorbleu);
+  border-radius: 12px;
 }
 .item_page_a{
   text-decoration: none;
 }
 .item_page_titre{
   font-size: 56px;
-  margin-left: 16px;
   color: var(--colorbleu);
 }
 .item_page_icon{
+  border-radius: 7px 0px 0px 7px;
   height: 100%;
   background-color: var(--colorbleu);
 }
