@@ -20,7 +20,7 @@
 .sidebarlistitem{
   height: auto;
   display: grid;
-  grid-row-gap: 10px;
+  grid-row-gap: 4px;
 
 }
 .sidebaritem{
@@ -29,7 +29,7 @@
   font-size: 28px;
 }
 .sidebaritem div{
-  padding: 8px;
+  padding: 5px;
   display: grid;
   border-left: 4px solid #12181E;
   grid-template-columns: 48px auto;
