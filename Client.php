@@ -20,7 +20,7 @@ $Table=new ListClient($_GET);
         </div>
         <div class="table">
           <div class="bartable">
-            <a href="#ajoute"><img src="img/add32pxgreen.png" alt=""></a>
+            <a href="ClientControle.php"><img src="img/add32pxgreen.png" alt=""></a>
             <a href="#remove"><img src="img/remove32px.png" alt=""></a>
           </div>
           <div class="divtable">
