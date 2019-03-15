@@ -1,6 +1,6 @@
 .sidebar{
   background-color: #12181E;
-  width: 50px;
+  width: 55px;
   overflow: hidden;
   display: block;
 }
@@ -29,7 +29,7 @@
   font-size: 28px;
 }
 .sidebaritem div{
-  padding: 5px;
+  padding: 8px;
   display: grid;
   border-left: 4px solid #12181E;
   grid-template-columns: 48px auto;
