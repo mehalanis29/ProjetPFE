@@ -11,7 +11,23 @@
       <?php include 'html/sidebar.html'; ?>
       <div class="detail">
         <div class="titre_bar">
-          <label for="" class="titre_bar_label"> accueil </label>
+          <label for="" class="titre_bar_label"> Accueil </label>
+        </div>
+        <div class="table">
+          <div class="divtable">
+            <div class="list_item">
+              <a href="Client.php" class="item_page_a">
+                <div class="item_page">
+                  <div class="item_page_titre">
+                     Client
+                  </div>
+                  <div class="item_page_icon">
+                    <img src="img/clientxwhite62px.png" alt="">
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>

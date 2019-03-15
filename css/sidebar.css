@@ -14,14 +14,14 @@
   color: white;
   text-align: center;
   font-size: 32px;
-  margin-top: 20px;
-  height: 50px;
+  height: 60px;
   opacity: 0;
 }
 .sidebarlistitem{
   height: auto;
   display: grid;
-  grid-column-gap: 25px;
+  grid-row-gap: 10px;
+
 }
 .sidebaritem{
   text-decoration: none;

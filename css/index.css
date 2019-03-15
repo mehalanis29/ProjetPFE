@@ -1,0 +1,23 @@
+.list_item{
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20% ;
+  grid-column-gap: 24px;
+  padding: 8px;
+}
+.item_page{
+  display: flex;
+  justify-content: space-between;
+  padding: 24px;
+  border-radius: 8px;
+  background-color: var(--colorbleu);
+}
+.item_page_a{
+  text-decoration: none;
+}
+.item_page_titre{
+  font-size: 56px;
+  color: white;
+}
+.item_page_icon{
+  text-align: center;
+}
