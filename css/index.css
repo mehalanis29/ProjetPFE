@@ -1,3 +1,6 @@
+.index{
+  margin-top: 20px;
+}
 .list_item{
   display: grid;
   justify-content: center;
@@ -7,8 +10,8 @@
 }
 .item_page{
   display: grid;
-  grid-template-columns: 35% 65%;
-  height: 70px;
+  grid-template-columns: 30% 70%;
+  background-color: white;
   border: 3px solid var(--colorbleu);
   border-radius: 12px;
 }
@@ -16,11 +19,18 @@
   text-decoration: none;
 }
 .item_page_titre{
+  text-align: center;
   font-size: 56px;
   color: var(--colorbleu);
 }
+.item_page:hover .item_page_titre{
+  transform: scale(1.1,1.1);
+}
 .item_page_icon{
+  padding: 8px;
   border-radius: 7px 0px 0px 7px;
-  height: 100%;
   background-color: var(--colorbleu);
+}
+.item_page:hover img{
+  transform: scale(1.1,1.1);
 }

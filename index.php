@@ -13,20 +13,38 @@
         <div class="titre_bar">
           <label for="" class="titre_bar_label"> Accueil </label>
         </div>
-        <div class="table">
-          <div class="divtable">
-            <div class="list_item">
-              <a href="Client.php" class="item_page_a">
-                <div class="item_page">
-                  <div>
-                    <img class="item_page_icon" src="img/clientxwhite62px.png" alt="">
-                  </div>
-                  <div class="item_page_titre">
-                     Client
-                  </div>
+        <div class="index">
+          <div class="list_item">
+            <a href="Client.php" class="item_page_a">
+              <div class="item_page">
+                <div class="item_page_icon">
+                  <img src="img/clientxwhite62px.png" alt="">
                 </div>
-              </a>
-            </div>
+                <div class="item_page_titre">
+                   Client
+                </div>
+              </div>
+            </a>
+            <a href="Client.php" class="item_page_a">
+              <div class="item_page">
+                <div class="item_page_icon">
+                  <img src="img/clientxwhite62px.png" alt="">
+                </div>
+                <div class="item_page_titre">
+                   Client
+                </div>
+              </div>
+            </a>
+            <a href="Client.php" class="item_page_a">
+              <div class="item_page">
+                <div class="item_page_icon">
+                  <img src="img/clientxwhite62px.png" alt="">
+                </div>
+                <div class="item_page_titre">
+                   Client
+                </div>
+              </div>
+            </a>
           </div>
         </div>
       </div>
