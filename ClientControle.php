@@ -25,7 +25,10 @@ $client = new Client($row["client_id"],$row["nom"],$row["prenom"],$row["date_nai
       <?php include 'html/sidebar.html'; ?>
       <div class="detail">
         <div class="titre_bar">
-          <label for="" class="titre_bar_label"> <?php echo $etat; ?> Client</label>
+          <label for="" class="titre_bar_label">
+            <a href="Client.php"><img src="img/back_bleu_40px.png" alt=""></a>
+            <?php echo $etat; ?> Client
+          </label>
         </div>
         <div class="table">
           <form class="" action="" method="post">

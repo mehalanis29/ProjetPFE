@@ -16,7 +16,10 @@ $Table=new ListClient($_GET);
       <?php include 'html/sidebar.html'; ?>
       <div class="detail">
         <div class="titre_bar">
-          <label for="" class="titre_bar_label">Client</label>
+          <label for="" class="titre_bar_label">
+            <a href="index.php"><img src="img/back_bleu_40px.png" alt=""></a>
+            Client
+          </label>
         </div>
         <div class="table">
           <div class="bartable">

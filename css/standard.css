@@ -44,8 +44,11 @@ body{
   padding: 8px;
 }
 .titre_bar_label{
+  display: grid;
+  grid-template-columns: 48px auto;
+  grid-column-gap: 8px;
   font-size: 28px;
-  margin-left: 16px;
+  margin-left: 8px;
 }
 .barrecherche{
   display: flex;

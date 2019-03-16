@@ -13,7 +13,7 @@
   grid-template-columns: 30% 70%;
   background-color: white;
   border: 3px solid var(--colorbleu);
-  border-radius: 12px;
+  border-radius: 4px;
 }
 .item_page_a{
   text-decoration: none;
@@ -28,7 +28,6 @@
 }
 .item_page_icon{
   padding: 8px;
-  border-radius: 7px 0px 0px 7px;
   background-color: var(--colorbleu);
 }
 .item_page:hover img{
