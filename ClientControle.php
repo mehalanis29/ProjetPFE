@@ -3,6 +3,13 @@
 require "php/database.inc";
 require 'php/Client.inc';
 include 'php/ClientFunction.php';
+if(isset($_POST)){
+  if(issetClient($_POST))
+  {
+    echo "Insert";
+    //insert
+  }
+}
 if(isset($_GET["idclient"])){
 $etat="Modifie";
 $client = LoadClient($_GET["idclient"]);
@@ -29,20 +36,26 @@ $client = LoadClient($_GET["idclient"]);
           </label>
         </div>
         <div class="table">
-          <form class="" action="" method="post">
+          <form class="" action="ClientControle.php" method="post">
              <table class="controltable">
                <tr>
                  <th width="140">
                    <label class="controllabel" for="" >Nom</label>
                  </th>
-                 <td><input type="text" class="controlinput" name="Nom" value="<?php echo $client->nom; ?>"></td>
+                 <td>
+                   <input type="text" class="controlinput
+                         <?php if((isset($_POST["Nom"]))&&(empty($_POST["Nom"])))echo "control_input_erreur";?>" name="Nom"
+                         value="<?php if(isset($_POST["Nom"])){ echo $_POST["Nom"];  }else{ echo $client->nom; }?>">
+                 </td>
                </tr>
                <tr>
                  <th>
                    <label class="controllabel" for="">Prenom</label>
                  </th>
                  <td>
-                   <input type="text" class="controlinput" name="Prenom" value="<?php echo $client->prenom; ?>">
+                   <input type="text" class="controlinput
+                          <?php if((isset($_POST["Prenom"]))&&(empty($_POST["Prenom"])))echo "control_input_erreur";?>" name="Prenom"
+                         value="<?php if(isset($_POST["Prenom"])){ echo $_POST["Prenom"];  }else{ echo $client->prenom; }?>">
                  </td>
                </tr>
                <tr>

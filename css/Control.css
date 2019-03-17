@@ -10,6 +10,9 @@
   padding: 8px;
   font-size: 18px;
 }
+.control_input_erreur{
+  border: 1px solid red;
+}
 .controllabel{
   font-size: 18px;
 }

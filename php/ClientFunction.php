@@ -13,4 +13,7 @@ function LoadClient($id_Client)
     return new Client("","","","","","","","","","","","","");
   }
 }
+function issetClient($post){
+  return ((!empty($post['Nom']))&&(!empty($post['Prenom']))&&(!empty($post['date_naissance'])));
+}
 ?>
