@@ -50,7 +50,7 @@ $Table=new ListClient($_GET);
             <div class="tableinfo">
               <ul class="listinfo">
                 <?php
-                  $Table->bar('Client.php');
+                  $Table->bar();
                 ?>
               </ul>
             </div>

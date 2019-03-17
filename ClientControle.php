@@ -2,15 +2,13 @@
 <?php
 require "php/database.inc";
 require 'php/Client.inc';
+include 'php/ClientFunction.php';
 if(isset($_GET["idclient"])){
 $etat="Modifie";
-$database=new database();
-$result=$database->query("select * from client where client_id=".$_GET["idclient"]);
-$row=mysqli_fetch_assoc($result);
-$client = new Client($row["client_id"],$row["nom"],$row["prenom"],$row["date_naissance"]);
+$client = LoadClient($_GET["idclient"]);
 }else{
   $etat="Ajoute";
-  $client = new Client("","","","");
+  $client = LoadClient(-1);
 }
 ?>
 <html lang="en" dir="ltr">

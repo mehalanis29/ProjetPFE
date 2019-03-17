@@ -24,9 +24,9 @@ class Table{
     }
     return $page;
   }
-  public function printitem($id,$style,$get,$nom)
+  public function printitem($id,$style,$get)
   {
-     echo "<li class='$style'><a href='$nom?".$get."page=$id'>$id</a></li>";
+     echo "<li class='$style'><a href='$this->page?".$get."page=$id'>$id</a></li>";
   }
   public function FilterGET($GET)
   {
@@ -38,17 +38,17 @@ class Table{
     }
     return $s;
   }
-  public function bar($nom){
+  public function bar(){
     $page=$this->NumPage($this->GET);
     echo "<li class='suivprec'>";
     if($page>1){
           $precedant=$page-1;
-          echo "<a href='$nom?".$this->GET."page=$precedant'><img src='img/precedant.png'/></a></li>";
-          $this->printitem($precedant,"listitem",$this->GET,$nom);
-          $this->printitem($_GET['page'],"itemactiv",$this->GET,$nom);
+          echo "<a href='$this->page?".$this->GET."page=$precedant'><img src='img/precedant.png'/></a></li>";
+          $this->printitem($precedant,"listitem",$this->GET);
+          $this->printitem($_GET['page'],"itemactiv",$this->GET);
     }else{
-        echo "<a href='$nom?".$this->GET."page=1'><img src='img/precedant.png'/></a></li>";
-        $this->printitem(1,"itemactiv",$this->GET,$nom);
+        echo "<a href='$this->page?".$this->GET."page=1'><img src='img/precedant.png'/></a></li>";
+        $this->printitem(1,"itemactiv",$this->GET);
     }
     $suivant=$page*10;
     /*
@@ -62,6 +62,6 @@ class Table{
     $this->printitem($suivant,"listitem",$this->GET,$nom);
     }
     */
-      echo "<li class='suivprec'><a href='$nom?".$this->GET."page=$suivant'><img src='img/suivant.png'/></a></li>";
+      echo "<li class='suivprec'><a href='$this->page?".$this->GET."page=$suivant'><img src='img/suivant.png'/></a></li>";
   }
 }
