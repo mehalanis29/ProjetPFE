@@ -35,19 +35,18 @@ class Client{
 
   public function AfficheRow()
   {
-    return "<tr><td width='10'><input type=\"checkbox\" name=\"remove_list[]\" value=\"$this->id\"/></td><td>$this->id</td><td>$this->nom</td><td>$this->prenom</td><td>".$this->ListBtn()."</td></tr>";
+    return "<tr><td width='10'><input type=\"checkbox\" class=\"remove_list\" name=\"remove_list[]\" value=\"$this->id\"/></td><td>$this->id</td><td>$this->nom</td><td>$this->prenom</td><td>".$this->ListBtn()."</td></tr>";
   }
   public function ListBtn(){
      return "<a href=\"ClientControle.php?idclient=".$this->id."\" class=\"produitbtn produitbtnedit\">Detail</a>";
   }
 }
-
 class ListClient extends Table{
   public $sql="select client_id,nom,prenom from client ";
   public $page="Client.php";
   public function __construct($GET)
   {
-    $this->head=array('<input type="checkbox" />','Id','Nom','Prenom','Operation');
+    $this->head=array('<input type="checkbox" onclick="SelecteAll()" />','Id','Nom','Prenom','Operation');
     $this->GET=$this->FilterGET($GET);
     $where="";
     if(isset($GET["rech"])){

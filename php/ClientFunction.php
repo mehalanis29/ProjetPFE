@@ -1,8 +1,8 @@
 <?php
-function LoadClient($id_Client)
+function LoadClient($client_id)
 {
   $database=new database();
-  $result=$database->query("select * from client where client_id=".$id_Client);
+  $result=$database->query("select * from client where client_id=".$client_id);
   if(mysqli_num_rows($result)>0){
     $row=mysqli_fetch_assoc($result);
     $Client= new Client($row["client_id"],$row["num_passport"],$row["nom"],$row["prenom"],$row["date_naissance"],
@@ -15,5 +15,11 @@ function LoadClient($id_Client)
 }
 function issetClient($post){
   return ((!empty($post['Nom']))&&(!empty($post['Prenom']))&&(!empty($post['date_naissance'])));
+}
+function removeClient($list) {
+  $database=new database();
+  foreach ($list as $k  => $client_id) {
+    $database->query("DELETE from client where client_id=".$client_id);
+  }
 }
 ?>
