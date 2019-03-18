@@ -66,6 +66,38 @@ $client = LoadClient($_GET["idclient"]);
                    <input type="date" class="controlinput" name="date_naissance" value="<?php echo $client->date_naissance; ?>">
                  </td>
                </tr>
+               <tr>
+                 <th><label for="" class="controllabel">Email</label></th>
+                 <td><input type="email" class="controlinput"></td>
+               </tr>
+               <tr>
+                 <th><label for="" class="controllabel">Phone</label></th>
+                 <td><input type="number" class="controlinput"></td>
+               </tr>
+               <tr>
+                 <th><label for="" class="controllabel">Passport ID</label></th>
+                 <td><input type="number" class="controlinput"></td>
+               </tr>
+               <tr>
+                 <th><label for="" class="controllabel">Adresse</label></th>
+                 <td><input type="text" class="controlinput"></td>
+               </tr>
+               <tr>
+                 <th><label for="" class="controllabel">Cite</label></th>
+                 <td><input type="number" class="controlinput"></td>
+               </tr>
+               <tr>
+                 <th><label for="" class="controllabel">Pays</label></th>
+                 <td><input type="text" class="controlinput"></td>
+               </tr>
+               <tr>
+                 <th><label for="" class="controllabel">Emission du Passport</label></th>
+                 <td><input type="date" class="controlinput"></td>
+               </tr>
+               <tr>
+                 <th><label for="" class="controllabel">Exp Du Passport</label></th>
+                 <td><input type="date" class="controlinput"></td>
+               </tr>
              </table>
              <hr color="#34495e">
              <div class="control_div_btn">

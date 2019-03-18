@@ -1,4 +1,4 @@
-CREATE TABLE `client` 
+CREATE TABLE `client`
 (
 	`client_id` int  primary key auto_increment,
 	`num_passport` varchar(20),
@@ -14,7 +14,7 @@ CREATE TABLE `client`
 	`date_expiration_passport` date
 );
 
-CREATE TABLE `voyage` 
+CREATE TABLE `voyage`
 (
 	`voyage_id` int primary key auto_increment,
 	`nom` varchar(20),
@@ -30,14 +30,14 @@ CREATE TABLE `voyage`
 	`img` varchar(10)
 );
 
-CREATE TABLE `image_voyage` 
+CREATE TABLE `image_voyage`
 (
 	`image_voyage_id` int primary key auto_increment,
 	`voyage_id` int,
 	`img` varchar(20)
 );
 
-CREATE TABLE `voyage_date` 
+CREATE TABLE `voyage_date`
 (
 	`voyage_date_id` int primary key auto_increment,
 	`voyage_id` int,
@@ -45,7 +45,7 @@ CREATE TABLE `voyage_date`
 	`date_retour` date
 );
 
-CREATE TABLE `reserve` 
+CREATE TABLE `reserve`
 (
 	`reserve_id` int primary key auto_increment,
 	`voyage_date_id` int,
@@ -53,7 +53,7 @@ CREATE TABLE `reserve`
 	`groupe_id` int
 );
 
-CREATE TABLE `file_attente` 
+CREATE TABLE `file_attente`
 (
 	`fileattente_id` int primary key auto_increment,
 	`client_id` int,
@@ -63,20 +63,20 @@ CREATE TABLE `file_attente`
 	`date_rendezvous` date
 );
 
-CREATE TABLE `groupe` 
+CREATE TABLE `groupe`
 (
 	`groupe_id` int primary key auto_increment,
 	`client_id` int,
 	`type_groupe_id` int
 );
 
-CREATE TABLE `type_groupe` 
+CREATE TABLE `type_groupe`
 (
 	`type_groupe_id` int primary key auto_increment,
 	`nom` varchar(20)
 );
 
-CREATE TABLE `contrat` 
+CREATE TABLE `contrat`
 (
 	`contrat_id` int primary key auto_increment,
 	`socite_id` int,
@@ -84,13 +84,13 @@ CREATE TABLE `contrat`
 	`date_fin` date
 );
 
-CREATE TABLE `type_socite` 
+CREATE TABLE `type_socite`
 (
 	`type_socite_id` int primary key auto_increment,
 	`nom` varchar(20)
 );
 
-CREATE TABLE `socite` 
+CREATE TABLE `socite`
 (
 	`socite_id` int primary key auto_increment,
 	`type_socite_id` int,
@@ -113,7 +113,7 @@ ALTER TABLE `voyage_date` ADD FOREIGN KEY (`voyage_id`) REFERENCES `voyage` (`vo
 
 ALTER TABLE `image_voyage` ADD FOREIGN KEY (`voyage_id`) REFERENCES `voyage` (`voyage_id`) ON DELETE CASCADE;
 
-ALTER TABLE `voyage` ADD FOREIGN KEY (`hotel_contrat`) REFERENCES `contrat` (`contrat_id`) ON DELETE CASCADE; 
+ALTER TABLE `voyage` ADD FOREIGN KEY (`hotel_contrat`) REFERENCES `contrat` (`contrat_id`) ON DELETE CASCADE;
 
 ALTER TABLE `voyage` ADD FOREIGN KEY (`avion_contrat`) REFERENCES `contrat` (`contrat_id`) ON DELETE CASCADE;
 
