@@ -102,7 +102,16 @@ $client = LoadClient($_GET["idclient"]);
                </tr>
                <tr>
                  <th><label for="" class="controllabel">Pays</label></th>
-                 <td><input type="text" class="controlinput"></td>
+                 <td>
+                   <select name="country" class="country_select" rows="5"><option value="">--Selectioné La Destination--</option>
+                     <option value="1">Algerie </option>
+                     <option value="2">Tunisie </option>
+                     <option value="3">France </option>
+                     <option value="4">Turquie </option>
+                     <option value="5">Espagne </option>
+                     <option value="6">Dubai </option>
+                   </select>
+                 </td>
                </tr>
                <tr>
                  <th><label for="" class="controllabel">Emission du Passport</label></th>

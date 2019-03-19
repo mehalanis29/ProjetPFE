@@ -47,12 +47,17 @@
   */
 }
 .fields{
-border-radius: 8px;
+  border-radius: 8px;
 
 }
 .legends{
-      color: #3C4452;
-      font-size: 24px;
-      margin: 4px;
-      padding: 4px;
+  color: #3C4452;
+  font-size: 24px;
+  margin: 4px;
+  padding: 4px;
+}
+.country_select{
+  width: 58%;
+  color: #192430;
+  font-size: 20px;
 }
