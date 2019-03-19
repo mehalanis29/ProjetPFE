@@ -65,7 +65,7 @@ body{
 }
 /* table  */
 .table{
-  border: 3px solid #26A65B;
+  border-top: 3px solid #26A65B;
   padding: 4px;
   margin:16px;
   margin-top :16px;
