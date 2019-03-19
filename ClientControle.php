@@ -11,10 +11,10 @@ if(isset($_POST)){
   }
 }
 if(isset($_GET["idclient"])){
-$etat="Modifier";
+$etat="Modifie";
 $client = LoadClient($_GET["idclient"]);
 }else{
-  $etat="Ajouter";
+  $etat="Ajoute";
   $client = LoadClient(-1);
 }
 ?>
@@ -37,6 +37,10 @@ $client = LoadClient($_GET["idclient"]);
         </div>
         <div class="table">
           <form class="" action="ClientControle.php" method="post">
+            <div class="left_tab">
+              <br>
+            <fieldset class="fields">
+              <legend class="legends">Information Du Client</legend>
              <table class="controltable">
                <tr>
                  <th width="140">
@@ -47,8 +51,10 @@ $client = LoadClient($_GET["idclient"]);
                          <?php if((isset($_POST["Nom"]))&&(empty($_POST["Nom"])))echo "control_input_erreur";?>" name="Nom"
                          value="<?php if(isset($_POST["Nom"])){ echo $_POST["Nom"];  }else{ echo $client->nom; }?>">
                  </td>
+               </tr>
+               <tr>
                  <th>
-                   <label class="controllabel" for="">  Prenom</label>
+                   <label class="controllabel" for="">Prenom</label>
                  </th>
                  <td>
                    <input type="text" class="controlinput
@@ -63,24 +69,42 @@ $client = LoadClient($_GET["idclient"]);
                  <td>
                    <input type="date" class="controlinput" name="date_naissance" value="<?php echo $client->date_naissance; ?>">
                  </td>
-                 <th><label for="" class="controllabel">  Email</label></th>
+               </tr>
+               <tr>
+                 <th><label for="" class="controllabel">Email</label></th>
                  <td><input type="email" class="controlinput"></td>
                </tr>
                <tr>
                  <th><label for="" class="controllabel">Phone</label></th>
                  <td><input type="number" class="controlinput"></td>
-                 <th><label for="" class="controllabel">  Passport ID</label></th>
-                 <td><input type="number" class="controlinput"></td>
+               </tr>
+               </table>
+               <br>
+               </fieldset>
+                <br>
+                <br>
+               <hr>
+               <br>
+              <fieldset class="fields">
+                  <legend class="legends">Information Du Passport</legend>
+               <table class="controltable">
+               <tr>
+                 <th><label for="" class="controllabel">Passport ID</label></th>
+                 <td><input type="text" class="controlinput"></td>
                </tr>
                <tr>
                  <th><label for="" class="controllabel">Adresse</label></th>
-                 <td><input type="text" class="controlinput"></td>
-                 <th><label for="" class="controllabel">  Cite</label></th>
+                 <td><textarea name="adress"  cols="56" rows="5"></textarea></td>
+               </tr>
+               <tr>
+                 <th><label for="" class="controllabel">Cite</label></th>
                  <td><input type="number" class="controlinput"></td>
                </tr>
                <tr>
                  <th><label for="" class="controllabel">Pays</label></th>
                  <td><input type="text" class="controlinput"></td>
+               </tr>
+               <tr>
                  <th><label for="" class="controllabel">Emission du Passport</label></th>
                  <td><input type="date" class="controlinput"></td>
                </tr>
@@ -89,7 +113,10 @@ $client = LoadClient($_GET["idclient"]);
                  <td><input type="date" class="controlinput"></td>
                </tr>
              </table>
-             <hr color="#34495e">
+             <br>
+             </fieldset>
+           </div>
+           <br>
              <div class="control_div_btn">
                <button type="submit" class="control_btn" name="control<?php echo $etat; ?>btn"><?php echo $etat; ?></button>
              </div>
