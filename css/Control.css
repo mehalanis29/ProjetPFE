@@ -1,12 +1,17 @@
 .controltable{
   width: 80%;
 }
-.controltable td,.controltable th{
+.controltable td{
+  padding: 10px;
+  text-align: left;
+}
+
+.controltable th{
   padding: 8px;
   text-align: left;
 }
 .controlinput{
-  width: 100%;
+  width: 90%;
   padding: 8px;
   font-size: 18px;
 }

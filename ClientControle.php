@@ -11,10 +11,10 @@ if(isset($_POST)){
   }
 }
 if(isset($_GET["idclient"])){
-$etat="Modifie";
+$etat="Modifier";
 $client = LoadClient($_GET["idclient"]);
 }else{
-  $etat="Ajoute";
+  $etat="Ajouter";
   $client = LoadClient(-1);
 }
 ?>
@@ -47,10 +47,8 @@ $client = LoadClient($_GET["idclient"]);
                          <?php if((isset($_POST["Nom"]))&&(empty($_POST["Nom"])))echo "control_input_erreur";?>" name="Nom"
                          value="<?php if(isset($_POST["Nom"])){ echo $_POST["Nom"];  }else{ echo $client->nom; }?>">
                  </td>
-               </tr>
-               <tr>
                  <th>
-                   <label class="controllabel" for="">Prenom</label>
+                   <label class="controllabel" for="">  Prenom</label>
                  </th>
                  <td>
                    <input type="text" class="controlinput
@@ -65,32 +63,24 @@ $client = LoadClient($_GET["idclient"]);
                  <td>
                    <input type="date" class="controlinput" name="date_naissance" value="<?php echo $client->date_naissance; ?>">
                  </td>
-               </tr>
-               <tr>
-                 <th><label for="" class="controllabel">Email</label></th>
+                 <th><label for="" class="controllabel">  Email</label></th>
                  <td><input type="email" class="controlinput"></td>
                </tr>
                <tr>
                  <th><label for="" class="controllabel">Phone</label></th>
                  <td><input type="number" class="controlinput"></td>
-               </tr>
-               <tr>
-                 <th><label for="" class="controllabel">Passport ID</label></th>
+                 <th><label for="" class="controllabel">  Passport ID</label></th>
                  <td><input type="number" class="controlinput"></td>
                </tr>
                <tr>
                  <th><label for="" class="controllabel">Adresse</label></th>
                  <td><input type="text" class="controlinput"></td>
-               </tr>
-               <tr>
-                 <th><label for="" class="controllabel">Cite</label></th>
+                 <th><label for="" class="controllabel">  Cite</label></th>
                  <td><input type="number" class="controlinput"></td>
                </tr>
                <tr>
                  <th><label for="" class="controllabel">Pays</label></th>
                  <td><input type="text" class="controlinput"></td>
-               </tr>
-               <tr>
                  <th><label for="" class="controllabel">Emission du Passport</label></th>
                  <td><input type="date" class="controlinput"></td>
                </tr>
