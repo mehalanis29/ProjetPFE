@@ -38,7 +38,7 @@ body{
 }
 .titre_bar{
   background-color: white;
-  padding: 8px;
+  padding: 2px;
 }
 .titre_bar_label{
   display: grid;
@@ -49,6 +49,11 @@ body{
 }
 .barrecherche{
   display: flex;
+}
+.btn_remove_all{
+  cursor: pointer;
+  border: none;
+  background: none;
 }
 .barrecherche input{
   border: 1px solid var(--colorbleu);
@@ -63,6 +68,7 @@ body{
   padding: 4px;
   border-radius: 0px 8px 8px 0px;
 }
+
 /* table  */
 .table{
   border-top: 3px solid #26A65B;

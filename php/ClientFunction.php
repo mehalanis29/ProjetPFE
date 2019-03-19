@@ -14,7 +14,7 @@ function LoadClient($client_id)
   }
 }
 function issetClient($post){
-  return ((!empty($post['Nom']))&&(!empty($post['Prenom']))&&(!empty($post['date_naissance'])));
+  return ((!empty($post['nom']))&&(!empty($post['prenom']))&&(!empty($post['date_naissance'])));
 }
 function removeClient($list) {
   $database=new database();

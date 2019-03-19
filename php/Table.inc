@@ -34,13 +34,8 @@ class Table{
   }
   public function FilterGET($GET)
   {
-    $s="";
-    foreach ($GET as $k => $v) {
-        if($k!="page"){
-           $s.=$k."=".$v."&";
-        }
-    }
-    return $s;
+    if(isset($GET["rech"])){ $k=$GET["rech"];}else{$k ="";}
+    return $k;
   }
   public function bar(){
     $page=$this->NumPage($this->GET);

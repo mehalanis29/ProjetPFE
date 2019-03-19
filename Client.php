@@ -6,7 +6,7 @@ include 'php/ClientFunction.php';
 if(isset($_POST["remove_list"])){
   removeClient($_POST["remove_list"]);
 }
-$Table=new ListClient($_GET);
+$Table=new ListClient($_POST);
 
 ?>
 <html lang="en" dir="ltr">
@@ -33,15 +33,13 @@ $Table=new ListClient($_GET);
           <form class="" action="Client.php" method="post">
           <div class="bartable">
               <a href="ClientControle.php"><img src="img/add32pxgreen.png" alt=""></a>
-              <button type="submit" name="button"><img src="img/remove32px.png" alt=""></button>
+              <button type="submit" class="btn_remove_all" name="button"><img src="img/remove32px.png" alt=""></button>
           </div>
           <div class="divtable">
-            <form method="GET" action="Client.php">
-              <div class="barrecherche">
-                <input type="text" name="rech" value="">
-                <button type="submit"><img src="img/search24pxwhite.png"></button>
-              </div>
-            </form>
+            <div class="barrecherche">
+              <input type="text" name="rech" value="">
+              <button type="submit"><img src="img/search24pxwhite.png"></button>
+            </div>
             <table class="infotable">
               <thead>
                 <tr>

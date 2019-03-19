@@ -32,7 +32,24 @@ class Client{
     $this->date_emission_passport=$date_emission_passport;
     $this->date_expiration_passport=$date_expiration_passport;
   }
-
+  public function InsertClient()
+  {
+    $database=new database();
+    $database->query("INSERT INTO `client`(`num_passport`, `nom`, `prenom`, `date_naissance`, `email`, `password`
+                , `phone`, `address`, `city`, `country`, `date_emission_passport`, `date_expiration_passport`)
+                VALUES ('$this->num_passport','$this->nom','$this->prenom','$this->date_naissance','$this->email'
+                  ,'$this->password','$this->phone','$this->address','$this->city','$this->country'
+                  ,'$this->date_emission_passport','$this->date_expiration_passport')");
+  }
+  public function UpdateClient()
+  {
+    $database=new database();
+    $database->query("UPDATE `client` SET `num_passport`='$this->num_passport' , `nom`='$this->nom'
+         ,`prenom`='$this->prenom' , `date_naissance`='$this->date_naissance' , `email`='$this->email'
+         ,`phone`='$this->phone' , `address`='$this->address' , `city`='$this->city'
+         ,`country`='$this->country' , `date_emission_passport`='$this->date_emission_passport'
+         , `date_expiration_passport`='$this->date_expiration_passport' WHERE client_id=$this->id");
+  }
   public function AfficheRow()
   {
     return "<tr><td width='10'><input type=\"checkbox\" class=\"remove_list\" name=\"remove_list[]\" value=\"$this->id\"/></td><td>$this->id</td><td>$this->nom</td><td>$this->prenom</td><td>".$this->ListBtn()."</td></tr>";
@@ -46,7 +63,7 @@ class ListClient extends Table{
   public $page="Client.php";
   public function __construct($GET)
   {
-    $this->head=array('<input type="checkbox" onclick="SelecteAll()" />','Id','Nom','Prenom','Operation');
+    $this->head=array('<input type="checkbox" id="checkbox_all" onclick="SelecteAll()" />','Id','Nom','Prenom','Operation');
     $this->GET=$this->FilterGET($GET);
     $where="";
     if(isset($GET["rech"])){

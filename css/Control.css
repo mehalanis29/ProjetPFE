@@ -1,29 +1,31 @@
-.controltable{
-  width: 88%;
-  color: #293A4B;
-  /* color: #4C5667; */
+.control_table{
+  display: grid;
+  grid-row-gap: 18px;
+  justify-content: center;
+  padding: 16px;
 }
-.controltable td{
-  padding: 10px;
-  width: 40%;
-  text-align: left;
+.control_table_item{
+  display: grid;
+  grid-template-columns: auto 500px;
+  grid-column-gap: 18px;
 }
-
-.controltable th{
-  padding: 8px;
-  width: 20%;
-  text-align:right;
+.left_tab{
+  padding: 16px;
 }
 .controlinput{
-  width: 55%;
-  padding: 8px;
+  padding: 4px;
   font-size: 18px;
+  border: 1px solid #bdc3c7;
+  border-radius: 3px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
 }
 .control_input_erreur{
   border: 1px solid red;
 }
 .controllabel{
-  font-size: 18px;
+  text-align: right;
+  font-size: 16px;
+  font-weight: bold;
 }
 .control_div_btn{
   padding: 16px;
@@ -48,16 +50,10 @@
 }
 .fields{
   border-radius: 8px;
-
 }
 .legends{
   color: #3C4452;
-  font-size: 24px;
+  font-size: 18px;
   margin: 4px;
   padding: 4px;
-}
-.selects{
-  width: 58%;
-  color: #192430;
-  font-size: 20px;
 }
