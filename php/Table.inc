@@ -3,6 +3,10 @@ class Table{
   public $table=array();
   public $head;
   public $GET;
+  function __construct()
+  {
+
+  }
   public function head()
   {
     foreach ($this->head as $k => $v) {
