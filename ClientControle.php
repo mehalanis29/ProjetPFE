@@ -78,6 +78,25 @@ $client = LoadClient($_GET["idclient"]);
                  <th><label for="" class="controllabel">Phone</label></th>
                  <td><input type="number" class="controlinput"></td>
                </tr>
+               <tr>
+                 <th><label for="" class="controllabel">Pays</label></th>
+                 <td>
+                   <select name="country" class="selects" rows="5">
+                     <option value="">--Selectioner Votre Pays--</option>
+                     <option value="1">Algerie </option>
+                     <option value="2">Tunisie </option>
+                     <option value="3">France </option>
+                     <option value="4">Turquie </option>
+                     <option value="5">Espagne </option>
+                     <option value="6">Dubai </option>
+                   </select>
+                 </td>
+               </tr>
+               <tr>
+                 <th><label for="" class="controllabel">Cite</label></th>
+                 <td><input type="text" class="controlinput"></td>
+               </tr>
+
                </table>
                <br>
                </fieldset>
@@ -93,26 +112,22 @@ $client = LoadClient($_GET["idclient"]);
                  <td><input type="text" class="controlinput"></td>
                </tr>
                <tr>
+                 <th><label for="" class="controllabel">Nationalité</label></th>
+                 <td>
+                   <select class="selects" name="">
+                      <option value="">--Votre Nationalité--</option>
+                      <option value="dz">Algerienne</option>
+                      <option value="fr">Francaise</option>
+                      <option value="tn">Tunisienne</option>
+                      <option value="ma">Marocaine</option>
+                   </select>
+               </td>
+               </tr>
+               <tr>
                  <th><label for="" class="controllabel">Adresse</label></th>
                  <td><textarea name="adress"  cols="56" rows="5"></textarea></td>
                </tr>
-               <tr>
-                 <th><label for="" class="controllabel">Cite</label></th>
-                 <td><input type="number" class="controlinput"></td>
-               </tr>
-               <tr>
-                 <th><label for="" class="controllabel">Pays</label></th>
-                 <td>
-                   <select name="country" class="country_select" rows="5"><option value="">--Selectioné La Destination--</option>
-                     <option value="1">Algerie </option>
-                     <option value="2">Tunisie </option>
-                     <option value="3">France </option>
-                     <option value="4">Turquie </option>
-                     <option value="5">Espagne </option>
-                     <option value="6">Dubai </option>
-                   </select>
-                 </td>
-               </tr>
+
                <tr>
                  <th><label for="" class="controllabel">Emission du Passport</label></th>
                  <td><input type="date" class="controlinput"></td>
