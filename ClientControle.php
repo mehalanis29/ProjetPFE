@@ -10,11 +10,13 @@ if(isset($_POST["nom"])){
                     ,$_POST["date_emission_passport"],$_POST["date_expiration_passport"]);
   if(isset($_POST["controlModifiebtn"])){
     $client->UpdateClient();
+    header("location: Client.php");
   }elseif(issetClient($_POST))
   {
     $client->InsertClient();
+    header("location: Client.php");
   }
-  header("location: Client.php");
+
 }
 if(isset($_GET["idclient"])){
 $etat="Modifie";
@@ -50,14 +52,14 @@ $client = LoadClient($_GET["idclient"]);
                 <div class="control_table_item">
                   <label class="controllabel" for="" >Nom</label>
                   <input type="text" name="nom" class="controlinput
-                        <?php if((isset($_POST["Nom"]))&&(empty($_POST["Nom"])))echo "control_input_erreur";?>"
-                        value="<?php if(isset($_POST["Nom"])){ echo $_POST["Nom"];  }else{ echo $client->nom; }?>">
+                        <?php if((isset($_POST["nom"]))&&(empty($_POST["nom"])))echo "control_input_erreur";?>"
+                        value="<?php if(isset($_POST["nom"])){ echo $_POST["nom"];  }else{ echo $client->nom; }?>">
                 </div>
                 <div class="control_table_item">
                   <label class="controllabel" for="">Prenom</label>
                   <input type="text" name="prenom" class="controlinput
-                         <?php if((isset($_POST["Prenom"]))&&(empty($_POST["Prenom"])))echo "control_input_erreur";?>"
-                        value="<?php if(isset($_POST["Prenom"])){ echo $_POST["Prenom"];  }else{ echo $client->prenom; }?>">
+                         <?php if((isset($_POST["prenom"]))&&(empty($_POST["prenom"])))echo "control_input_erreur";?>"
+                        value="<?php if(isset($_POST["prenom"])){ echo $_POST["prenom"];  }else{ echo $client->prenom; }?>">
                 </div>
                 <div class="control_table_item">
                   <label class="controllabel" for="">Date Naissance</label>

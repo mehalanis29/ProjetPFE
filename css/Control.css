@@ -6,7 +6,7 @@
 }
 .control_table_item{
   display: grid;
-  grid-template-columns: auto 500px;
+  grid-template-columns: auto 400px;
   grid-column-gap: 18px;
 }
 .left_tab{
