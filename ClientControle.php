@@ -6,8 +6,8 @@ include 'php/ClientFunction.php';
 if(isset($_POST["nom"])){
   echo "ok";
   $client=new client($_POST["client_id"],$_POST["num_passport"],$_POST["nom"],$_POST["prenom"],$_POST["date_naissance"],
-                    $_POST["email"],"",$_POST["phone"],$_POST["address"],$_POST["city"],$_POST["country"]
-                    ,$_POST["date_emission_passport"],$_POST["date_expiration_passport"]);
+                    $_POST["pays"],$_POST["email"],"",$_POST["phone"],$_POST["address"],$_POST["city"],
+                    $_POST["nationalite"],$_POST["date_emission_passport"],$_POST["date_expiration_passport"]);
   if(isset($_POST["controlModifiebtn"])){
     $client->UpdateClient();
     header("location: Client.php");
@@ -87,14 +87,19 @@ $client = LoadClient($_GET["idclient"]);
                 </div>
                 <div class="control_table_item">
                     <label for="" class="controllabel">Pays</label>
-                    <select name="country" class="controlinput" >
-                      <option value="">--Selectioner Votre Pays--</option>
-                      <option value="1">Algerie </option>
-                      <option value="2">Tunisie </option>
-                      <option value="3">France </option>
-                      <option value="4">Turquie </option>
-                      <option value="5">Espagne </option>
-                      <option value="6">Dubai </option>
+                    <select name="pays" class="controlinput" >
+                      <?php
+                      if(isset($_POST["pays"])){ $pays=$_POST["pays"];  }else{ $pays=$client->pays; }
+                        $database =new database();
+                        $result=$database->query("select * from pays") ;
+                        while ($row=mysqli_fetch_assoc($result)) {
+                          if($row['pays_id']==$pays){
+                            echo "<option value='".$row['pays_id']."' selected>".$row["nom"]."</option>";
+                          }else{
+                            echo "<option value='".$row['pays_id']."'>".$row["nom"]."</option>";
+                          }
+                        }
+                       ?>
                     </select>
                 </div>
                 <div class="control_table_item">
@@ -103,6 +108,12 @@ $client = LoadClient($_GET["idclient"]);
                      <?php InputVideErreur($_POST["city"]); ?>"
                      value="<?php if(isset($_POST["city"])){ echo $_POST["city"];  }
                                   else{ echo $client->city; }?>">
+                </div>
+                <div class="control_table_item">
+                  <label for="" class="controllabel">Adresse</label>
+                  <textarea name="address" class="controlinput <?php InputVideErreur($_POST["address"]); ?>"
+                    cols="56" rows="5"><?php if(isset($_POST["address"])){echo $_POST["address"];}
+                                             else{ echo $client->address; }?></textarea>
                 </div>
               </div>
                </fieldset>
@@ -119,18 +130,19 @@ $client = LoadClient($_GET["idclient"]);
                     <div class="control_table_item">
                       <label for="" class="controllabel">Nationalité</label>
                       <select class="controlinput" name="nationalite">
-                         <option value="">--Votre Nationalité--</option>
-                         <option value="dz">Algerienne</option>
-                         <option value="fr">Francaise</option>
-                         <option value="tn">Tunisienne</option>
-                         <option value="ma">Marocaine</option>
+                         <?php
+                           $result->data_seek(0);
+                           if(isset($_POST["nationalite"])){ $nationalite=$_POST["nationalite"];  }
+                           else{ $nationalite=$client->nationalite; }
+                           while ($row=mysqli_fetch_assoc($result)) {
+                             if($nationalite==$row['pays_id']){
+                               echo "<option value='".$row['pays_id']."' selected>".$row["nationalite"]."</option>";
+                             }else{
+                               echo "<option value='".$row['pays_id']."'>".$row["nationalite"]."</option>";
+                             }
+                           }
+                          ?>
                       </select>
-                    </div>
-                    <div class="control_table_item">
-                      <label for="" class="controllabel">Adresse</label>
-                      <textarea name="address" class="controlinput <?php InputVideErreur($_POST["address"]); ?>"
-                        cols="56" rows="5"><?php if(isset($_POST["address"])){echo $_POST["address"];}
-                                                 else{ echo $client->address; }?></textarea>
                     </div>
                     <div class="control_table_item">
                       <label for="" class="controllabel">Emission du Passport</label>
@@ -154,7 +166,7 @@ $client = LoadClient($_GET["idclient"]);
            </div>
            <hr>
            <div class="control_div_btn">
-             <input type="hidden" name="client_id" value="<?php if(isset($client)) echo $client->id; ?>">
+             <input type="hidden" name="client_id" value="<?php if(isset($client)) {echo $client->id;}else{ echo "-1";} ?>">
              <button type="submit" class="control_btn" name="control<?php echo $etat; ?>btn"><?php echo $etat; ?></button>
            </div>
           </form>
