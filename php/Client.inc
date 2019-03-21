@@ -49,7 +49,7 @@ class Client{
     $database->query("UPDATE `client` SET `num_passport`='$this->num_passport' , `nom`='$this->nom'
          ,`prenom`='$this->prenom' , `date_naissance`='$this->date_naissance', `pays`=$this->pays , `email`='$this->email'
          ,`phone`='$this->phone' , `address`='$this->address' , `city`='$this->city'
-         ,`nationalite`=$this->country , `date_emission_passport`='$this->date_emission_passport'
+         ,`nationalite`=$this->nationalite , `date_emission_passport`='$this->date_emission_passport'
          , `date_expiration_passport`='$this->date_expiration_passport' WHERE client_id=$this->id");
   }
   public function AfficheRow()
