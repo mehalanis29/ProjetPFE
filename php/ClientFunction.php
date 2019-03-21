@@ -22,8 +22,5 @@ function removeClient($list) {
     $database->query("DELETE from client where client_id=".$client_id);
   }
 }
-function InputVideErreur($Input)
-{
-  if((isset($Input))&&(empty($Input)))echo "control_input_erreur";
-}
+
 ?>

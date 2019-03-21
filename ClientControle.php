@@ -55,33 +55,34 @@ $client = LoadClient($_GET["idclient"]);
                 <div class="control_table_item">
                   <label class="controllabel" for="" >Nom</label>
                   <input type="text" id="nom" name="nom"  class="controlinput
-                        <?php InputVideErreur($_POST["nom"]); ?>"
+                        <?php if((isset($_POST["nom"]))&&(empty($_POST["nom"])))echo "control_input_erreur";?>"
                         value="<?php if(isset($_POST["nom"])){ echo $_POST["nom"];  }else{ echo $client->nom; }?>">
                 </div>
                 <div class="control_table_item">
                   <label class="controllabel" for="">Prenom</label>
                   <input type="text" name="prenom" class="controlinput
-                        <?php InputVideErreur($_POST["prenom"]);?>"
+                        <?php if((isset($_POST["prenom"]))&&(empty($_POST["prenom"])))echo "control_input_erreur";?>"
                         value="<?php if(isset($_POST["prenom"])){ echo $_POST["prenom"];  }else{ echo $client->prenom; }?>">
                 </div>
                 <div class="control_table_item">
                   <label class="controllabel" for="">Date Naissance</label>
                   <input type="date" name="date_naissance" class="controlinput
-                         <?php InputVideErreur($_POST["date_naissance"]); ?>"
+                         <?php if((isset($_POST["date_naissance"]))&&(empty($_POST["date_naissance"])))
+                                     echo "control_input_erreur";?>"
                          value="<?php if(isset($_POST["date_naissance"])){ echo $_POST["date_naissance"];  }
                                      else{ echo $client->date_naissance; }?>">
                 </div>
                 <div class="control_table_item">
                   <label for="" class="controllabel">Email</label>
                   <input type="email" name="email" class="controlinput
-                      <?php InputVideErreur($_POST["email"]); ?>"
+                      <?php if((isset($_POST["email"]))&&(empty($_POST["email"])))echo "control_input_erreur";?>"
                       value="<?php if(isset($_POST["email"])){ echo $_POST["email"];  }
                                    else{ echo $client->email; }?>">
                 </div>
                 <div class="control_table_item">
                   <label for="" class="controllabel">Phone</label>
                   <input type="text" name="phone" class="controlinput
-                      <?php InputVideErreur($_POST["phone"]); ?>"
+                      <?php if((isset($_POST["phone"]))&&(empty($_POST["phone"])))echo "control_input_erreur";?>"
                        value="<?php if(isset($_POST["phone"])){ echo $_POST["phone"];  }
                                     else{ echo $client->phone; }?>">
                 </div>
@@ -105,7 +106,7 @@ $client = LoadClient($_GET["idclient"]);
                 <div class="control_table_item">
                   <label for="" class="controllabel">Cite</label>
                   <input type="text" name="city" class="controlinput
-                     <?php InputVideErreur($_POST["city"]); ?>"
+                    <?php if((isset($_POST["city"]))&&(empty($_POST["city"])))echo "control_input_erreur";?>"
                      value="<?php if(isset($_POST["city"])){ echo $_POST["city"];  }
                                   else{ echo $client->city; }?>">
                 </div>
@@ -120,13 +121,6 @@ $client = LoadClient($_GET["idclient"]);
               <fieldset class="fields">
                   <legend class="legends">Information Du Passport</legend>
                   <div class="control_table">
-                    <div class="control_table_item">
-                      <label for="" class="controllabel">Passport ID</label>
-                      <input type="text" name="num_passport" class="controlinput
-                         <?php InputVideErreur($_POST["num_passport"]); ?>"
-                         value="<?php if(isset($_POST["num_passport"])){ echo $_POST["num_passport"];  }
-                                      else{ echo $client->num_passport; }?>">
-                    </div>
                     <div class="control_table_item">
                       <label for="" class="controllabel">Nationalité</label>
                       <select class="controlinput" name="nationalite">
@@ -145,16 +139,25 @@ $client = LoadClient($_GET["idclient"]);
                       </select>
                     </div>
                     <div class="control_table_item">
+                      <label for="" class="controllabel">Passport ID</label>
+                      <input type="text" name="num_passport" class="controlinput
+                         <?php if((isset($_POST["num_passport"]))&&(empty($_POST["num_passport"])))echo "control_input_erreur";?>"
+                         value="<?php if(isset($_POST["num_passport"])){ echo $_POST["num_passport"];  }
+                                      else{ echo $client->num_passport; }?>">
+                    </div>
+                    <div class="control_table_item">
                       <label for="" class="controllabel">Emission du Passport</label>
                       <input type="date" name="date_emission_passport" class="controlinput
-                        <?php InputVideErreur($_POST["date_emission_passport"]); ?>"
+                        <?php if((isset($_POST["date_emission_passport"]))&&(empty($_POST["date_emission_passport"])))
+                                    echo "control_input_erreur";?>"
                         value="<?php if(isset($_POST["date_emission_passport"])){ echo $_POST["date_emission_passport"];  }
                                      else{ echo $client->date_emission_passport; }?>">
                     </div>
                     <div class="control_table_item">
                       <label for="" class="controllabel">Expiration Du Passport</label>
                       <input type="date" name="date_expiration_passport" class="controlinput
-                         <?php InputVideErreur($_POST["date_expiration_passport"]); ?>"
+                         <?php if((isset($_POST["date_expiration_passport"]))&&(empty($_POST["date_expiration_passport"])))
+                                    echo "control_input_erreur";?>"
                          value="<?php if(isset($_POST["date_expiration_passport"])){
                                              echo $_POST["date_expiration_passport"];  }
                                       else{
