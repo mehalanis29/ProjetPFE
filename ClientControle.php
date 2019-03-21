@@ -112,7 +112,8 @@ $client = LoadClient($_GET["idclient"]);
                 </div>
                 <div class="control_table_item">
                   <label for="" class="controllabel">Adresse</label>
-                  <textarea name="address" class="controlinput <?php InputVideErreur($_POST["address"]); ?>"
+                  <textarea name="address" class="controlinput
+                    <?php if((isset($_POST["address"]))&&(empty($_POST["address"])))echo "control_input_erreur";?>"
                     cols="56" rows="5"><?php if(isset($_POST["address"])){echo $_POST["address"];}
                                              else{ echo $client->address; }?></textarea>
                 </div>
