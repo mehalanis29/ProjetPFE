@@ -6,8 +6,7 @@
  if(isset($_POST["nom"])){
    echo "ok";
    $voyage=new voyage($_POST["voyage_id"],$_POST["nom"],$_POST["ville_id"]
-                     ,$_POST["nbr_jour"],$_POST["lieu_depart"]
-                     ,$_POST["hotel_id"],$_POST["description"]
+                     ,$_POST["nbr_jour"],$_POST["hotel_id"],$_POST["description"]
                      ,$_POST["prix"],$_POST["capacite"],$_POST["img"]);
    if(isset($_POST["controlModifiebtn"]))
    {

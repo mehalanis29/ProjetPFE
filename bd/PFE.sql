@@ -11,7 +11,7 @@ CREATE TABLE `client`
 	`email` varchar(30),
 	`password` varchar(30),
 	`phone` varchar(30),
-	`address` varchar(60),
+	`address` varchar(150),
 	`city` varchar(30),
 	`country` varchar(25),
 	`date_emission_passport` date,
@@ -21,14 +21,14 @@ CREATE TABLE `client`
 CREATE TABLE `voyage`
 (
 	`voyage_id` int auto_increment primary key,
-	`nom` varchar(20),
+	`nom` varchar(200),
 	`ville_id` int,
 	`nbr_jour` int,
 	`hotel_id` int,
 	`description` text,
 	`prix` int,
 	`capacite` int,
-	`img` varchar(10)
+	`img` varchar(50)
 );
 
 CREATE TABLE `image_voyage`
