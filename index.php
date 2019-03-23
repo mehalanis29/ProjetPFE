@@ -25,6 +25,17 @@
                 </div>
               </div>
             </a>
+            <a href="Voyage.php" class="item_page_a">
+              <div class="item_page">
+                <div class="item_page_icon">
+                  <img src="img\voyagewhite32px.png" alt="">
+                  <!-- makash 62px -->
+                </div>
+                <div class="item_page_titre">
+                   Voyage
+                </div>
+              </div>
+            </a>
             <a href="Client.php" class="item_page_a">
               <div class="item_page">
                 <div class="item_page_icon">
