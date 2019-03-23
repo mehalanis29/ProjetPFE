@@ -2,6 +2,22 @@ cmd :
 mysql -u root -p
 source ....\ProjetPFE\bd\PFE.sql
 
+lazam tala3 b hada order
+ 1) fichier sql
+ 2) les pays
+ 3) ville
+ 4) hotel
+
+test ville
+
+INSERT INTO `ville` (`ville_id`, `nom_ville`, `pays_id`, `img`) VALUES
+(1, 'Paris', 33, '');
+
+test hotel
+
+INSERT INTO `hotel` (`hotel_id`, `nom`, `telephone`, `ville_id`, `address`, `class`, `img`) VALUES
+(1, 'Novotel Paris Centre Gare Montparnasse', '+3345123326', 1, '17 rue du Cotentin, 75015 Paris France', 4, 'test');
+
 list des pays
 
 INSERT INTO `pays`( pays_code, nom, nationalite) VALUES ('ZA', 'Afrique du Sud' , 'Sud-Africain' ) ,
@@ -76,11 +92,8 @@ INSERT INTO `pays`( pays_code, nom, nationalite) VALUES ('ZA', 'Afrique du Sud' 
 ('SE', 'Suède' , 'Suédois' ) ,
 ('CH', 'Suisse' , 'Suisse' ) ,
 ('TW', 'Taïwan' , 'Taïwanais' ) ,
-('TJ', 'Tadjikistan' , 'Tadjik' ) ,
 ('TN', 'Tunisie' , 'Tunisien' ) ,
 ('TR', 'Turquie' , 'Turc' ) ,
 ('UA', 'Ukraine' , 'Ukrainien' ) ,
 ('UY', 'Uruguay' , 'Uruguayen' ) ,
-('VE', 'Venezuela' , 'Vénézuélien' ) ,
-('VN', 'ViÃªt Nam' , 'Vietnamien' ) ,
-('MK', 'ex-République yougoslave de Macédoine' , 'Macédonien' );
+('VE', 'Venezuela' , 'Vénézuélien' );

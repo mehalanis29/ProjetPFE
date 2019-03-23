@@ -1,6 +1,7 @@
 <?php
  require "php/database.inc";
  require "php/Voyage.inc";
+ require 'php/Control.php';
  include "php/VoyageFunction.php";
  if(isset($_POST["nom"])){
    echo "ok";
@@ -36,9 +37,7 @@
     <meta charset="utf-8">
     <title></title>
     <?php include 'php/css.php';?>
-    <script src="js/admin/Controle.js">
-
-    </script>
+    <script src="js/admin/Controle.js"></script>
   </head>
   <body>
     <?php include 'html/navbar.html'; ?>
@@ -71,28 +70,48 @@
                   <input type="number" name="nbr_jour" class="controlinput
                         <?php if((isset($_POST["nbr_jour"]))&&(empty($_POST["nbr_jour"])))echo "control_input_erreur";?>"
                          value="<?php if(isset($_POST["nbr_jour"])){ echo $_POST["nbr_jour"];} else{ echo $voyage->nbr_jour;}?>">
-                          <!--bon mafhamtch 3lah dayer ville id dmain nseyi nkemel b9ali ghir formulaire nrmlment -->
-
                 </div>
                 <div class="control_table_item">
-                  <label for="" class="controllabel"></label>
-                  <input type="text" name="" class="controlinput" value="">
-
-
+                  <label for="" class="controllabel">Pays</label>
+                  <select class="controlinput" name="pays" onchange="LoadVille(this.value)">
+                    <?php
+                      if(isset($_POST["pays"])){ $pays=$_POST["pays"];  }else{ $pays=$voyage->pays; }
+                      LoadPays($pays);
+                    ?>
+                  </select>
                 </div>
                 <div class="control_table_item">
-                  <label for="" class="controllabel"></label>
-                  <input type="text" name="" class="controlinput" value="">
+                  <label for="" class="controllabel" >Ville</label>
+                  <select class="controlinput" name="ville_id" id="ville"  onchange="LoadHotel(this.value)">
 
-
+                  </select>
                 </div>
                 <div class="control_table_item">
-                  <label for="" class="controllabel"></label>
-                  <input type="text" name="" class="controlinput" value="">
+                  <label for="" class="controllabel" >Hotel</label>
+                  <select class="controlinput" name="hotel_id" id="hotel" >
 
-
+                  </select>
                 </div>
-
+                <div class="control_table_item">
+                  <label for="" class="controllabel" >Description</label>
+                  <textarea name="description" class="controlinput" rows="3" cols="80"></textarea>
+                </div>
+                <div class="control_table_item">
+                  <label for="" class="controllabel" >Prix</label>
+                  <input type="text" name="prix" value="" class="controlinput
+                        <?php if((isset($_POST["prix"]))&&(empty($_POST["prix"])))echo "control_input_erreur";?>"
+                       value="<?php if(isset($_POST["prix"])){ echo $_POST["prix"];} else{ echo $voyage->prix;}?>">
+                </div>
+                <div class="control_table_item">
+                  <label for="" class="controllabel">Capacite</label>
+                  <input type="number" name="capacite" class="controlinput
+                        <?php if((isset($_POST["capacite"]))&&(empty($_POST["capacite"])))echo "control_input_erreur";?>"
+                         value="<?php if(isset($_POST["capacite"])){ echo $_POST["capacite"];} else{ echo $voyage->capacite;}?>">
+                </div>
+                <div class="control_table_item">
+                  <label for="" class="controllabel">Image</label>
+                  <input type="file" name="img" class="controlinput">
+                </div>
               </div>
             </fieldset>
 

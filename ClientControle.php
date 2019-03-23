@@ -2,6 +2,7 @@
 <?php
 require "php/database.inc";
 require 'php/Client.inc';
+require 'php/Control.php';
 include 'php/ClientFunction.php';
 if(isset($_POST["nom"])){
   echo "ok";
@@ -90,16 +91,8 @@ $client = LoadClient($_GET["idclient"]);
                     <label for="" class="controllabel">Pays</label>
                     <select name="pays" class="controlinput" >
                       <?php
-                      if(isset($_POST["pays"])){ $pays=$_POST["pays"];  }else{ $pays=$client->pays; }
-                        $database =new database();
-                        $result=$database->query("select * from pays") ;
-                        while ($row=mysqli_fetch_assoc($result)) {
-                          if($row['pays_id']==$pays){
-                            echo "<option value='".$row['pays_id']."' selected>".$row["nom"]."</option>";
-                          }else{
-                            echo "<option value='".$row['pays_id']."'>".$row["nom"]."</option>";
-                          }
-                        }
+                        if(isset($_POST["pays"])){ $pays=$_POST["pays"];  }else{ $pays=$client->pays; }
+                        LoadPays($pays);
                        ?>
                     </select>
                 </div>

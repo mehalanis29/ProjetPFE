@@ -1,7 +1,7 @@
 drop database pfe;
 create database pfe charset=utf8 collate=utf8_general_ci;
 use pfe;
-CREATE TABLE `client` 
+CREATE TABLE `client`
 (
 	`client_id` int auto_increment primary key,
 	`num_passport` varchar(20),
@@ -18,13 +18,12 @@ CREATE TABLE `client`
 	`date_expiration_passport` date
 );
 
-CREATE TABLE `voyage` 
+CREATE TABLE `voyage`
 (
 	`voyage_id` int auto_increment primary key,
 	`nom` varchar(20),
 	`ville_id` int,
 	`nbr_jour` int,
-	`lieu_depart` varchar(20),
 	`hotel_id` int,
 	`description` text,
 	`prix` int,
@@ -32,14 +31,14 @@ CREATE TABLE `voyage`
 	`img` varchar(10)
 );
 
-CREATE TABLE `image_voyage` 
+CREATE TABLE `image_voyage`
 (
 	`image_voyage_id` int  auto_increment primary key,
 	`voyage_id` int,
 	`img` varchar(20)
 );
 
-CREATE TABLE `voyage_date` 
+CREATE TABLE `voyage_date`
 (
 	`voyage_date_id` int auto_increment primary key,
 	`voyage_id` int,
@@ -47,7 +46,7 @@ CREATE TABLE `voyage_date`
 	`date_retour` date
 );
 
-CREATE TABLE `reserve` 
+CREATE TABLE `reserve`
 (
 	`reserve_id` int auto_increment primary key,
 	`voyage_date_id` int,
@@ -58,26 +57,26 @@ CREATE TABLE `reserve`
 	`date_rendezvous` date
 );
 
-CREATE TABLE `groupe` 
+CREATE TABLE `groupe`
 (
 	`groupe_id` int auto_increment primary key,
 	`type_groupe_id` int
 );
 
-CREATE TABLE `memebre_groupe` 
+CREATE TABLE `memebre_groupe`
 (
 	`memebre_groupe_id` int auto_increment primary key,
 	`groupe_id` int,
 	`client_id` int
 );
 
-CREATE TABLE `type_groupe` 
+CREATE TABLE `type_groupe`
 (
 	`type_groupe_id` int auto_increment primary key,
 	`nom` varchar(20)
 );
 
-CREATE TABLE `ville` 
+CREATE TABLE `ville`
 (
 	`ville_id` int auto_increment primary key,
 	`nom_ville` varchar(20),
@@ -85,7 +84,7 @@ CREATE TABLE `ville`
 	`img` varchar(20)
 );
 
-CREATE TABLE `pays` 
+CREATE TABLE `pays`
 (
 	`pays_id` int  auto_increment primary key,
 	`pays_code` varchar(3),
@@ -93,7 +92,7 @@ CREATE TABLE `pays`
 	`nationalite` varchar(20)
 );
 
-CREATE TABLE `on_demande` 
+CREATE TABLE `on_demande`
 (
 	`on_demande_id` int auto_increment primary key,
 	`client_id` int,
@@ -103,14 +102,14 @@ CREATE TABLE `on_demande`
 	`guide_id` int
 );
 
-CREATE TABLE `programe` 
+CREATE TABLE `programe`
 (
 	`on_demande_id` int auto_increment primary key,
 	`endroit_id` int,
 	`visite_date` date
 );
 
-CREATE TABLE `endroit` 
+CREATE TABLE `endroit`
 (
 	`endroit_id` int auto_increment primary key,
 	`ville_id` int,
@@ -118,21 +117,21 @@ CREATE TABLE `endroit`
 	`prix` varchar(10)
 );
 
-CREATE TABLE `image_endroit` 
+CREATE TABLE `image_endroit`
 (
 	`id` int auto_increment primary key,
 	`endroit_id` int,
 	`img` varchar(20)
 );
 
-CREATE TABLE `image_ville` 
+CREATE TABLE `image_ville`
 (
 	`id` int auto_increment primary key,
 	`ville_id` int,
 	`img` varchar(20)
 );
 
-CREATE TABLE `guide` 
+CREATE TABLE `guide`
 (
 	`guide_id` int auto_increment primary key,
 	`nom` varchar(20),
@@ -140,7 +139,7 @@ CREATE TABLE `guide`
 	`prix` varchar(10)
 );
 
-CREATE TABLE `hotel` 
+CREATE TABLE `hotel`
 (
 	`hotel_id` int auto_increment primary key,
 	`nom` varchar(20),
@@ -151,7 +150,7 @@ CREATE TABLE `hotel`
 	`img` varchar(20)
 );
 
-CREATE TABLE `image_hotel` 
+CREATE TABLE `image_hotel`
 (
 	`id` int auto_increment primary key,
 	`hotel_id` int,
@@ -1773,11 +1772,17 @@ ALTER TABLE `commune`
 ALTER TABLE `region`
 	 ADD PRIMARY KEY (`id`);
 
+ALTER TABLE `hotel`
+   ADD KEY `ville_id` (`ville_id`);
+
 ALTER TABLE `commune`
 	  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1542;
 
 ALTER TABLE `region`
 		  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+
+ALTER TABLE `hotel`
+		 ADD CONSTRAINT `ville_1` FOREIGN KEY (`ville_id`) REFERENCES `ville` (`ville_id`);
 
 ALTER TABLE `reserve` ADD FOREIGN KEY (`client_id`) REFERENCES `client` (`client_id`);
 
