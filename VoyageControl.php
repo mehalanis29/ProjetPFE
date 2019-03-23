@@ -10,7 +10,6 @@
 
    if(isset($_POST["controlAjoutebtn"]))
    {
-     echo "insert";
     $voyage->Insertvoyage();
     header("location: Voyage.php");
 
