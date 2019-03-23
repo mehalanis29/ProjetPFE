@@ -4,17 +4,18 @@
  require 'php/Control.php';
  include "php/VoyageFunction.php";
  if(isset($_POST["nom"])){
-   echo "ok";
    $voyage=new voyage($_POST["voyage_id"],$_POST["nom"],$_POST["ville_id"]
                      ,$_POST["nbr_jour"],$_POST["hotel_id"],$_POST["description"]
                      ,$_POST["prix"],$_POST["capacite"],$_POST["img"]);
-   if(isset($_POST["controlModifiebtn"]))
+
+   if(isset($_POST["controlAjoutebtn"]))
    {
+     echo "insert";
+    $voyage->Insertvoyage();
+    header("location: Voyage.php");
+
+   }elseif(issetvoyage($_POST)){
      $voyage->Updatevoyage();
-     header("location: Voyage.php");
-   }elseif(issetvoyage($_POST))
-   {
-     $voyage->Insertvoyage();
      header("location: Voyage.php");
    }
 

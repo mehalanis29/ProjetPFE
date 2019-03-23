@@ -31,18 +31,18 @@ public function InsertVoyage()
   $database->query("INSERT INTO `voyage`(`nom`, `ville_id`,
                                          `nbr_jour` ,`hotel_id`,
                                          `description`, `prix`, `capacite`, `img`)
-                      VALUES ('$this->nom','$this->ville_id'
-                              ,'$this->nbr_jour',$this->hotel_id,'$this->description'
-                              ,'$this->prix','$this->capacite','$this->img')");
+                      VALUES ('$this->nom',$this->ville_id
+                              ,$this->nbr_jour,$this->hotel_id,'$this->description'
+                              ,$this->prix,$this->capacite,'$this->img')");
 
 }
 
 public function UpdateVoyage()
 {
   $database=new database();
-  $database->query("UPDATE `voyage` SET  `nom`='$this->nom', `ville_id`='$this->ville_id'
-                                         ,`nbr_jour`='$this->nbr_jour',`hotel_id`=$this->hotel_id,`description`='$this->description'
-                                         , `prix`='$this->prix', `capacite`='$this->capacite'
+  $database->query("UPDATE `voyage` SET  `nom`='$this->nom', `ville_id`=$this->ville_id
+                                         ,`nbr_jour`=$this->nbr_jour,`hotel_id`=$this->hotel_id,`description`='$this->description'
+                                         , `prix`=$this->prix, `capacite`=$this->capacite
                                          , `img`='$this->img' WHERE voyage_id=$this->voyage_id");
 
 }

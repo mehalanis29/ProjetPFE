@@ -6,7 +6,7 @@ function LoadVoyage($voyage_id)
   if(mysqli_num_rows($result)>0){
     $row=mysqli_fetch_assoc($result);
     $voyage_id= new Voyage($row["voyage_id"],$row["nom"],$row["ville_id"]
-                          ,$row["nbr_jour"],$row["lieu_depart"],$row['hotel_id']
+                          ,$row["nbr_jour"],$row['hotel_id']
                           ,$row["description"],$row["prix"],$row["capacite"],$row["img"]);
 
     return $voyage_id;
