@@ -119,16 +119,9 @@ $client = LoadClient($_GET["idclient"]);
                       <label for="" class="controllabel">Nationalité</label>
                       <select class="controlinput" name="nationalite">
                          <?php
-                           $result->data_seek(0);
                            if(isset($_POST["nationalite"])){ $nationalite=$_POST["nationalite"];  }
                            else{ $nationalite=$client->nationalite; }
-                           while ($row=mysqli_fetch_assoc($result)) {
-                             if($nationalite==$row['pays_id']){
-                               echo "<option value='".$row['pays_id']."' selected>".$row["nationalite"]."</option>";
-                             }else{
-                               echo "<option value='".$row['pays_id']."'>".$row["nationalite"]."</option>";
-                             }
-                           }
+                           LoadNationalite($nationalite);
                           ?>
                       </select>
                     </div>
