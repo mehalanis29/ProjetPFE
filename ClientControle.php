@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <?php
 require "php/database.inc";
-require 'php/Client.inc';
-require 'php/Control.php';
-include 'php/ClientFunction.php';
+require 'php/Admin/Client.inc';
+require 'php/Admin/Control.php';
+include 'php/Admin/ClientFunction.php';
 if(isset($_POST["nom"])){
   echo "ok";
   $client=new client($_POST["client_id"],$_POST["num_passport"],$_POST["nom"],$_POST["prenom"],$_POST["date_naissance"],
@@ -31,7 +31,7 @@ $client = LoadClient($_GET["idclient"]);
   <head>
     <meta charset="utf-8">
     <title></title>
-    <?php include 'php/css.php';?>
+    <?php include 'php/Admin/css.php';?>
     <script src="js/admin/Controle.js">
 
     </script>

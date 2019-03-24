@@ -1,8 +1,8 @@
 <?php
  require "php/database.inc";
- require "php/Voyage.inc";
- require 'php/Control.php';
- include "php/VoyageFunction.php";
+ require "php/Admin/Voyage.inc";
+ require 'php/Admin/Control.php';
+ include "php/Admin/VoyageFunction.php";
  if(isset($_POST["nom"])){
    $voyage=new voyage($_POST["voyage_id"],$_POST["nom"],$_POST["ville_id"]
                      ,$_POST["nbr_jour"],$_POST["hotel_id"],$_POST["description"]
@@ -35,7 +35,7 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-    <?php include 'php/css.php';?>
+    <?php include 'php/Admin/css.php';?>
     <script src="js/admin/Controle.js"></script>
   </head>
   <body  onload="">

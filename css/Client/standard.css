@@ -1,0 +1,8 @@
+:root{
+  --color-bleu :#00355f;
+  --color-lemon: #EEC218;
+}
+body,html{
+  margin: 0px;
+  padding: 0px;
+}

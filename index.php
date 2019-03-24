@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-    <?php include 'php/css.php';?>
+    <?php include 'php/Admin/css.php';?>
   </head>
   <body>
     <?php include 'html/navbar.html'; ?>

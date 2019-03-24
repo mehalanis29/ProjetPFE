@@ -1,7 +1,7 @@
 <?php
 require 'php/database.inc';
-require 'php/Voyage.inc';
-include 'php/VoyageFunction.php';
+require 'php/Admin/Voyage.inc';
+include 'php/Admin/VoyageFunction.php';
 if(isset($_POST["remove_list"])){
   removeVoyage($_POST["remove_list"]);
 }
@@ -12,7 +12,7 @@ $Table=new ListVoyage($_POST);
   <head>
     <meta charset="utf-8">
     <title></title>
-    <?php include 'php/css.php';?>
+    <?php include 'php/Admin/css.php';?>
     <script src="js/admin/standrad.js">
 
     </script>

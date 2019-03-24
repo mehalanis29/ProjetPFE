@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <?php
 require 'php/database.inc';
-require 'php/Client.inc';
-include 'php/ClientFunction.php';
+require 'php/Admin/Client.inc';
+include 'php/Admin/ClientFunction.php';
 if(isset($_POST["remove_list"])){
   removeClient($_POST["remove_list"]);
 }
@@ -13,7 +13,7 @@ $Table=new ListClient($_POST);
   <head>
     <meta charset="utf-8">
     <title></title>
-    <?php include 'php/css.php';?>
+    <?php include 'php/Admin/css.php';?>
     <script src="js/admin/standrad.js">
 
     </script>
