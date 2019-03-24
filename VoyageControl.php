@@ -13,7 +13,7 @@
     $voyage->Insertvoyage();
     header("location: Voyage.php");
 
-   }elseif(issetvoyage($_POST)){
+   }else{
      $voyage->Updatevoyage();
      header("location: Voyage.php");
    }
@@ -38,7 +38,7 @@
     <?php include 'php/css.php';?>
     <script src="js/admin/Controle.js"></script>
   </head>
-  <body>
+  <body  onload="">
     <?php include 'html/navbar.html'; ?>
     <div class="page">
       <?php include 'html/sidebar.html'; ?>
@@ -93,7 +93,9 @@
                 </div>
                 <div class="control_table_item">
                   <label for="" class="controllabel" >Description</label>
-                  <textarea name="description" class="controlinput" rows="3" cols="80"></textarea>
+                  <textarea name="description" class="controlinput" rows="3" cols="80"><?php
+                   if(isset($_POST["description"])){ echo $_POST["description"];}else{echo $voyage->description;}
+                   ?></textarea>
                 </div>
                 <div class="control_table_item">
                   <label for="" class="controllabel" >Prix</label>

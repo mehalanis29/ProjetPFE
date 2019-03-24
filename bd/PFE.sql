@@ -5,15 +5,16 @@ CREATE TABLE `client`
 (
 	`client_id` int auto_increment primary key,
 	`num_passport` varchar(20),
-	`nom` varchar(25),
-	`prenom` varchar(25),
+	`nom` varchar(30),
+	`prenom` varchar(30),
 	`date_naissance` date,
+	`pays` int,
 	`email` varchar(30),
 	`password` varchar(30),
 	`phone` varchar(30),
 	`address` varchar(150),
 	`city` varchar(30),
-	`country` varchar(25),
+	`nationalite` int,
 	`date_emission_passport` date,
 	`date_expiration_passport` date
 );
