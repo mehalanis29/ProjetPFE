@@ -76,7 +76,7 @@ class ListVoyage extends Table{
     $debut=$this->NumPage($GET)*10-10;
     $result=$database->query($this->sql." $where limit $debut,10");
     while ($row=mysqli_fetch_assoc($result)) {
-      $this->table[]=new Voyage($row["voyage_id"],$row["nom"],'ville_id','nbr_jour','hotel_id','description','prix','capacite','img');
+      $this->table[]=new Voyage($row["voyage_id"],$row["nom"],'ville_id','nbr_jour','hotel_id','description',$row["prix"],'capacite','img');
 
 
 
