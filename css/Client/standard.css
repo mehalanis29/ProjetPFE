@@ -1,6 +1,7 @@
 :root{
   --color-bleu :#00355f;
-  --color-lemon: #EEC218;
+  --color-lemon: #f9a60f;
+  --color-lemon-2eme : #EEC218 ;
 }
 body,html{
   margin: 0px;
