@@ -44,3 +44,41 @@
     visibility: visible;
     width: 100%;
 }
+.nav_bar_cover_index{
+  background: url("../../img/Client/index.jpg") no-repeat center center;
+  background-size: cover;
+  display: block;
+  height: 400px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.nav_bar_div_form{
+  display: flex;
+  justify-content: flex-start;
+  margin-top: auto;
+  margin-bottom: auto;
+  background-color: white;
+  padding: 8px;
+  border-radius: 16px;
+}
+.formtest{
+  display: flex;
+}
+.recharche_btn{
+  border: none;
+  background-color: #F9B90F;
+  color: white;
+  margin-top: auto;
+  height: 35px;
+}
+.nab_bar_index_input,.recharche_btn{
+  padding: 6px;
+  font-size: 18px;
+  width: 150px;
+}
+.nab_bar_index_div_input{
+}
+.nab_bar_index_label{
+  font-size: 18px;
+}
