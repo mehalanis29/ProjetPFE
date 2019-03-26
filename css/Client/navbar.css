@@ -53,21 +53,43 @@
   display: flex;
   justify-content: center;
 }
-.nav_bar_div_form{
-  display: flex;
+.nav_bar_from{
+  display: grid;
   justify-content: flex-start;
   margin-top: auto;
   margin-bottom: auto;
-  background-color: white;
+}
+.nav_bar_from_titre{
+  display: grid;
+  grid-template-columns: auto auto auto;
+  border-top-left-radius: 16px;
+  border-top-right-radius:16px;
+  overflow: hidden;
+}
+.nav_bar_from_titre_choix{
+  border: none;
+  background-color: var(--color-bleu);
   padding: 8px;
-  border-radius: 16px;
+  color: white;
+  font-size: 18px;
+  font-weight:bold;
+}
+.nav_bar_from_titre_choix_active{
+  background-color: var(--color-lemon);
+}
+.nav_bar_div_form{
+  background-color: white;
+  padding: 12px;
+  border-bottom-right-radius: 16px;
+  border-bottom-left-radius: 16px;
+  border: 2px solid var(--color-lemon);
 }
 .formtest{
   display: flex;
 }
 .recharche_btn{
   border: none;
-  background-color: #F9B90F;
+  background-color: var(--color-lemon);
   color: white;
   margin-top: auto;
   height: 35px;
