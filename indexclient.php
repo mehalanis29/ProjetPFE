@@ -9,6 +9,9 @@ include 'php/Client/standard.php';
     <title></title>
     <link rel="stylesheet" href="css/Client/standard.css">
     <link rel="stylesheet" href="css/Client/navbar.css">
+    <script type="text/javascript" src="js/Client/index.js">
+
+    </script>
   </head>
   <body>
     <div class="nav_bar">
@@ -24,13 +27,16 @@ include 'php/Client/standard.php';
         <div class="nav_bar_cover_index">
           <div class="nav_bar_from">
             <div class="nav_bar_from_titre">
-              <button type="button" class="nav_bar_from_titre_choix nav_bar_from_titre_choix_active" name="button">
+              <button type="button" class="nav_bar_from_titre_choix nav_bar_from_titre_choix_active"
+               id="voyage_organis_btn" onclick="change('voyage_organis')" name="button">
                 voyage organisé
               </button>
-              <button type="button" class="nav_bar_from_titre_choix" name="button">voyage</button>
-              <button type="button" class="nav_bar_from_titre_choix" name="button">hotel</button>
+              <button type="button" class="nav_bar_from_titre_choix" id="voyage_btn"
+                  onclick="change('voyage')" name="button">voyage</button>
+              <button type="button" class="nav_bar_from_titre_choix" id="hotel_btn"
+                       onclick="change('hotel')" name="button">hotel</button>
             </div>
-            <div class="nav_bar_div_form">
+            <div class="nav_bar_div_form nav_bar_div_form_activ" id="voyage_organis_form">
               <form class="formtest" action="indexclient.php" method="post">
                 <div class="nab_bar_index_div_input">
                   <select class="nab_bar_index_input" placeholder="pays" name="">
@@ -50,6 +56,12 @@ include 'php/Client/standard.php';
                   <button type="submit" class="recharche_btn" name="Recharche">Recharche</button>
                 </div>
               </form>
+            </div>
+            <div class="nav_bar_div_form" id="voyage_form">
+              voyage
+            </div>
+            <div class="nav_bar_div_form" id="hotel_form">
+              hotel
             </div>
           </div>
         </div>
