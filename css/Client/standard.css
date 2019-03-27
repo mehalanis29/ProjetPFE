@@ -1,9 +1,11 @@
 :root{
   --color-bleu :#00355f;
+  --color-bleu-fonce :#001f39;
   --color-lemon: #f9a60f;
   --color-lemon-2eme : #EEC218;
 }
 body,html{
   margin: 0px;
   padding: 0px;
+  background-color: #ECF6F8;
 }

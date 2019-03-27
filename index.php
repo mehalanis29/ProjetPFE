@@ -21,18 +21,17 @@
                   <img src="img/clientxwhite62px.png" alt="">
                 </div>
                 <div class="item_page_titre">
-                   Client
+                   <label for="">Client</label>
                 </div>
               </div>
             </a>
             <a href="Voyage.php" class="item_page_a">
               <div class="item_page">
                 <div class="item_page_icon">
-                  <img src="img\voyagewhite32px.png" alt="">
-                  <!-- makash 62px -->
+                  <img src="img\voyagewhite62px.png" alt="">
                 </div>
                 <div class="item_page_titre">
-                   Voyage
+                   <label for="">Voyage</label>
                 </div>
               </div>
             </a>
@@ -42,7 +41,7 @@
                   <img src="img/clientxwhite62px.png" alt="">
                 </div>
                 <div class="item_page_titre">
-                   Client
+                   <label for="">Client</label>
                 </div>
               </div>
             </a>
@@ -52,7 +51,7 @@
                   <img src="img/clientxwhite62px.png" alt="">
                 </div>
                 <div class="item_page_titre">
-                   Client
+                   <label for="">Client</label>
                 </div>
               </div>
             </a>

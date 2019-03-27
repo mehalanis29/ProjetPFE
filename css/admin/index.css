@@ -10,7 +10,7 @@
 }
 .item_page{
   display: grid;
-  grid-template-columns: 30% 70%;
+  grid-template-columns: 32% 70%;
   background-color: white;
   border: 3px solid var(--colorbleu);
   border-radius: 4px;
@@ -19,17 +19,23 @@
   text-decoration: none;
 }
 .item_page_titre{
+  display: table;
   text-align: center;
-  font-size: 56px;
+  font-size: 40px;
   color: var(--colorbleu);
 }
-.item_page:hover .item_page_titre{
-  transform: scale(1.1,1.1);
+.item_page_titre label{
+  display: table-cell;
+  vertical-align: middle;
+  cursor: pointer;
 }
+
 .item_page_icon{
-  padding: 8px;
   background-color: var(--colorbleu);
+  display: table;
+  text-align: center;
 }
-.item_page:hover img{
-  transform: scale(1.1,1.1);
+.item_page_icon img{
+  display:table-cell;
+  vertical-align: middle;
 }

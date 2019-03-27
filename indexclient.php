@@ -9,6 +9,7 @@ include 'php/Client/standard.php';
     <title></title>
     <link rel="stylesheet" href="css/Client/standard.css">
     <link rel="stylesheet" href="css/Client/navbar.css">
+    <link rel="stylesheet" href="css/Client/index.css">
     <script type="text/javascript" src="js/Client/index.js">
 
     </script>
@@ -65,6 +66,51 @@ include 'php/Client/standard.php';
             </div>
           </div>
         </div>
+    </div>
+    <div class="index_offre_page">
+      <div class="index_offre_top_voyage_titre">
+        <label for="">
+          Nos Top Déstination Voyages organisés
+        </label>
+      </div>
+      <div class="index_offre_top_voyage_list_offre">
+        <div class="index_offre_top_voyage_offre">
+          <img src="img/Client/roma.jpeg" alt="">
+          <div class="index_offre_top_voyage_desc">
+            <div class="index_offre_top_voyage_nom_day">
+              <label class="index_offre_top_voyage_nom">Roma</label>
+              <label class="index_offre_top_voyage_day">7 Jours & 6 Nuit</label>
+            </div>
+            <div class="index_offre_top_voyage_prix">
+              <label for="">25,000 DZ</label>
+            </div>
+          </div>
+        </div>
+        <div class="index_offre_top_voyage_offre">
+          <img src="img/Client/roma.jpeg" alt="">
+          <div class="index_offre_top_voyage_desc">
+            <div class="index_offre_top_voyage_nom_day">
+              <label class="index_offre_top_voyage_nom">Roma</label>
+              <label class="index_offre_top_voyage_day">7 Jours & 6 Nuit</label>
+            </div>
+            <div class="index_offre_top_voyage_prix">
+              <label for="">25,000 DZ</label>
+            </div>
+          </div>
+        </div>
+        <div class="index_offre_top_voyage_offre">
+          <img src="img/Client/roma.jpeg" alt="">
+          <div class="index_offre_top_voyage_desc">
+            <div class="index_offre_top_voyage_nom_day">
+              <label class="index_offre_top_voyage_nom">Roma</label>
+              <label class="index_offre_top_voyage_day">7 Jours & 6 Nuit</label>
+            </div>
+            <div class="index_offre_top_voyage_prix">
+              <label for="">25,000 DZ</label>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>

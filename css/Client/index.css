@@ -1,0 +1,85 @@
+.index_offre_page{
+  display: block;
+  width: 100%;
+}
+.index_offre_top_voyage_titre{
+  margin-top: 24px;
+  text-align: center;
+}
+.index_offre_top_voyage_titre label{
+  color: var(--color-bleu);
+  font-size: 24px;
+  font-weight: bold;
+  position: relative;
+}
+.index_offre_top_voyage_titre label::before{
+  content: '';
+  position: absolute;
+  margin-top: 40px;
+  border: 2px solid var(--color-bleu);
+  border-radius: 16px;
+  width: 97%;
+}
+.index_offre_top_voyage_list_offre{
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-column-gap: 24px;
+  justify-content: center;
+  margin-top: 30px;
+}
+.index_offre_top_voyage_offre{
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.index_offre_top_voyage_offre:hover  img{
+  transform: scale(1.1,1.1);
+  transition: .3s ;
+}
+.index_offre_top_voyage_offre img{
+  width: 400px;
+}
+.index_offre_top_voyage_desc{
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  padding: 12px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  background: linear-gradient(to bottom, rgba(6,27,65,0) 0%,rgba(6,27,65,0.95) 100%);
+}
+.index_offre_top_voyage_nom_day{
+  display: grid;
+}
+.index_offre_top_voyage_nom{
+  font-size: 32px;
+  font-weight: bold;
+}
+.index_offre_top_voyage_prix{
+  display: table;
+  background-color: var(--color-bleu);
+  border-radius: 16px;
+  width: 130px;
+  height:60px;
+  text-align: center;
+  position: relative;
+  z-index: 3;
+  box-shadow: 0px 0px 0px 3px rgba(255,255,255,0.2);
+}
+.index_offre_top_voyage_prix label{
+  display: table-cell;
+  vertical-align: bottom;
+  font-size: 24px;
+  padding: 8px;
+  font-weight: bold;
+  position: relative;
+}
+.index_offre_top_voyage_prix label::before{
+  content: 'à partir de';
+  font-size: 12px;
+  font-weight: normal;
+  position: absolute;
+  margin-top: -14px;
+}
