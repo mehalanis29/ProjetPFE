@@ -1,0 +1,34 @@
+.formulaire_titre{
+  margin-top: 24px;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-bleu);
+}
+.formulaire_ligne{
+  color: #fff;
+}
+.formulaire_form{
+  margin-top: 22px;
+  display: grid;
+  grid-row-gap: 12px;
+}
+.formulaire_row_item{
+  display: grid;
+  grid-row-gap: 6px; 
+}
+.formulaire_row_2item{
+  display: grid;
+  grid-template-columns: 48% 48%;
+  grid-column-gap: 24px;
+}
+.formulaire_row_item_label{
+  font-size: 18px;
+  color: #878C9F;
+}
+.formulaire_row_item_input{
+  border: 1px solid #878c9f;
+  background-color: rgb(135, 140, 159,.1);
+  border-radius: 4px;
+  padding:4px;
+  font-size: 20px;
+}

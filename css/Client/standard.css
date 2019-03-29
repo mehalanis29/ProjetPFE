@@ -1,11 +1,18 @@
 :root{
+  --color-bleu-claire :#3AACED;
   --color-bleu :#00355f;
   --color-bleu-fonce :#001f39;
   --color-lemon: #f9a60f;
   --color-lemon-2eme : #EEC218;
+  --color-gris :#888DA0;
 }
 body,html{
   margin: 0px;
   padding: 0px;
   background-color: #ECF6F8;
+  font-family:sans-serif;
+}
+a{
+  text-decoration: none;
+  color: white;
 }

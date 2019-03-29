@@ -22,22 +22,27 @@
 }
 .index_offre_top_voyage_list_offre{
   display: grid;
-  grid-template-columns: auto auto auto;
-  grid-column-gap: 24px;
+  grid-template-columns: 32% 32% 32%;
+  grid-gap: 16px;
   justify-content: center;
   margin-top: 30px;
+  height: 300px;
+
 }
 .index_offre_top_voyage_offre{
   position: relative;
-  border-radius: 16px;
+  border-radius: 8px;
   overflow: hidden;
 }
+
 .index_offre_top_voyage_offre:hover  img{
   transform: scale(1.1,1.1);
-  transition: .3s ;
+  transition: .5s ;
+
 }
 .index_offre_top_voyage_offre img{
-  width: 400px;
+  width:100%;
+  height: 100%;
 }
 .index_offre_top_voyage_desc{
   position: absolute;
@@ -82,4 +87,45 @@
   font-weight: normal;
   position: absolute;
   margin-top: -14px;
+}
+.index_offre_top_voyage_btn_more{
+  display: flex;
+  justify-content: center;
+  padding: 14px;
+  overflow: hidden;
+}
+.index_offre_top_voyage_btn_more a{
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  font-weight: 200;
+  background-color: var(--color-bleu-claire);
+  width: 240px;
+  border-radius: 4px;
+}
+.index_offre_top_voyage_btn_more_titre{
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  position: relative;
+}
+.index_offre_top_voyage_btn_more_titre label{
+  margin-top: 8px;
+  width:100%;
+  cursor: pointer;
+}
+.index_offre_top_voyage_btn_more_titre img{
+  padding: 12px;
+  border-left: 1px solid white;
+}
+.index_offre_top_voyage_btn_more_titre::after{
+  content: "";
+  height: 40px;
+  width: 0px;
+  background-color: rgb(255,255,255,.1);
+  position:absolute;
+  transition: .4s;
+}
+.index_offre_top_voyage_btn_more a:hover  .index_offre_top_voyage_btn_more_titre::after{
+  width: 250px;
 }

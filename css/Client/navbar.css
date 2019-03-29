@@ -3,9 +3,26 @@
   background-color: var(--color-bleu);
 }
 .nav_bar_head{
-  display: grid;
-  grid-template-columns: 150px 50%;
+  display: flex;
+  justify-content: space-between;
   padding:6px;
+}
+
+.nav_bar_head_left{
+  display: grid;
+  grid-template-columns: 150px 90%;
+}
+.nav_bar_head_right{
+  margin-top: 12px;
+  margin-right: 20px;
+}
+.nav_bar_head_right a{
+  font-size: 16px;
+  padding: 8px;
+}
+.nav_bar_head_right_creer{
+  border: 1px solid white;
+  border-radius: 8px;
 }
 .nav_bar_logo{
   font-size: 38px;
@@ -45,13 +62,74 @@
     width: 90%;
 }
 .nav_bar_cover_index{
-  background: url("../../img/Client/index.jpg") no-repeat center center;
-  background-size: cover;
-  display: block;
   height: 350px;
   width: 100%;
   display: flex;
   justify-content: center;
+  position: relative;
+}
+.nav_bar_cover_index_img{
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+.nav_bar_cover_index_img img{
+  height: 350px;
+  width: 100%;
+  z-index: 1;
+  position: absolute;
+}
+.nav_bar_cover_index_img::after{
+  content: '';
+  width: 100%;
+  height: 350px;
+  position: absolute;
+  background-color: rgb(0,0,0,.4);
+  z-index: 2;
+}
+.nav_bar_titre{
+  margin-top: auto;
+  margin-bottom: auto;
+  z-index: 6;
+  color: white;
+  font-size: 48px;
+  font-weight: 600;
+  position: relative;
+}
+.nav_bar_titre::before{
+  content: '';
+  position: absolute;
+  z-index: 6;
+  width: 100%;
+  border: 3px solid var(--color-bleu);
+  border-radius: 16px;
+  margin-top: 60px;
+}
+.nav_bar_titre_bar{
+  background-color: white;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+}
+.nav_bar_titre_bar_url{
+  width: 90%;
+  height: 100%;
+  display: table;
+}
+.nav_bar_titre_bar_url_icon{
+  display: table-cell;
+  vertical-align: middle;
+}
+.nav_bar_titre_bar_url_icon_btn{
+  display: flex;
+}
+.nav_bar_titre_bar_url_icon_suivant{
+  margin-left: 8px;
+  margin-right: 8px;
+}
+.nav_bar_titre_bar_url_icon label{
+  font-size: 16px;
+  color: var(--color-gris);
 }
 .nav_bar_from{
   display: grid;
@@ -59,10 +137,10 @@
   margin-top: auto;
   margin-bottom: auto;
   position: relative;
-  z-index: 1;
+  z-index: 4;
   overflow: hidden;
   border-radius:16px;
-  box-shadow: 0px 0px 0px 8px rgba(255,255,255,0.4);
+  box-shadow: 0px 0px 0px 8px rgba(255,255,255,0.3);
 }
 .nav_bar_from_titre{
   display: grid;

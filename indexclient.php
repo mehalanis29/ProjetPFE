@@ -16,16 +16,11 @@ include 'php/Client/standard.php';
   </head>
   <body>
     <div class="nav_bar">
-        <div class="nav_bar_head">
-          <div class="nav_bar_div_logo">
-            <label class="nav_bar_logo">Logo</label>
-          </div>
-          <div class="nav_bar_list_btn">
-            <a href="#" class="nav_bar_btn">Home</a>
-            <a href="#" class="nav_bar_btn">Voyage Organise</a>
-          </div>
-        </div>
+        <?php NabBar(); ?>
         <div class="nav_bar_cover_index">
+          <div class="nav_bar_cover_index_img">
+            <img src="img/Client/Cover/index-cover.jpeg" alt="">
+          </div>
           <div class="nav_bar_from">
             <div class="nav_bar_from_titre">
               <button type="button" class="nav_bar_from_titre_choix nav_bar_from_titre_choix_active"
@@ -110,6 +105,14 @@ include 'php/Client/standard.php';
             </div>
           </div>
         </div>
+      </div>
+      <div class="index_offre_top_voyage_btn_more">
+        <a href="#">
+          <div class="index_offre_top_voyage_btn_more_titre">
+            <label for="">Voir toutes nos offres</label>
+            <img src="img/Client/icon/suivant18px.png" alt="">
+          </div>
+        </a>
       </div>
     </div>
   </body>
