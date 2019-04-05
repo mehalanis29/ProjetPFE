@@ -42,11 +42,11 @@ class Table{
     echo "<li class='suivprec'>";
     if($page>1){
           $precedant=$page-1;
-          echo "<a href='$this->page?".$this->GET."page=$precedant'><img src='img/precedant.png'/></a></li>";
+          echo "<a href='$this->page?".$this->GET."page=$precedant'><img src='../img/Admin/icon/precedant.png'/></a></li>";
           $this->printitem($precedant,"listitem",$this->GET);
           $this->printitem($_GET['page'],"itemactiv",$this->GET);
     }else{
-        echo "<a href='$this->page?".$this->GET."page=1'><img src='img/precedant.png'/></a></li>";
+        echo "<a href='$this->page?".$this->GET."page=1'><img src='../img/Admin/icon/precedant.png'/></a></li>";
         $this->printitem(1,"itemactiv",$this->GET);
     }
     $suivant=$page*10;
@@ -61,6 +61,6 @@ class Table{
     $this->printitem($suivant,"listitem",$this->GET,$nom);
     }
     */
-      echo "<li class='suivprec'><a href='$this->page?".$this->GET."page=$suivant'><img src='img/suivant.png'/></a></li>";
+      echo "<li class='suivprec'><a href='$this->page?".$this->GET."page=$suivant'><img src='../img/Admin/icon/suivant.png'/></a></li>";
   }
 }

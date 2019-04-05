@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <?php
-require "php/database.inc";
-require 'php/Admin/Client.inc';
-require 'php/Admin/Control.php';
-include 'php/Admin/ClientFunction.php';
+require '../php/Admin/standard.php';
+require "../php/database.inc";
+require '../php/Client.inc';
+require '../php/Admin/Control.php';
+include '../php/Admin/ClientFunction.php';
 if(isset($_POST["nom"])){
   echo "ok";
   $client=new client($_POST["client_id"],$_POST["num_passport"],$_POST["nom"],$_POST["prenom"],$_POST["date_naissance"],
@@ -31,19 +32,19 @@ $client = LoadClient($_GET["idclient"]);
   <head>
     <meta charset="utf-8">
     <title></title>
-    <?php include 'php/Admin/css.php';?>
-    <script src="js/admin/Controle.js">
+    <?php CSS();?>
+    <script src="../js/Admin/Controle.js">
 
     </script>
   </head>
   <body>
-    <?php include 'html/navbar.html'; ?>
+    <?php NavBar(); ?>
     <div class="page">
-      <?php include 'html/sidebar.html'; ?>
+      <?php SideBar(); ?>
       <div class="detail">
         <div class="titre_bar">
           <label for="" class="titre_bar_label">
-            <a href="Client.php"><img src="img/back_bleu_40px.png" alt=""></a>
+            <a href="Client.php"><img src="../img/Admin/icon/back_bleu_40px.png" alt=""></a>
             <?php echo $etat; ?> Client
           </label>
         </div>

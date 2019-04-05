@@ -1,5 +1,5 @@
 <?php
-require 'Table.inc';
+require 'Admin/Table.inc';
 
 class Client{
   public $id;

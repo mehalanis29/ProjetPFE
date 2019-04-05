@@ -1,0 +1,100 @@
+.voyage_page{
+  padding: 16px;
+  position: relative;
+}
+.voyage_page_gauche{
+  display: grid;
+  grid-row-gap: 20px;
+  width: 60%;
+}
+.list_photo_de_voyage{
+  background-color: white;
+  position: relative;
+}
+.photo_de_voyage{
+  
+}
+.photo_de_voyage_activ{
+  display: block;
+}
+.photo_suivant,.photo_precedent{
+  font-weight: bold;
+  font-size: 28px;
+  position: absolute;
+  top: 43%;
+  padding: 18px;
+  cursor: pointer;
+}
+.photo_suivant{
+  right: 0;
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+}
+.photo_precedent{
+  left: 0;
+  border-top-right-radius: 16px;
+  border-bottom-right-radius:16px;
+}
+.photo_suivant:hover,.photo_precedent:hover{
+  background: rgb(0,0,0,.9);
+}
+.photo_de_voyage img{
+  width: 100%;
+  height: 400px;;
+}
+.carnet_de_voyage{
+  background-color: white;
+  padding: 14px;
+  border-radius: 8px;
+  position: relative;
+  z-index: 3;
+}
+.les_jours_voyage{
+  display: grid;
+  overflow: hidden;
+}
+.jour_voyage{
+  display: grid;
+  grid-template-columns: 60px 75px auto;
+  margin-top: 10px;
+  padding: 8px;
+  position: relative;
+}
+.jour_voyage label{
+  margin-top:12px;
+  font-size: 18px;
+  font-weight: bolder;
+}
+.numero_jour_voyage{
+  width: 48px;
+  height: 48px;
+  font-weight: 500;
+  background-color: #fff;
+  font-size: 24px;
+  line-height: 50px;
+  color: #F9B90F;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px #999;
+  text-align: center;
+}
+.numero_jour_voyage::after{
+  content: '';
+  width: 2px;
+  height:300px;
+  background-color:#999;
+  position: absolute;
+  margin-top: 48px;
+  margin-left: -7px;
+}
+.description_jour{
+  background-color: #a09a9e21;
+  padding: 12px;
+  border-radius: 8px;
+}
+.description_jour strong{
+  font-size: 18px;
+
+}
+.description_jour p{
+  font-size: 16px;
+}

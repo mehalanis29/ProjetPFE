@@ -1,5 +1,4 @@
 .formulaire_titre{
-  margin-top: 24px;
   font-size: 28px;
   font-weight: 700;
   color: var(--color-bleu);
@@ -14,7 +13,7 @@
 }
 .formulaire_row_item{
   display: grid;
-  grid-row-gap: 6px; 
+  grid-row-gap: 6px;
 }
 .formulaire_row_2item{
   display: grid;

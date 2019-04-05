@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <?php
-require 'php/database.inc';
-require 'php/Admin/Client.inc';
-include 'php/Admin/ClientFunction.php';
+require '../php/Admin/standard.php';
+require '../php/database.inc';
+require '../php/Client.inc';
+include '../php/Admin/ClientFunction.php';
 if(isset($_POST["remove_list"])){
   removeClient($_POST["remove_list"]);
 }
@@ -13,32 +14,32 @@ $Table=new ListClient($_POST);
   <head>
     <meta charset="utf-8">
     <title></title>
-    <?php include 'php/Admin/css.php';?>
-    <script src="js/admin/standrad.js">
+    <?php CSS();?>
+    <script src="../js/Admin/standrad.js">
 
     </script>
   </head>
   <body>
-    <?php include 'html/navbar.html'; ?>
+    <?php NavBar(); ?>
     <div class="page">
-      <?php include 'html/sidebar.html'; ?>
+      <?php SideBar();?>
       <div class="detail">
         <div class="titre_bar">
           <label for="" class="titre_bar_label">
-            <a href="index.php"><img src="img/back_bleu_40px.png" alt=""></a>
+            <a href="index.php"><img src="../img/Admin/icon/back_bleu_40px.png" alt=""></a>
             Client
           </label>
         </div>
         <div class="table">
           <form class="" action="Client.php" method="post">
           <div class="bartable">
-              <a href="ClientControle.php"><img src="img/add32pxgreen.png" alt=""></a>
-              <button type="submit" class="btn_remove_all" name="button"><img src="img/remove32px.png" alt=""></button>
+              <a href="ClientControle.php"><img src="../img/Admin/icon/add32pxgreen.png" alt=""></a>
+              <button type="submit" class="btn_remove_all" name="button"><img src="../img/Admin/icon/remove32px.png" alt=""></button>
           </div>
           <div class="divtable">
             <div class="barrecherche">
               <input type="text" name="rech" value="">
-              <button type="submit"><img src="img/search24pxwhite.png"></button>
+              <button type="submit"><img src="../img/Admin/icon/search24pxwhite.png"></button>
             </div>
             <table class="infotable">
               <thead>

@@ -7,11 +7,7 @@ include 'php/Client/standard.php';
   <head>
     <meta charset="utf-8">
     <title></title>
-    <link rel="stylesheet" href="css/Client/standard.css">
-    <link rel="stylesheet" href="css/Client/navbar.css">
-    <link rel="stylesheet" href="css/Client/index.css">
-    <link rel="stylesheet" href="css/Client/formulaire.css">
-    <link rel="stylesheet" href="css\Client\Inscription.css">
+    <?php include 'php/Client/css.php'; ?>
     <script type="text/javascript" src="js/Client/index.js">
 
     </script>
@@ -31,7 +27,7 @@ include 'php/Client/standard.php';
         <div class="nav_bar_titre_bar_url">
           <div class="nav_bar_titre_bar_url_icon">
             <div class="nav_bar_titre_bar_url_icon_btn">
-              <a href="indexclient.php" >
+              <a href="index.php" >
                 <img src="img\Client\icon\home18pxgris.png" alt="">
               </a>
               <a href="#">
@@ -64,7 +60,7 @@ include 'php/Client/standard.php';
           </div>
         </form>
       </div>
-      <div class="Inscription_page_cover"></div>
+      <div class="page_cover"></div>
     </div>
   </body>
 </html>

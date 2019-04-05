@@ -22,17 +22,21 @@ CREATE TABLE `client`
 CREATE TABLE `voyage`
 (
 	`voyage_id` int auto_increment primary key,
-	`nom` varchar(200),
 	`ville_id` int,
 	`nbr_jour` int,
 	`hotel_id` int,
 	`description` text,
 	`prix` int,
 	`capacite` int,
-	`img` varchar(50)
+	`cover` varchar(50)
 );
-
-CREATE TABLE `image_voyage`
+CREATE TABLE `voyage_jour`(
+  `voyage_jour_id` int auto_increment primary key,
+	`voyage_id` int,
+	`nbr_jour` int,
+	`endroit_id` int
+);
+CREATE TABLE `voyage_image`
 (
 	`image_voyage_id` int  auto_increment primary key,
 	`voyage_id` int,
@@ -192,19 +196,20 @@ CREATE TABLE `programe`
 CREATE TABLE `endroit`
 (
 	`endroit_id` int auto_increment primary key,
+	`endroit_nom` varchar(40),
 	`ville_id` int,
 	`description` text,
-	`prix` varchar(10)
+	`prix` int
 );
 
-CREATE TABLE `image_endroit`
+CREATE TABLE `endroit_image`
 (
 	`id` int auto_increment primary key,
 	`endroit_id` int,
 	`img` varchar(20)
 );
 
-CREATE TABLE `image_ville`
+CREATE TABLE `ville_image`
 (
 	`id` int auto_increment primary key,
 	`ville_id` int,
@@ -230,7 +235,7 @@ CREATE TABLE `hotel`
 	`img` varchar(20)
 );
 
-CREATE TABLE `image_hotel`
+CREATE TABLE `hotel_image`
 (
 	`id` int auto_increment primary key,
 	`hotel_id` int,
@@ -317,7 +322,7 @@ ALTER TABLE `reserve` ADD FOREIGN KEY (`voyage_date_id`) REFERENCES `voyage_date
 
 ALTER TABLE `voyage_date` ADD FOREIGN KEY (`voyage_id`) REFERENCES `voyage` (`voyage_id`);
 
-ALTER TABLE `image_voyage` ADD FOREIGN KEY (`voyage_id`) REFERENCES `voyage` (`voyage_id`);
+ALTER TABLE `voyage_image` ADD FOREIGN KEY (`voyage_id`) REFERENCES `voyage` (`voyage_id`);
 
 ALTER TABLE `on_demande` ADD FOREIGN KEY (`client_id`) REFERENCES `client` (`client_id`);
 
@@ -333,15 +338,15 @@ ALTER TABLE `endroit` ADD FOREIGN KEY (`ville_id`) REFERENCES `ville` (`ville_id
 
 ALTER TABLE `on_demande` ADD FOREIGN KEY (`ville_id`) REFERENCES `ville` (`ville_id`);
 
-ALTER TABLE `image_endroit` ADD FOREIGN KEY (`endroit_id`) REFERENCES `endroit` (`endroit_id`);
+ALTER TABLE `endroit_image` ADD FOREIGN KEY (`endroit_id`) REFERENCES `endroit` (`endroit_id`);
 
-ALTER TABLE `image_ville` ADD FOREIGN KEY (`ville_id`) REFERENCES `ville` (`ville_id`);
+ALTER TABLE `ville_image` ADD FOREIGN KEY (`ville_id`) REFERENCES `ville` (`ville_id`);
 
 ALTER TABLE `on_demande` ADD FOREIGN KEY (`guide_id`) REFERENCES `guide` (`guide_id`);
 
 ALTER TABLE `on_demande` ADD FOREIGN KEY (`hotel_id`) REFERENCES `hotel` (`hotel_id`);
 
-ALTER TABLE `image_hotel` ADD FOREIGN KEY (`hotel_id`) REFERENCES `hotel` (`hotel_id`);
+ALTER TABLE `hotel_image` ADD FOREIGN KEY (`hotel_id`) REFERENCES `hotel` (`hotel_id`);
 
 ALTER TABLE `memebre_groupe` ADD FOREIGN KEY (`groupe_id`) REFERENCES `groupe` (`groupe_id`);
 
@@ -351,8 +356,23 @@ ALTER TABLE `voyage` ADD FOREIGN KEY (`ville_id`) REFERENCES `ville` (`ville_id`
 
 ALTER TABLE `voyage` ADD FOREIGN KEY (`hotel_id`) REFERENCES `hotel` (`hotel_id`);
 
+ALTER TABLE `voyage_jour` ADD FOREIGN KEY (`voyage_id`) REFERENCES `voyage` (`voyage_id`);
+
+ALTER TABLE `voyage_jour` ADD FOREIGN KEY (`endroit_id`) REFERENCES `endroit` (`endroit_id`);
+
 INSERT INTO `ville` (`ville_id`, `nom_ville`, `pays_id`, `img`) VALUES
 (1, 'Paris', 33, '');
 
 INSERT INTO `hotel` (`hotel_id`, `nom`, `telephone`, `ville_id`, `address`, `class`, `img`) VALUES
-(1, 'Novotel Paris Centre Gare Montparnasse', '+3345123326', 1, '17 rue du Cotentin, 75015 Paris France', 4, 'test');
+  (1, 'Novotel Paris Centre Gare Montparnasse', '+3345123326', 1, '17 rue du Cotentin, 75015 Paris France', 4, 'test');
+
+INSERT INTO `voyage`(`ville_id`, `nbr_jour`, `hotel_id`, `description`, `prix`, `capacite`, `cover`) VALUES
+  (1,7,1,'paris la ville la plus belle',25,20,'cover-roma.jpeg');
+
+INSERT INTO `voyage_image`(`voyage_id`, `img`) VALUES (1,'1-1.jpeg') , (1,'1-2.jpeg');
+
+INSERT INTO `endroit`(`endroit_nom`,`ville_id`, `description`, `prix`) VALUES ('Tour Eiffel',1,'La tour Eiffel est une tour de fer puddlé
+	   de 324 mètres de hauteur située à Paris, à l’extrémité nord-ouest du parc du Champ-de-Mars en bordure
+		 de la Seine dans le 7ᵉ arrondissement',2500);
+
+INSERT INTO `voyage_jour`(`voyage_id`, `nbr_jour`, `endroit_id`) VALUES (1,1,1);

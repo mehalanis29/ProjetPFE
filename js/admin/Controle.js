@@ -15,7 +15,7 @@ function LoadVille(id) {
         Affiche(list,"ville")
     }
   };
-  xhttp.open("GET", "./php/VilleJSON.php?idVille="+id, false);
+  xhttp.open("GET", "../php/Admin/VilleJSON.php?idVille="+id, false);
   xhttp.send();
 }
 function LoadHotel(id) {
@@ -27,7 +27,7 @@ function LoadHotel(id) {
         Affiche(list,"hotel");
     }
   };
-  xhttp.open("GET", "./php/HotelJSON.php?idHotel="+id, false);
+  xhttp.open("GET", "../php/Admin/HotelJSON.php?idHotel="+id, false);
   xhttp.send();
 }
 function  Affiche(list,nom) {

@@ -1,0 +1,15 @@
+.voyage_organise_page{
+  display: flex;
+  position: relative;
+  padding: 16px;
+  margin-top: 12px;
+}
+.voyage_organise_page_gauche{
+  width: 40%;
+}
+.voyage_organise_droite{
+  height: 400px;
+  width: 60%;
+  z-index: 2;
+  display: grid;
+}

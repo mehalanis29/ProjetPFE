@@ -5,7 +5,7 @@
 .nav_bar_head{
   display: flex;
   justify-content: space-between;
-  padding:6px;
+  padding:10px;
 }
 
 .nav_bar_head_left{
@@ -17,7 +17,7 @@
   margin-right: 20px;
 }
 .nav_bar_head_right a{
-  font-size: 16px;
+  font-size: 14px;
   padding: 8px;
 }
 .nav_bar_head_right_creer{
@@ -25,7 +25,7 @@
   border-radius: 8px;
 }
 .nav_bar_logo{
-  font-size: 38px;
+  font-size: 32px;
   font-weight: bold;
   color: white;
   margin-left: 14px;
@@ -38,7 +38,7 @@
 .nav_bar_btn {
   text-decoration: none;
   color :white;
-  font-size: 20px;
+  font-size: 18px;
   padding: 6px;
   margin-right: 12px;
   position: relative;
@@ -92,7 +92,7 @@
   margin-bottom: auto;
   z-index: 6;
   color: white;
-  font-size: 48px;
+  font-size: 44px;
   font-weight: 600;
   position: relative;
 }
