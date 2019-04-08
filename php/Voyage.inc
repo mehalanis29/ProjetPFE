@@ -11,9 +11,7 @@ class Voyage{
   public $prix;
   public $capacite;
   public $img;
-  public function __construct($voyage_id,
-   $ville_id,$nbr_jour,$hotel_id,
-  $description,$prix,$capacite,$img)
+  public function __construct($voyage_id,$ville_id,$nbr_jour,$hotel_id, $description,$prix,$capacite,$img)
 {
   $this->voyage_id=$voyage_id;
   $this->ville_id=$ville_id;

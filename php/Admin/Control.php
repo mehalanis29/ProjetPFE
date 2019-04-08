@@ -1,4 +1,25 @@
 <?php
+function VilletoPays($idVille)
+{
+  $database=new database();
+  $result=$database->query("select pays_id from ville where ville_id=".$idVille);
+  $row=mysqli_fetch_assoc($result);
+  return $row["pays_id"];
+}
+
+function LoadVille($ville,$pays)
+{
+  $database =new database();
+  $result=$database->query("select ville_id as id,nom_ville from ville where pays_id=".$pays) ;
+  while ($row=mysqli_fetch_assoc($result)) {
+    if($row['id']==$ville){
+      echo "<option value='".$row['id']."' selected>".$row["nom_ville"]."</option>";
+    }else{
+      echo "<option value='".$row['id']."'>".$row["nom_ville"]."</option>";
+    }
+  }
+}
+
 function LoadPays($pays)
 {
   $database =new database();
@@ -11,6 +32,7 @@ function LoadPays($pays)
     }
   }
 }
+
 function LoadNationalite($nationalite)
 {
   $database =new database();

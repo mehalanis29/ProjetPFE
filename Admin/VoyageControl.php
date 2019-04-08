@@ -60,15 +60,17 @@ require '../php/Admin/standard.php';
                   <label for="" class="controllabel">Pays</label>
                   <select class="controlinput" name="pays" onchange="LoadVille(this.value)">
                     <?php
-                      if(isset($_POST["pays"])){ $pays=$_POST["pays"];  }else{ $pays=$voyage->pays; }
+                      if(isset($_POST["pays"])){ $pays=$_POST["pays"];  }
+                      else{ $pays=VilletoPays($voyage->ville_id); }
                       LoadPays($pays);
+
                     ?>
                   </select>
                 </div>
                 <div class="control_table_item">
                   <label for="" class="controllabel" >Ville</label>
                   <select class="controlinput" name="ville_id" id="ville"  onchange="LoadHotel(this.value)">
-
+                    <?php  LoadVille($voyage->ville_id,$pays); ?>
                   </select>
                 </div>
                 <div class="control_table_item">

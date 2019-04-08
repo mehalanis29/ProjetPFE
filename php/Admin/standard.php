@@ -10,4 +10,5 @@ function SideBar()
 {
   include '../html/sidebar.html';
 }
+
 ?>
