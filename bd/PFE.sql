@@ -13,7 +13,6 @@ CREATE TABLE `client`
 	`password` varchar(30),
 	`phone` varchar(30),
 	`address` varchar(150),
-	`city` varchar(30),
 	`nationalite` int,
 	`date_emission_passport` date,
 	`date_expiration_passport` date

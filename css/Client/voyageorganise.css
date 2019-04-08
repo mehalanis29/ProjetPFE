@@ -8,8 +8,36 @@
   width: 40%;
 }
 .voyage_organise_droite{
-  height: 400px;
   width: 60%;
   z-index: 2;
   display: grid;
+  grid-row-gap: 24px;
+}
+.voyage_organise_list_voyage{
+  display: grid;
+  grid-row-gap: 16px;
+}
+.voyage_organise_voyage{
+  padding: 8px;
+  border-radius: 4px;
+  background-color: white;
+  display: grid;
+  grid-template-columns: 320px auto;
+  grid-column-gap: 14px;
+}
+.voyage_organise_voyage_description_titre{
+  display: grid;
+}
+.voyage_organise_voyage_description_titre strong{
+  font-size: 40px;
+}
+.voyage_organise_voyage_description_titre label{
+  font-size: 12px;
+  font-weight: 600;
+  color: #777;
+}
+.voyage_organise_voyage_description_detail{
+  padding: 6px;
+  font-size: 14px;
+  color: #777;
 }

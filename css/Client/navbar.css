@@ -179,6 +179,7 @@
 
 .nab_bar_index_div_input{
   width: 100%;
+  display: flex;
 }
 .nab_bar_index_input,.recharche_btn{
   padding: 6px;
@@ -189,6 +190,4 @@
   border: none;
   background-color: var(--color-lemon);
   color: white;
-  margin-top: auto;
-  height: 35px;
 }
