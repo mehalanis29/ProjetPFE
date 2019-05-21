@@ -91,7 +91,7 @@
   padding: 14px;
   overflow: hidden;
 }
-.index_offre_top_voyage_btn_more a{
+.index_offre_top_voyage_btn_more a,.btn_envoyee {
   text-decoration: none;
   color: white;
   font-size: 18px;
@@ -99,6 +99,7 @@
   background-color: var(--color-bleu-claire);
   width: 240px;
   border-radius: 4px;
+  border: none;
 }
 .index_offre_top_voyage_btn_more_titre{
   display: flex;
@@ -115,7 +116,7 @@
   padding: 12px;
   border-left: 1px solid white;
 }
-.index_offre_top_voyage_btn_more_titre::after{
+.index_offre_top_voyage_btn_more_titre::after,.btn_envoyee::after{
   content: "";
   height: 40px;
   width: 0px;

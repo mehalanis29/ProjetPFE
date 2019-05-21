@@ -1,13 +1,21 @@
+.Connexion_formulaire{
+  display: flex;
+  justify-content: center;
+}
+.Connexion_formulaire .Inscription_formulaire{
+  width: 550px;
+}
 .formulaire_titre{
+  margin-top: 8px;
   font-size: 28px;
   font-weight: 700;
   color: var(--color-bleu);
 }
 .formulaire_ligne{
   color: #fff;
+  width: 100%;
 }
 .formulaire_form{
-  margin-top: 22px;
   display: grid;
   grid-row-gap: 12px;
 }
@@ -30,4 +38,10 @@
   border-radius: 4px;
   padding:4px;
   font-size: 20px;
+  font-family: unset;
+}
+.formulaire_btn{
+  display: flex;
+  justify-content: flex-end;
+  padding: 12px;
 }

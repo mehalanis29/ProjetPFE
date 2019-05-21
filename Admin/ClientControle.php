@@ -6,9 +6,8 @@ require '../php/Client.inc';
 require '../php/Admin/Control.php';
 include '../php/Admin/ClientFunction.php';
 if(isset($_POST["nom"])){
-  echo "ok";
   $client=new client($_POST["client_id"],$_POST["num_passport"],$_POST["nom"],$_POST["prenom"],$_POST["date_naissance"],
-                    $_POST["pays"],$_POST["email"],"",$_POST["phone"],$_POST["address"],$_POST["city"],
+                    $_POST["email"],"",$_POST["phone"],
                     $_POST["nationalite"],$_POST["date_emission_passport"],$_POST["date_expiration_passport"]);
   if(isset($_POST["controlModifiebtn"])){
     $client->UpdateClient();
@@ -87,29 +86,6 @@ $client = LoadClient($_GET["idclient"]);
                       <?php if((isset($_POST["phone"]))&&(empty($_POST["phone"])))echo "control_input_erreur";?>"
                        value="<?php if(isset($_POST["phone"])){ echo $_POST["phone"];  }
                                     else{ echo $client->phone; }?>">
-                </div>
-                <div class="control_table_item">
-                    <label for="" class="controllabel">Pays</label>
-                    <select name="pays" class="controlinput" >
-                      <?php
-                        if(isset($_POST["pays"])){ $pays=$_POST["pays"];  }else{ $pays=$client->pays; }
-                        LoadPays($pays);
-                       ?>
-                    </select>
-                </div>
-                <div class="control_table_item">
-                  <label for="" class="controllabel">Cite</label>
-                  <input type="text" name="city" class="controlinput
-                    <?php if((isset($_POST["city"]))&&(empty($_POST["city"])))echo "control_input_erreur";?>"
-                     value="<?php if(isset($_POST["city"])){ echo $_POST["city"];  }
-                                  else{ echo $client->city; }?>">
-                </div>
-                <div class="control_table_item">
-                  <label for="" class="controllabel">Adresse</label>
-                  <textarea name="address" class="controlinput
-                    <?php if((isset($_POST["address"]))&&(empty($_POST["address"])))echo "control_input_erreur";?>"
-                    cols="56" rows="5"><?php if(isset($_POST["address"])){echo $_POST["address"];}
-                                             else{ echo $client->address; }?></textarea>
                 </div>
               </div>
                </fieldset>

@@ -1,7 +1,16 @@
 <!DOCTYPE html>
 <?php
 include 'php/Client/standard.php';
-
+require 'php/Admin/Control.php';
+require 'php/database.inc';
+require 'php/Client.inc';
+$database=new database();
+if(isset($_POST["creer_compte"])){
+  $client=new Client("",$_POST["num_passeport"],$_POST["nom"],$_POST["prenom"],$_POST["date_naissance"],$_POST["email"]
+  ,$_POST["mot_de_passe"],$_POST["phone"],$_POST["nationalite"],$_POST['emission_passeport'],$_POST['expiration_passport']);
+  $client->InsertClient();
+  header("location: index.php");
+}
  ?>
 <html lang="en" dir="ltr">
   <head>
@@ -41,22 +50,70 @@ include 'php/Client/standard.php';
     </div>
     <div class="Inscription_page">
       <div class="Inscription_formulaire">
-        <label for="" class="formulaire_titre">Inscription</label>
-        <hr class="formulaire_ligne">
         <form class="formulaire_form" action="Inscription.php" method="post">
+          <label for="" class="formulaire_titre">Informations Personnelles</label>
+          <hr class="formulaire_ligne"/>
           <div class="formulaire_row_2item">
             <div class="formulaire_row_item">
               <label for="" class="formulaire_row_item_label">Nom*</label>
-              <input type="text" name="" value="" class="formulaire_row_item_input">
+              <input type="text" name="nom" value="" class="formulaire_row_item_input">
             </div>
             <div class="formulaire_row_item">
               <label for="" class="formulaire_row_item_label">Prenom*</label>
-              <input type="text" name="" value="" class="formulaire_row_item_input">
+              <input type="text" name="prenom" value="" class="formulaire_row_item_input">
             </div>
           </div>
-          <div class="formulaire_row_item">
-            <label for="" class="formulaire_row_item_label">Adresse</label>
-            <textarea name="name" rows="4" cols="30" class="formulaire_row_item_input"></textarea>
+          <div class="formulaire_row_2item">
+            <div class="formulaire_row_item">
+              <label for="" class="formulaire_row_item_label">Date Naissance</label>
+              <input type="date" name="date_naissance" value="" class="formulaire_row_item_input">
+            </div>
+            <div class="formulaire_row_item">
+              <label for="" class="formulaire_row_item_label">Phone</label>
+              <input type="text" name="phone" value="" class="formulaire_row_item_input">
+            </div>
+          </div>
+          <label for="" class="formulaire_titre">Information Passeport </label>
+          <hr class="formulaire_ligne"/>
+          <div class="formulaire_row_2item">
+            <div class="formulaire_row_item">
+              <label for="" class="formulaire_row_item_label">N*Passeport</label>
+              <input type="text" name="num_passeport" value="" class="formulaire_row_item_input">
+            </div>
+            <div class="formulaire_row_item">
+              <label for="" class="formulaire_row_item_label">Nationalite</label>
+              <select class="formulaire_row_item_input" name="nationalite">
+                <?php LoadNationalite("0"); ?>
+              </select>
+            </div>
+          </div>
+          <div class="formulaire_row_2item">
+            <div class="formulaire_row_item">
+              <label for="" class="formulaire_row_item_label">Emission du Passport</label>
+              <input type="date" name="emission_passeport" value="" class="formulaire_row_item_input">
+            </div>
+            <div class="formulaire_row_item">
+              <label for="" class="formulaire_row_item_label">Expiration Du Passport</label>
+              <input type="date" name="expiration_passport" value="" class="formulaire_row_item_input">
+            </div>
+          </div>
+          <label for="" class="formulaire_titre">Inscription</label>
+          <hr class="formulaire_ligne"/>
+          <div class="formulaire_row_2item">
+            <div class="formulaire_row_item">
+              <label for="" class="formulaire_row_item_label">Email*</label>
+              <input type="text" name="email" value="" class="formulaire_row_item_input">
+            </div>
+            <div class="formulaire_row_item">
+              <label for="" class="formulaire_row_item_label">Mot de Passe*</label>
+              <input type="password" name="mot_de_passe" value="" class="formulaire_row_item_input">
+            </div>
+          </div>
+          <div class="formulaire_btn">
+            <button type="submit" name="creer_compte" class="index_offre_top_voyage_btn_more_titre btn_envoyee">
+              <label for="">Creer Compte</label>
+              <img src="img/Client/icon/suivant18px.png" alt="">
+            </button>
           </div>
         </form>
       </div>

@@ -8,11 +8,9 @@ CREATE TABLE `client`
 	`nom` varchar(30),
 	`prenom` varchar(30),
 	`date_naissance` date,
-	`pays` int,
 	`email` varchar(30),
 	`password` varchar(30),
 	`phone` varchar(30),
-	`address` varchar(150),
 	`nationalite` int,
 	`date_emission_passport` date,
 	`date_expiration_passport` date
