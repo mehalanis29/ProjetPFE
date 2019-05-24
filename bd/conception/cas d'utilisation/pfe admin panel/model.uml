@@ -5,12 +5,10 @@
       <details xmi:id="_fzQ-MUT0EemXss87Qen4eg" key="Human"/>
     </eAnnotations>
   </packagedElement>
-  <packagedElement xmi:type="uml:Component" xmi:id="_y_bboET1EemXss87Qen4eg" name="admin panel" useCase="_lgu6gET4EemXss87Qen4eg _uLH3wET4EemXss87Qen4eg _vWvWUET4EemXss87Qen4eg _CpqbsET9EemXss87Qen4eg _GkLJcET9EemXss87Qen4eg _P_WqcET9EemXss87Qen4eg _5BGZcEUREemXss87Qen4eg _AAGL4EUSEemXss87Qen4eg _iSrrUEUSEemXss87Qen4eg">
+  <packagedElement xmi:type="uml:Component" xmi:id="_y_bboET1EemXss87Qen4eg" name="Cote Admin" useCase="_lgu6gET4EemXss87Qen4eg _CpqbsET9EemXss87Qen4eg _GkLJcET9EemXss87Qen4eg _P_WqcET9EemXss87Qen4eg _5BGZcEUREemXss87Qen4eg _AAGL4EUSEemXss87Qen4eg _iCnPgH5sEemi4b6ufLpcbw _BdY-4H5uEemuBNWepcuccg">
     <packagedElement xmi:type="uml:UseCase" xmi:id="_lgu6gET4EemXss87Qen4eg" name="crée client" subject="_y_bboET1EemXss87Qen4eg"/>
-    <packagedElement xmi:type="uml:UseCase" xmi:id="_uLH3wET4EemXss87Qen4eg" name="crée voyage" subject="_y_bboET1EemXss87Qen4eg"/>
-    <packagedElement xmi:type="uml:UseCase" xmi:id="_vWvWUET4EemXss87Qen4eg" name="modifier la date des voyages" subject="_y_bboET1EemXss87Qen4eg"/>
     <packagedElement xmi:type="uml:UseCase" xmi:id="_CpqbsET9EemXss87Qen4eg" name="Ajouter des offres" subject="_y_bboET1EemXss87Qen4eg"/>
-    <packagedElement xmi:type="uml:UseCase" xmi:id="_GkLJcET9EemXss87Qen4eg" name="consulter les reservations" subject="_y_bboET1EemXss87Qen4eg"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_GkLJcET9EemXss87Qen4eg" name="Gerer les reservations" subject="_y_bboET1EemXss87Qen4eg"/>
     <packagedElement xmi:type="uml:UseCase" xmi:id="_P_WqcET9EemXss87Qen4eg" name="Confirmer le payment" subject="_y_bboET1EemXss87Qen4eg"/>
     <packagedElement xmi:type="uml:UseCase" xmi:id="_5BGZcEUREemXss87Qen4eg" name="le client existe" subject="_y_bboET1EemXss87Qen4eg">
       <extend xmi:id="_QaY0EEUSEemXss87Qen4eg" extendedCase="_lgu6gET4EemXss87Qen4eg"/>
@@ -18,9 +16,8 @@
     <packagedElement xmi:type="uml:UseCase" xmi:id="_AAGL4EUSEemXss87Qen4eg" name="montant incorrect" subject="_y_bboET1EemXss87Qen4eg">
       <extend xmi:id="_bPUWQEUSEemXss87Qen4eg" extendedCase="_P_WqcET9EemXss87Qen4eg"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:UseCase" xmi:id="_iSrrUEUSEemXss87Qen4eg" name="date incorrecte" subject="_y_bboET1EemXss87Qen4eg">
-      <extend xmi:id="_nTZMIEUSEemXss87Qen4eg" extendedCase="_vWvWUET4EemXss87Qen4eg"/>
-    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_iCnPgH5sEemi4b6ufLpcbw" name="Gerer les voyage" subject="_y_bboET1EemXss87Qen4eg"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_BdY-4H5uEemuBNWepcuccg" name="gerer les travailleurs indépendants" subject="_y_bboET1EemXss87Qen4eg"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="_H1s2MEUSEemXss87Qen4eg" memberEnd="_H1y80EUSEemXss87Qen4eg _H15DcEUSEemXss87Qen4eg">
     <ownedEnd xmi:id="_H1y80EUSEemXss87Qen4eg" type="_fzBGkET0EemXss87Qen4eg" association="_H1s2MEUSEemXss87Qen4eg"/>
@@ -28,11 +25,11 @@
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="_JBJVoEUSEemXss87Qen4eg" memberEnd="_JBJ8sEUSEemXss87Qen4eg _JBJ8sUUSEemXss87Qen4eg">
     <ownedEnd xmi:id="_JBJ8sEUSEemXss87Qen4eg" type="_fzBGkET0EemXss87Qen4eg" association="_JBJVoEUSEemXss87Qen4eg"/>
-    <ownedEnd xmi:id="_JBJ8sUUSEemXss87Qen4eg" type="_uLH3wET4EemXss87Qen4eg" association="_JBJVoEUSEemXss87Qen4eg"/>
+    <ownedEnd xmi:id="_JBJ8sUUSEemXss87Qen4eg" association="_JBJVoEUSEemXss87Qen4eg"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="_J9dM4EUSEemXss87Qen4eg" memberEnd="_J9dz8EUSEemXss87Qen4eg _J9dz8UUSEemXss87Qen4eg">
     <ownedEnd xmi:id="_J9dz8EUSEemXss87Qen4eg" type="_fzBGkET0EemXss87Qen4eg" association="_J9dM4EUSEemXss87Qen4eg"/>
-    <ownedEnd xmi:id="_J9dz8UUSEemXss87Qen4eg" type="_vWvWUET4EemXss87Qen4eg" association="_J9dM4EUSEemXss87Qen4eg"/>
+    <ownedEnd xmi:id="_J9dz8UUSEemXss87Qen4eg" association="_J9dM4EUSEemXss87Qen4eg"/>
   </packagedElement>
   <packagedElement xmi:type="uml:Association" xmi:id="_K7SuIEUSEemXss87Qen4eg" memberEnd="_K7TVMEUSEemXss87Qen4eg _K7T8QEUSEemXss87Qen4eg">
     <ownedEnd xmi:id="_K7TVMEUSEemXss87Qen4eg" type="_fzBGkET0EemXss87Qen4eg" association="_K7SuIEUSEemXss87Qen4eg"/>
@@ -45,5 +42,13 @@
   <packagedElement xmi:type="uml:Association" xmi:id="_d0-w8EUSEemXss87Qen4eg" memberEnd="_d0_YAEUSEemXss87Qen4eg _d0_YAUUSEemXss87Qen4eg">
     <ownedEnd xmi:id="_d0_YAEUSEemXss87Qen4eg" type="_fzBGkET0EemXss87Qen4eg" association="_d0-w8EUSEemXss87Qen4eg"/>
     <ownedEnd xmi:id="_d0_YAUUSEemXss87Qen4eg" type="_P_WqcET9EemXss87Qen4eg" association="_d0-w8EUSEemXss87Qen4eg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_mAkS0H5sEemi4b6ufLpcbw" memberEnd="_mAokQH5sEemi4b6ufLpcbw _mApLUH5sEemi4b6ufLpcbw">
+    <ownedEnd xmi:id="_mAokQH5sEemi4b6ufLpcbw" type="_fzBGkET0EemXss87Qen4eg" association="_mAkS0H5sEemi4b6ufLpcbw"/>
+    <ownedEnd xmi:id="_mApLUH5sEemi4b6ufLpcbw" type="_iCnPgH5sEemi4b6ufLpcbw" association="_mAkS0H5sEemi4b6ufLpcbw"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_Ow41QH5uEemuBNWepcuccg" memberEnd="_Ow5cUH5uEemuBNWepcuccg _Ow6qcH5uEemuBNWepcuccg">
+    <ownedEnd xmi:id="_Ow5cUH5uEemuBNWepcuccg" type="_fzBGkET0EemXss87Qen4eg" association="_Ow41QH5uEemuBNWepcuccg"/>
+    <ownedEnd xmi:id="_Ow6qcH5uEemuBNWepcuccg" type="_BdY-4H5uEemuBNWepcuccg" association="_Ow41QH5uEemuBNWepcuccg"/>
   </packagedElement>
 </uml:Model>

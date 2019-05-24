@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_lIkIMESiEemoV5BzcwfRGg" name="PFE">
+  <packagedElement xmi:type="uml:Association" xmi:id="_-xK6EESiEemoV5BzcwfRGg" memberEnd="_-xN9YESiEemoV5BzcwfRGg _-xOkcESiEemoV5BzcwfRGg">
+    <ownedEnd xmi:id="_-xN9YESiEemoV5BzcwfRGg" association="_-xK6EESiEemoV5BzcwfRGg"/>
+    <ownedEnd xmi:id="_-xOkcESiEemoV5BzcwfRGg" association="_-xK6EESiEemoV5BzcwfRGg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Component" xmi:id="_kNDswESjEemoV5BzcwfRGg" name="Cote Client" useCase="_vg4xcESjEemoV5BzcwfRGg _2rPfUESjEemoV5BzcwfRGg _NJOIQESkEemoV5BzcwfRGg _q5jSkESmEemoV5BzcwfRGg _svfggESmEemoV5BzcwfRGg _WNXFcESoEemoV5BzcwfRGg _2tJDIESrEemoV5BzcwfRGg _8iS4oESrEemoV5BzcwfRGg _ODamAESsEemoV5BzcwfRGg _FlOxYESvEemoV5BzcwfRGg _Ix1dMETkEemjdqH1b2bADA _cFiigETkEemjdqH1b2bADA _yqn5AETkEemjdqH1b2bADA _FFlYcETlEemjdqH1b2bADA _kLevMH4ZEemQIo-lPuGuhQ">
+    <ownedUseCase xmi:id="_8gCvgESjEemoV5BzcwfRGg" name="Voir les offres">
+      <ownedUseCase xmi:id="_8gCvgUSjEemoV5BzcwfRGg" name="Creer compte"/>
+    </ownedUseCase>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_vg4xcESjEemoV5BzcwfRGg" name="Creer compte" subject="_kNDswESjEemoV5BzcwfRGg">
+      <ownedUseCase xmi:id="_7kRDwESjEemoV5BzcwfRGg" name="Creer compte"/>
+      <include xmi:id="_nIXOAESoEemoV5BzcwfRGg" addition="_WNXFcESoEemoV5BzcwfRGg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_2rPfUESjEemoV5BzcwfRGg" name="UseCase" subject="_kNDswESjEemoV5BzcwfRGg"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_NJOIQESkEemoV5BzcwfRGg" name="Reserve" subject="_kNDswESjEemoV5BzcwfRGg">
+      <include xmi:id="_sQOxoESmEemoV5BzcwfRGg" addition="_q5jSkESmEemoV5BzcwfRGg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_q5jSkESmEemoV5BzcwfRGg" name="  verifie nombre des place disponible" subject="_kNDswESjEemoV5BzcwfRGg"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_svfggESmEemoV5BzcwfRGg" name="   nombre des places n'est pas suffisant" subject="_kNDswESjEemoV5BzcwfRGg">
+      <extend xmi:id="_wutvIESmEemoV5BzcwfRGg" extendedCase="_NJOIQESkEemoV5BzcwfRGg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_WNXFcESoEemoV5BzcwfRGg" name="verifier si il existe deja compte" subject="_kNDswESjEemoV5BzcwfRGg"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_2tJDIESrEemoV5BzcwfRGg" name="Reserve famille" subject="_kNDswESjEemoV5BzcwfRGg">
+      <generalization xmi:id="_MU-HMESsEemoV5BzcwfRGg" general="_NJOIQESkEemoV5BzcwfRGg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_8iS4oESrEemoV5BzcwfRGg" name="Reserve groupes d'amis" subject="_kNDswESjEemoV5BzcwfRGg">
+      <generalization xmi:id="_aA5H0ESwEemoV5BzcwfRGg" general="_NJOIQESkEemoV5BzcwfRGg"/>
+      <include xmi:id="_Tvq-MESsEemoV5BzcwfRGg" addition="_ODamAESsEemoV5BzcwfRGg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_ODamAESsEemoV5BzcwfRGg" name="creer un lien d'invitation " subject="_kNDswESjEemoV5BzcwfRGg"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_FlOxYESvEemoV5BzcwfRGg" name="accepte invitation" subject="_kNDswESjEemoV5BzcwfRGg">
+      <generalization xmi:id="_P1I68ESvEemoV5BzcwfRGg" general="_NJOIQESkEemoV5BzcwfRGg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_Ix1dMETkEemjdqH1b2bADA" name=" message d'erreur si il existe deja compte" subject="_kNDswESjEemoV5BzcwfRGg">
+      <extend xmi:id="_VdmlMETkEemjdqH1b2bADA" extendedCase="_vg4xcESjEemoV5BzcwfRGg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_cFiigETkEemjdqH1b2bADA" name="acces compte" subject="_kNDswESjEemoV5BzcwfRGg">
+      <include xmi:id="_JqkmkETlEemjdqH1b2bADA" addition="_FFlYcETlEemjdqH1b2bADA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_yqn5AETkEemjdqH1b2bADA" name="message d'erreur les information faux" subject="_kNDswESjEemoV5BzcwfRGg">
+      <extend xmi:id="_7SAlkETkEemjdqH1b2bADA" extendedCase="_cFiigETkEemjdqH1b2bADA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_FFlYcETlEemjdqH1b2bADA" name="verifie les information" subject="_kNDswESjEemoV5BzcwfRGg"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_kLevMH4ZEemQIo-lPuGuhQ" name="envoyer un cv" subject="_kNDswESjEemoV5BzcwfRGg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_sGYZcESjEemoV5BzcwfRGg" name="Client">
+    <eAnnotations xmi:id="_sGZAgESjEemoV5BzcwfRGg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <details xmi:id="_sGZAgUSjEemoV5BzcwfRGg" key="Human"/>
+    </eAnnotations>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_STqM0ESkEemoV5BzcwfRGg" memberEnd="_STqz4ESkEemoV5BzcwfRGg _STqz4USkEemoV5BzcwfRGg">
+    <ownedEnd xmi:id="_STqz4ESkEemoV5BzcwfRGg" type="_NJOIQESkEemoV5BzcwfRGg" association="_STqM0ESkEemoV5BzcwfRGg"/>
+    <ownedEnd xmi:id="_STqz4USkEemoV5BzcwfRGg" type="_sGYZcESjEemoV5BzcwfRGg" association="_STqM0ESkEemoV5BzcwfRGg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_nc6DsH4ZEemQIo-lPuGuhQ" name="travailleur independant">
+    <eAnnotations xmi:id="_nc6qwH4ZEemQIo-lPuGuhQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <details xmi:id="_nc6qwX4ZEemQIo-lPuGuhQ" key="Human"/>
+    </eAnnotations>
+    <generalization xmi:id="_eVnAoH4cEemQIo-lPuGuhQ" general="_JEXGAH4bEemQIo-lPuGuhQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_Lg-H0H4aEemQIo-lPuGuhQ" memberEnd="_Lg-u4H4aEemQIo-lPuGuhQ _Lg_V8H4aEemQIo-lPuGuhQ">
+    <ownedEnd xmi:id="_Lg-u4H4aEemQIo-lPuGuhQ" type="_nc6DsH4ZEemQIo-lPuGuhQ" association="_Lg-H0H4aEemQIo-lPuGuhQ"/>
+    <ownedEnd xmi:id="_Lg_V8H4aEemQIo-lPuGuhQ" type="_kLevMH4ZEemQIo-lPuGuhQ" association="_Lg-H0H4aEemQIo-lPuGuhQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_JEXGAH4bEemQIo-lPuGuhQ" name="avenir client">
+    <eAnnotations xmi:id="_JEXtEH4bEemQIo-lPuGuhQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <details xmi:id="_JEXtEX4bEemQIo-lPuGuhQ" key="Human"/>
+    </eAnnotations>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_TmqAEH4bEemQIo-lPuGuhQ" memberEnd="_TmqAEX4bEemQIo-lPuGuhQ _TmqnIH4bEemQIo-lPuGuhQ">
+    <ownedEnd xmi:id="_TmqAEX4bEemQIo-lPuGuhQ" type="_JEXGAH4bEemQIo-lPuGuhQ" association="_TmqAEH4bEemQIo-lPuGuhQ"/>
+    <ownedEnd xmi:id="_TmqnIH4bEemQIo-lPuGuhQ" type="_vg4xcESjEemoV5BzcwfRGg" association="_TmqAEH4bEemQIo-lPuGuhQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_qJ1SEH4bEemQIo-lPuGuhQ" memberEnd="_qJ1SEX4bEemQIo-lPuGuhQ _qJ1SEn4bEemQIo-lPuGuhQ">
+    <ownedEnd xmi:id="_qJ1SEX4bEemQIo-lPuGuhQ" type="_JEXGAH4bEemQIo-lPuGuhQ" association="_qJ1SEH4bEemQIo-lPuGuhQ"/>
+    <ownedEnd xmi:id="_qJ1SEn4bEemQIo-lPuGuhQ" type="_8gCvgESjEemoV5BzcwfRGg" association="_qJ1SEH4bEemQIo-lPuGuhQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_DVcl8H4cEemQIo-lPuGuhQ" memberEnd="_DVdNAH4cEemQIo-lPuGuhQ _DVdNAX4cEemQIo-lPuGuhQ">
+    <ownedEnd xmi:id="_DVdNAH4cEemQIo-lPuGuhQ" type="_sGYZcESjEemoV5BzcwfRGg" association="_DVcl8H4cEemQIo-lPuGuhQ"/>
+    <ownedEnd xmi:id="_DVdNAX4cEemQIo-lPuGuhQ" type="_cFiigETkEemjdqH1b2bADA" association="_DVcl8H4cEemQIo-lPuGuhQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_X0jucH4cEemQIo-lPuGuhQ" memberEnd="_X0kVgH4cEemQIo-lPuGuhQ _X0kVgX4cEemQIo-lPuGuhQ">
+    <ownedEnd xmi:id="_X0kVgH4cEemQIo-lPuGuhQ" type="_sGYZcESjEemoV5BzcwfRGg" association="_X0jucH4cEemQIo-lPuGuhQ"/>
+    <ownedEnd xmi:id="_X0kVgX4cEemQIo-lPuGuhQ" type="_8gCvgESjEemoV5BzcwfRGg" association="_X0jucH4cEemQIo-lPuGuhQ"/>
+  </packagedElement>
+</uml:Model>
