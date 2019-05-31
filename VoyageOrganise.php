@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+session_start();
 include 'php/Client/standard.php';
  ?>
 <html lang="en" dir="ltr">

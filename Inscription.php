@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <?php
+session_start();
+if(isset($_SESSION["email"])){
+  header("location: index.php");
+}
 include 'php/Client/standard.php';
 require 'php/Admin/Control.php';
 require 'php/database.inc';
 require 'php/Client.inc';
 $database=new database();
+
 if(isset($_POST["creer_compte"])){
   $client=new Client("",$_POST["num_passeport"],$_POST["nom"],$_POST["prenom"],$_POST["date_naissance"],$_POST["email"]
   ,$_POST["mot_de_passe"],$_POST["phone"],$_POST["nationalite"],$_POST['emission_passeport'],$_POST['expiration_passport']);

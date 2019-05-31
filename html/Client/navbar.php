@@ -10,7 +10,11 @@
     </div>
   </div>
   <div class="nav_bar_head_right">
-    <a href="Connexion.php">Connexion</a>
-    <a href="Inscription.php" class="nav_bar_head_right_creer">Inscription</a>
+    <?php if (isset($_SESSION["email"])): ?>
+      <a href="#">Bonjour  , <?php echo $_SESSION["prenom"]." ".$_SESSION["nom"]; ?></a>
+    <?php else: ?>
+      <a href="Connexion.php">Connexion</a>
+      <a href="Inscription.php" class="nav_bar_head_right_creer">Inscription</a>
+    <?php endif; ?>
   </div>
 </div>

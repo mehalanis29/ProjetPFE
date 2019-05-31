@@ -38,6 +38,7 @@ require '../php/Admin/standard.php';
     <title></title>
     <?php CSS();?>
     <script src="../js/Admin/Controle.js"></script>
+    <script src="../js/Admin/Voyage.js"></script>
   </head>
   <body  onload="">
     <?php NavBar();?>
@@ -57,8 +58,12 @@ require '../php/Admin/standard.php';
               <legend class="legends">Information Du Voyage</legend>
               <div class="control_table">
                 <div class="control_table_item">
+                  <label for="" class="controllabel" >Nom </label>
+                  <input type="text" name="Nom" class="controlinput" required value="<?php if(isset($voyage))echo $voyage->nom; ?>">
+                </div>
+                <div class="control_table_item">
                   <label for="" class="controllabel">Pays</label>
-                  <select class="controlinput" name="pays" onchange="LoadVille(this.value)">
+                  <select class="controlinput" name="pays" required onchange="LoadVille(this.value)">
                     <?php
                       if(isset($_POST["pays"])){ $pays=$_POST["pays"];  }
                       else{ $pays=VilletoPays($voyage->ville_id); }
@@ -69,39 +74,26 @@ require '../php/Admin/standard.php';
                 </div>
                 <div class="control_table_item">
                   <label for="" class="controllabel" >Ville</label>
-                  <select class="controlinput" name="ville_id" id="ville"  onchange="LoadHotel(this.value)">
-                    <?php  LoadVille($voyage->ville_id,$pays); ?>
+                  <select class="controlinput" name="ville_id" id="ville" required onchange="LoadHotel(this.value)">
+                    <?php if(isset($voyage))LoadVille($voyage->ville_id,$pays) ?>
                   </select>
                 </div>
                 <div class="control_table_item">
                   <label for="" class="controllabel" >Hotel</label>
-                  <select class="controlinput" name="hotel_id" id="hotel" >
-
+                  <select class="controlinput" name="hotel_id" id="hotel" required >
+                    <?php if(isset($voyage))LoadHotel($voyage->hotel_id,$voyage->ville_id) ?>
                   </select>
                 </div>
                 <div class="control_table_item">
                   <label for="" class="controllabel" >Description</label>
-                  <textarea name="description" class="controlinput" rows="3" cols="80"><?php
-                   if(isset($_POST["description"])){ echo $_POST["description"];}else{echo $voyage->description;}
+                  <textarea name="description" class="controlinput" rows="3" cols="80" required><?php
+                   if(isset($voyage))echo $voyage->description;
                    ?></textarea>
                 </div>
                 <div class="control_table_item">
-                  <label for="" class="controllabel" >Prix</label>
-                  <input type="text" name="prix" value="" class="controlinput
-                        <?php if((isset($_POST["prix"]))&&(empty($_POST["prix"])))echo "control_input_erreur";?>"
-                       value="<?php if(isset($_POST["prix"])){ echo $_POST["prix"];} else{ echo $voyage->prix;}?>">
-                </div>
-                <div class="control_table_item">
                   <label for="" class="controllabel">Nombre de jours</label>
-                  <input type="number" name="nbr_jour" class="controlinput
-                        <?php if((isset($_POST["nbr_jour"]))&&(empty($_POST["nbr_jour"])))echo "control_input_erreur";?>"
-                         value="<?php if(isset($_POST["nbr_jour"])){ echo $_POST["nbr_jour"];} else{ echo $voyage->nbr_jour;}?>">
-                </div>
-                <div class="control_table_item">
-                  <label for="" class="controllabel">Capacite</label>
-                  <input type="number" name="capacite" class="controlinput
-                        <?php if((isset($_POST["capacite"]))&&(empty($_POST["capacite"])))echo "control_input_erreur";?>"
-                         value="<?php if(isset($_POST["capacite"])){ echo $_POST["capacite"];} else{ echo $voyage->capacite;}?>">
+                  <input type="number" name="nbr_jour" class="controlinput" required
+                         value="<?php if(isset($voyage)) echo $voyage->nbr_jour;?>">
                 </div>
                 <div class="control_table_item">
                   <label for="" class="controllabel">Image</label>
@@ -111,6 +103,26 @@ require '../php/Admin/standard.php';
             </fieldset>
 
            </div>
+           <div class="left_tab">
+           <fieldset class="fields">
+             <legend class="legends">Les Date Du Voyage</legend>
+             <div class="control_table">
+               <div class="control_table_4item">
+                 <label for="" class="controllabel" >Date Depart </label>
+                 <label for="" class="controllabel" >Date Arrive </label>
+                 <label for="" class="controllabel" >Capacite </label>
+                 <label for="" class="controllabel" >Prix </label>
+               </div>
+               <div class="control_table_4item">
+                 <input type="date" name="date_naissance" class="controlinput">
+                 <input type="date" name="date_naissance" class="controlinput">
+                 <input type="number" name="date_naissance" class="controlinput">
+                 <input type="number" name="date_naissance" class="controlinput" onkeyup="Calcul(this.value)">
+                 <label for="" class="controllabel"  id="prix">000 DA  </label>
+               </div>
+             </div>
+           </fieldset>
+          </div>
            <hr>
            <div class="control_div_btn">
              <input type="hidden" name="voyage_id" value="<?php if(isset($voyage)) {echo $voyage->voyage_id;}else{ echo "-1";} ?>">

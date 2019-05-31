@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+session_start();
 require 'php/database.inc';
 include 'php/Client/standard.php';
 require 'php/Voyage.inc';

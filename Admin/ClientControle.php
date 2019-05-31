@@ -55,37 +55,28 @@ $client = LoadClient($_GET["idclient"]);
               <div class="control_table">
                 <div class="control_table_item">
                   <label class="controllabel" for="" >Nom</label>
-                  <input type="text" id="nom" name="nom"  class="controlinput
-                        <?php if((isset($_POST["nom"]))&&(empty($_POST["nom"])))echo "control_input_erreur";?>"
-                        value="<?php if(isset($_POST["nom"])){ echo $_POST["nom"];  }else{ echo $client->nom; }?>">
+                  <input type="text" id="nom" name="nom"  class="controlinput"
+                        value="<?php if(isset($client))echo $client->nom; ?>">
                 </div>
                 <div class="control_table_item">
                   <label class="controllabel" for="">Prenom</label>
-                  <input type="text" name="prenom" class="controlinput
-                        <?php if((isset($_POST["prenom"]))&&(empty($_POST["prenom"])))echo "control_input_erreur";?>"
-                        value="<?php if(isset($_POST["prenom"])){ echo $_POST["prenom"];  }else{ echo $client->prenom; }?>">
+                  <input type="text" name="prenom" class="controlinput"
+                        value="<?php if(isset($client))echo $client->prenom; ?>">
                 </div>
                 <div class="control_table_item">
                   <label class="controllabel" for="">Date Naissance</label>
-                  <input type="date" name="date_naissance" class="controlinput
-                         <?php if((isset($_POST["date_naissance"]))&&(empty($_POST["date_naissance"])))
-                                     echo "control_input_erreur";?>"
-                         value="<?php if(isset($_POST["date_naissance"])){ echo $_POST["date_naissance"];  }
-                                     else{ echo $client->date_naissance; }?>">
+                  <input type="date" name="date_naissance" class="controlinput"
+                         value="<?php if(isset($client))echo $client->date_naissance; ?>">
                 </div>
                 <div class="control_table_item">
                   <label for="" class="controllabel">Email</label>
-                  <input type="email" name="email" class="controlinput
-                      <?php if((isset($_POST["email"]))&&(empty($_POST["email"])))echo "control_input_erreur";?>"
-                      value="<?php if(isset($_POST["email"])){ echo $_POST["email"];  }
-                                   else{ echo $client->email; }?>">
+                  <input type="email" name="email" class="controlinput" required
+                      value="<?php if(isset($client))echo $client->email;?>">
                 </div>
                 <div class="control_table_item">
                   <label for="" class="controllabel">Phone</label>
-                  <input type="text" name="phone" class="controlinput
-                      <?php if((isset($_POST["phone"]))&&(empty($_POST["phone"])))echo "control_input_erreur";?>"
-                       value="<?php if(isset($_POST["phone"])){ echo $_POST["phone"];  }
-                                    else{ echo $client->phone; }?>">
+                  <input type="text" name="phone" class="controlinput"
+                       value="<?php if(isset($client))echo $client->phone; ?>">
                 </div>
               </div>
                </fieldset>

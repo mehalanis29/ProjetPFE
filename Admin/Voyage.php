@@ -3,10 +3,18 @@ require '../php/Admin/standard.php';
 require '../php/database.inc';
 require '../php/Voyage.inc';
 include '../php/Admin/VoyageFunction.php';
+$database=new database();
 if(isset($_POST["remove_list"])){
   removeVoyage($_POST["remove_list"]);
 }
-$Table=new ListVoyage($_POST);
+$where="";
+if(isset($_POST["rech"])){
+  $where="where nom_ville like '%".$_POST["rech"]."%'";
+}
+$result=$database->query("select voyage_id, voyage.nom as nom_voyage,nom_ville,pays.nom as nompays from voyage join ville join pays
+                          on voyage.ville_id=ville.ville_id
+                          and ville.pays_id=pays.pays_id
+                          $where limit ".CalculDebut($_GET).", 10")
  ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -43,21 +51,33 @@ $Table=new ListVoyage($_POST);
             <table class="infotable">
               <thead>
                 <tr>
-                  <?php
-                     $Table->head();
-                   ?>
+                  <th><input type="checkbox" id="checkbox_all" onclick="SelecteAll()" /></th>
+                  <th>Nom</th>
+                  <th>Pays</th>
+                  <th>Ville</th>
+                  <th>Operation</th>
                 </tr>
               </thead>
               <tbody>
-                <?php
-                    $Table->Table();
-                ?>
+                <?php while ($row=mysqli_fetch_assoc($result)): ?>
+                  <tr>
+                    <td width='10'>
+                      <input type="checkbox" class="remove_list" name="remove_list[]" value="<?php echo $row["voyage_id"]; ?>"/>
+                    </td>
+                    <td><?php echo $row["nom_voyage"]; ?></td>
+                    <td><?php echo $row["nompays"]; ?></td>
+                    <td><?php echo $row["nom_ville"]; ?></td>
+                    <td>
+                      <a href="VoyageControl.php?voyage_id=<?php echo $row["voyage_id"]; ?>" class="produitbtn produitbtnedit">Detail</a>
+                    </td>
+                  </tr>
+                <?php endwhile; ?>
               </tbody>
             </table>
             <div class="tableinfo">
               <ul class="listinfo">
                 <?php
-                  $Table->bar();
+                  bar($_GET,IssetRech($_POST),"Voyage.php");
                 ?>
               </ul>
             </div>

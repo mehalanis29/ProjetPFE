@@ -1,6 +1,4 @@
 <?php
-require 'Admin/Table.inc';
-
 class Client{
   public $id;
   public $num_passport;
@@ -45,32 +43,5 @@ class Client{
          ,`phone`='$this->phone' ,`nationalite`=$this->nationalite
          , `date_emission_passport`='$this->date_emission_passport'
          , `date_expiration_passport`='$this->date_expiration_passport' WHERE client_id=$this->id");
-  }
-  public function AfficheRow()
-  {
-    return "<tr><td width='10'><input type=\"checkbox\" class=\"remove_list\" name=\"remove_list[]\" value=\"$this->id\"/></td><td>$this->id</td><td>$this->nom</td><td>$this->prenom</td><td>".$this->ListBtn()."</td></tr>";
-  }
-  public function ListBtn(){
-     return "<a href=\"ClientControle.php?idclient=".$this->id."\" class=\"produitbtn produitbtnedit\">Detail</a>";
-  }
-}
-class ListClient extends Table{
-  public $sql="select client_id,nom,prenom from client ";
-  public $page="Client.php";
-  public function __construct($GET)
-  {
-    $this->head=array('<input type="checkbox" id="checkbox_all" onclick="SelecteAll()" />','Id','Nom','Prenom','Operation');
-    $this->GET=$this->FilterGET($GET);
-    $where="";
-    if(isset($GET["rech"])){
-      $where="where nom like '".$GET["rech"]."%' or prenom like '%".$GET["rech"]."%'";
-    }
-    $database=new database();
-    $debut=$this->NumPage($GET)*10-10;
-    $result=$database->query($this->sql." $where limit $debut,10");
-    while ($row=mysqli_fetch_assoc($result)) {
-      $this->table[]=new Client($row["client_id"],'numpass',$row["nom"],$row['prenom'],'datenais'
-                                    ,'email','password','phone','nation','dateemiss','dateexpi');
-    }
   }
 }

@@ -32,7 +32,18 @@ function LoadPays($pays)
     }
   }
 }
-
+function LoadHotel($id_hotel,$ville)
+{
+  $database =new database();
+  $result=$database->query("select hotel_id as id,nom from hotel where ville_id=".$ville);
+  while ($row=mysqli_fetch_assoc($result)) {
+    if($row['id']==$id_hotel){
+      echo "<option value='".$row['id']."' selected>".$row["nom"]."</option>";
+    }else{
+      echo "<option value='".$row['id']."'>".$row["nom"]."</option>";
+    }
+  }
+}
 function LoadNationalite($nationalite)
 {
   $database =new database();

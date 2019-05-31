@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+session_start();
 include 'php/Client/standard.php';
 
  ?>
@@ -111,7 +112,7 @@ include 'php/Client/standard.php';
         </a>
       </div>
       <div class="index_offre_top_voyage_btn_more">
-        <a href="#">
+        <a href="VoyageOrganise.php">
           <div class="index_offre_top_voyage_btn_more_titre">
             <label for="">Voir toutes nos offres</label>
             <img src="img/Client/icon/suivant18px.png" alt="">

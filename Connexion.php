@@ -1,10 +1,28 @@
 <!DOCTYPE html>
 <?php
+session_start();
+if(isset($_SESSION["email"])){
+  header("location: index.php");
+}
 include 'php/Client/standard.php';
 require 'php/Admin/Control.php';
 require 'php/database.inc';
 require 'php/Client.inc';
 $database=new database();
+if(isset($_POST["Connecter"])){
+  $result=$database->query("select * from client where email='".$_POST["email"]."' and password='".md5($_POST["password"])."'");
+  $i=0;
+  while ($row=mysqli_fetch_assoc($result)) {
+    $i++; $user=$row;
+  }
+  if($i==1){
+    $_SESSION["nom"]=$user["nom"];
+    $_SESSION["prenom"]=$user["prenom"];
+    $_SESSION["email"]=$user["email"];
+    $_SESSION["password"]=$user["password"];
+    header("location: index.php");
+  }
+}
  ?>
 <html lang="en" dir="ltr">
   <head>
@@ -50,14 +68,14 @@ $database=new database();
             <hr class="formulaire_ligne"/>
             <div class="formulaire_row_item">
               <label for="" class="formulaire_row_item_label">Email</label>
-              <input type="text" name="nom" value="" class="formulaire_row_item_input">
+              <input type="text" name="email" required value="" class="formulaire_row_item_input">
             </div>
             <div class="formulaire_row_item">
               <label for="" class="formulaire_row_item_label">Mot de Passe</label>
-              <input type="password" name="prenom" value="" class="formulaire_row_item_input">
+              <input type="password" name="password" required value="" class="formulaire_row_item_input">
             </div>
             <div class="formulaire_btn">
-              <button type="submit" name="creer_compte" class="index_offre_top_voyage_btn_more_titre btn_envoyee">
+              <button type="submit" name="Connecter" class="index_offre_top_voyage_btn_more_titre btn_envoyee">
                 <label for="">Connecter</label>
                 <img src="img/Client/icon/suivant18px.png" alt="">
               </button>

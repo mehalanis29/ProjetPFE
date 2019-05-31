@@ -4,11 +4,15 @@ require '../php/Admin/standard.php';
 require '../php/database.inc';
 require '../php/Client.inc';
 include '../php/Admin/ClientFunction.php';
+$database=new database();
 if(isset($_POST["remove_list"])){
   removeClient($_POST["remove_list"]);
 }
-$Table=new ListClient($_POST);
-
+$where="";
+if(isset($_POST["rech"])){
+  $where="where nom like '".$_POST["rech"]."%' or prenom like '%".$_POST["rech"]."%'";
+}
+$result=$database->query("select client_id,nom,prenom from client $where limit ".CalculDebut($_GET).", 10")
 ?>
 <html lang="en" dir="ltr">
   <head>
@@ -44,21 +48,31 @@ $Table=new ListClient($_POST);
             <table class="infotable">
               <thead>
                 <tr>
-                  <?php
-                     $Table->head();
-                   ?>
+                  <th><input type="checkbox" id="checkbox_all" onclick="SelecteAll()" /></th>
+                  <th>Nom</th>
+                  <th>Prenom</th>
+                  <th>Operation</th>
                 </tr>
               </thead>
               <tbody>
-                <?php
-                    $Table->Table();
-                ?>
+                <?php while ($row=mysqli_fetch_assoc($result)): ?>
+                  <tr>
+                    <td width='10'>
+                      <input type="checkbox" class="remove_list" name="remove_list[]" value="<?php echo $row["client_id"]; ?>"/>
+                    </td>
+                    <td><?php echo $row["nom"]; ?></td>
+                    <td><?php echo $row["prenom"]; ?></td>
+                    <td>
+                      <a href="ClientControle.php?idclient=<?php echo $row["client_id"]; ?>" class="produitbtn produitbtnedit">Detail</a>
+                    </td>
+                  </tr>
+                <?php endwhile; ?>
               </tbody>
             </table>
             <div class="tableinfo">
               <ul class="listinfo">
                 <?php
-                  $Table->bar();
+                  bar($_GET,IssetRech($_POST),"Client.php");
                 ?>
               </ul>
             </div>

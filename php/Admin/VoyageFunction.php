@@ -5,12 +5,12 @@ function LoadVoyage($voyage_id)
   $result=$database->query("select * from voyage where voyage_id=".$voyage_id);
   if(mysqli_num_rows($result)>0){
     $row=mysqli_fetch_assoc($result);
-    $voyage_id= new Voyage($row["voyage_id"],$row["ville_id"],$row["nbr_jour"],$row['hotel_id'],$row["description"]
-                            ,$row["prix"],$row["capacite"],$row["cover"]);
+    $voyage_id= new Voyage($row["voyage_id"],$row["nom"],$row["ville_id"],$row["nbr_jour"],$row['hotel_id']
+                            , $row["description"],$row["cover"]);
 
     return $voyage_id;
   }else{
-    return new Voyage("","-1","","","","","","","","","","","","");
+    return new Voyage("","","-1","","","","","","","","","","");
   }
 }
 
