@@ -21,7 +21,10 @@
 }
 .formulaire_row_item{
   display: grid;
-  grid-row-gap: 6px;
+  grid-row-gap: 8px;
+}
+.formulaire_row_item_ligne{
+  grid-template-columns: 15% 85%;
 }
 .formulaire_row_2item{
   display: grid;
@@ -36,8 +39,8 @@
   border: 1px solid #878c9f;
   background-color: rgb(135, 140, 159,.1);
   border-radius: 4px;
-  padding:4px;
-  font-size: 20px;
+  padding:5px;
+  font-size: 18px;
   font-family: unset;
 }
 .formulaire_btn{

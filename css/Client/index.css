@@ -91,7 +91,7 @@
   padding: 14px;
   overflow: hidden;
 }
-.index_offre_top_voyage_btn_more a,.btn_envoyee {
+.index_offre_top_voyage_btn_more a,.voyage_organise_btn_more a,.btn_envoyee {
   text-decoration: none;
   color: white;
   font-size: 18px;
@@ -124,6 +124,7 @@
   position:absolute;
   transition: .4s;
 }
-.index_offre_top_voyage_btn_more a:hover  .index_offre_top_voyage_btn_more_titre::after{
+.index_offre_top_voyage_btn_more a:hover  .index_offre_top_voyage_btn_more_titre::after,
+.voyage_organise_btn_more a:hover .index_offre_top_voyage_btn_more_titre::after{
   width: 250px;
 }

@@ -6,7 +6,9 @@
 	<Local Expanded="Yes">
 		<Model Expanded="Yes" ID="{AE1CAE2C-6306-4479-8B17-1F35195D7BC1}" Loaded="No" Name="PFE" Type="{CDE44E21-9669-11D1-9914-006097355D9B}" URL="PFE.pdm"/>
 		<Model Expanded="Yes" ID="{66A3C0F4-E240-45E3-9711-91DCFEF7A212}" Loaded="No" Name="ObjectOrientedModel_1" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="ObjectOrientedModel_1.oom"/>
-		<Model Expanded="Yes" ID="{C978DE66-63DF-4EB1-83A2-5F071E211124}" Loaded="No" Name="Diagramme de classe" Selected="Yes" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="Diagramme de classe.oom"/>
+		<Model Expanded="Yes" ID="{C978DE66-63DF-4EB1-83A2-5F071E211124}" Loaded="No" Name="Diagramme de classe" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="Diagramme de classe.oom"/>
+		<Model Expanded="Yes" ID="{AE1CAE2C-6306-4479-8B17-1F35195D7BC1}" Loaded="No" Name="PFE" Type="{CDE44E21-9669-11D1-9914-006097355D9B}" URL="PFE.pdm"/>
+		<Model Expanded="Yes" ID="{8042E59D-60E4-40BD-94EF-F310DB5F2292}" Name="moza_partie_2" Type="{FF4B6538-9856-42CF-B9B9-304ED370CEAA}" URL="/Users/anispitchou/Desktop/moza_partie_2/moza_partie_2.prj"/>
 	</Local>
 	<BrowserModule Name="Repository"/>
 </Workspace>

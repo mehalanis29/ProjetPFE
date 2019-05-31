@@ -9,10 +9,19 @@
   grid-template-columns: auto 400px;
   grid-column-gap: 18px;
 }
+.control_table_4item{
+  display: grid;
+  grid-template-columns: 25% 25% 25% 20% 120px;
+  grid-column-gap: 18px;
+}
+.control_table_4item label{
+  text-align: center;
+ }
 .left_tab{
   padding: 16px;
 }
 .controlinput{
+  width: 100%;
   padding: 4px;
   font-size: 18px;
   border: 1px solid #bdc3c7;

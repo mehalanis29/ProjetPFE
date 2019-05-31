@@ -29,15 +29,27 @@
   display: grid;
 }
 .voyage_organise_voyage_description_titre strong{
-  font-size: 40px;
+  font-size: 34px;
+  color:var(--color-bleu-fonce);
+  padding: 4px;
+  padding-left: 0px;
+  font-weight: 700;
 }
 .voyage_organise_voyage_description_titre label{
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
-  color: #777;
+  color: black;
 }
 .voyage_organise_voyage_description_detail{
   padding: 6px;
   font-size: 14px;
-  color: #777;
+  color: #222;
+  font-weight:200;
+}
+.voyage_organise_btn_more{
+  display: flex;
+  justify-content: flex-end;
+  padding: 14px;
+  overflow: hidden;
+  margin-top: 38px;
 }

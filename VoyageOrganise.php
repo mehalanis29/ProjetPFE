@@ -66,7 +66,14 @@ include 'php/Client/standard.php';
                 Barcelone est une ville merveilleuse pour faire du shopping
               </div>
               <hr>
-              
+              <div class="voyage_organise_btn_more">
+                <a href="Voyage.php">
+                  <div class="index_offre_top_voyage_btn_more_titre">
+                    <label for="">Voir toutes nos offres</label>
+                    <img src="img/Client/icon/suivant18px.png" alt="">
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
         </div>
