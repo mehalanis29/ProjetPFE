@@ -40,3 +40,19 @@ a{
   margin-top:28px;
   border-bottom: 1.5px solid #e3e3e3;
 }
+/* alerte */
+
+.AlertConfirme{
+  border: 1px solid #0aa699;
+  border-radius: 8px;
+  background-color: #0aa6991a;
+  color: #333;
+  padding: 8px;
+}
+.AlertErreur{
+  border: 1px solid  #ff1a1a;
+  border-radius: 8px;
+  background-color:  #ff1a1a33;
+  color: #333;
+  padding: 8px;
+}

@@ -9,6 +9,7 @@ require 'php/Admin/Control.php';
 require 'php/database.inc';
 require 'php/Client.inc';
 $database=new database();
+$i=-1;
 if(isset($_POST["Connecter"])){
   $result=$database->query("select * from client where email='".$_POST["email"]."' and password='".md5($_POST["password"])."'");
   $i=0;
@@ -36,14 +37,14 @@ if(isset($_POST["Connecter"])){
   <body>
     <div class="nav_bar">
       <?php NabBar(); ?>
-      <div class="nav_bar_cover_index">
+      <!--<div class="nav_bar_cover_index">
         <div class="nav_bar_cover_index_img">
           <img src="img/Client/Cover/formulaire.jpeg" alt="">
         </div>
         <div class="nav_bar_titre">
           Connexion
         </div>
-      </div>
+      </div>-->
       <div class="nav_bar_titre_bar">
         <div class="nav_bar_titre_bar_url">
           <div class="nav_bar_titre_bar_url_icon">
@@ -66,6 +67,11 @@ if(isset($_POST["Connecter"])){
           <form class="formulaire_form" action="Connexion.php" method="post">
             <label for="" class="formulaire_titre">Se connecter</label>
             <hr class="formulaire_ligne"/>
+            <?php if($i==0){  ?>
+                  <div class="AlertErreur">
+                    <strong>Échoué !</strong> votre email ou mot de passe est incorrect 
+                  </div>
+            <?php } ?>
             <div class="formulaire_row_item">
               <label for="" class="formulaire_row_item_label">Email</label>
               <input type="text" name="email" required value="" class="formulaire_row_item_input">
@@ -83,7 +89,7 @@ if(isset($_POST["Connecter"])){
           </form>
         </div>
       </div>
-      <div class="page_cover"></div>
     </div>
+    <div class="page_cover"></div>
   </body>
 </html>

@@ -4,15 +4,17 @@ session_start();
 require 'php/database.inc';
 include 'php/Client/standard.php';
 require 'php/Voyage.inc';
-$voyage=new Voyage(1,"","","","","","","");
-$list_photo=$voyage->LoadListPhoto();
-$jour=$voyage->LoadListEndroit();
+//$voyage=new Voyage(1,"","","","","","","");
+//$list_photo=$voyage->LoadListPhoto();
+//$jour=$voyage->LoadListEndroit();
  ?>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
     <title></title>
     <?php include 'php/Client/css.php'; ?>
+    <script type="text/javascript" src="js\jquery.js">
+    </script>
     <script type="text/javascript" src="js\Client\Voyage.js">
     </script>
   </head>
@@ -109,6 +111,53 @@ $jour=$voyage->LoadListEndroit();
               <?php } */ ?>
             </div>
           </div>
+          <div class="espace_voyage">
+            <div class="formulaire_titre">
+              Tarifs
+            </div>
+            <hr class="formulaire_ligne">
+            <div class="formulaire_row_2item">
+              <div class="formulaire_row_item"></div>
+              <div class="formulaire_row_item">
+                <label for="Online" class="formulaire_row_item_label"> Prochains départs </label>
+                <select class="formulaire_row_item_input" name="">
+                  <option value="">30/06/2019</option>
+                  <option value="">07/07/2019</option>
+                  <option value="">14/07/2019</option>
+                </select>
+              </div>
+            </div>
+            <table class="table_tarifs">
+              <thead>
+                <tr>
+                  <td width="550"></td>
+                  <th>Tarif</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Adulte en chambre Single</td>
+                  <th>135,000 DA</th>
+                </tr>
+                <tr>
+                  <td>Adulte en chambre Double</td>
+                  <th>130,000 DA</th>
+                </tr>
+                <tr>
+                  <td>Adulte en chambre Triple</td>
+                  <th>125,000 DA</th>
+                </tr>
+                <tr>
+                  <td>Enfant (3-12ans)</td>
+                  <th>95,000 DA</th>
+                </tr>
+                <tr>
+                  <td>Bebe</td>
+                  <th>60,000 DA</th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
       <div class="voyage_page_droite">
@@ -134,7 +183,7 @@ $jour=$voyage->LoadListEndroit();
             </div>
             <div class="list_chambre">
               <label >Chambres</label>
-              <button type="button" name="button"  onclick="AjouterChambre()">
+              <button type="button" name="button" id="AjouterChambre" >
                 <img src="img\Client\icon\add22px.png" alt="">
               </button>
             </div>
@@ -142,20 +191,21 @@ $jour=$voyage->LoadListEndroit();
               <div class="formulaire_row_item">
                 <label for="" class="formulaire_row_item_label">Chambre 1</label>
                 <select class="formulaire_row_item_input" name="">
-                  <option value=""> Chambre single </option>
-                  <option value=""> Chambre double </option>
+                  <option value=""> Chambre Single </option>
+                  <option value=""> Chambre Double </option>
+                  <option value=""> Chambre Triple</option>
                 </select>
                 <div class="nbr_personne">
                   <div class="categorie_presonne">
                     <label for=""><strong>adulte</strong></label>
                     <div class="nbr_personne_btn">
                       <button type="button" name="button" class="minus"></button>
-                      <input type="text" name="" value="2">
+                      <input type="text" name="" value="1">
                       <button type="button" name="button" class="plus"></button>
                     </div>
                   </div>
                   <div class="categorie_presonne" >
-                    <label for=""><strong>enfant</strong>(-16ans)</label>
+                    <label for=""><strong>enfant</strong>(-12ans)</label>
                     <div class="nbr_personne_btn">
                       <button type="button" name="button" class="minus"></button>
                       <input type="text" name="" value="0">
@@ -163,7 +213,7 @@ $jour=$voyage->LoadListEndroit();
                     </div>
                   </div>
                   <div class="categorie_presonne">
-                    <label for=""><strong>bebe</strong>(-2ans)</label>
+                    <label for=""><strong>bebe</strong>(-3ans)</label>
                     <div class="nbr_personne_btn">
                       <button type="button" name="button" class="minus"></button>
                       <input type="text" name="" value="0">
@@ -174,7 +224,7 @@ $jour=$voyage->LoadListEndroit();
               </div>
             </div>
             <div class="index_offre_top_voyage_btn_more">
-              <a href="#">
+              <a href="Reservez.php">
                 <div class="index_offre_top_voyage_btn_more_titre">
                   <label for="">Réservez</label>
                   <img src="img/Client/icon/suivant18px.png" alt="">
@@ -191,25 +241,26 @@ $jour=$voyage->LoadListEndroit();
       <div class="formulaire_row_item" id="remove_$NBR$">
         <div class="voyage_titre_remove">
           <label for="" class="formulaire_row_item_label">Chambre $NBR$</label>
-          <button type="button" name="button" value="$NBR$" onclick="RemoveChambre(this.value)" >
+          <button type="button" name="button" id="$NBR$" class="btn_remove" >
             <img src="img\Client\icon\exit22px.png" alt="" width="22">
           </button>
         </div>
         <select class="formulaire_row_item_input" name="">
-          <option value=""> Chambre single </option>
-          <option value=""> Chambre double </option>
+          <option value=""> Chambre Single </option>
+          <option value=""> Chambre Double </option>
+          <option value=""> Chambre Triple</option>
         </select>
         <div class="nbr_personne">
           <div class="categorie_presonne">
             <label for=""><strong>adulte</strong></label>
             <div class="nbr_personne_btn">
               <button type="button" name="button" class="minus"></button>
-              <input type="text" name="" value="2">
+              <input type="text" name="" value="1">
               <button type="button" name="button" class="plus"></button>
             </div>
           </div>
           <div class="categorie_presonne" >
-            <label for=""><strong>enfant</strong>(-16ans)</label>
+            <label for=""><strong>enfant</strong>(-12ans)</label>
             <div class="nbr_personne_btn">
               <button type="button" name="button" class="minus"></button>
               <input type="text" name="" value="0">
@@ -217,7 +268,7 @@ $jour=$voyage->LoadListEndroit();
             </div>
           </div>
           <div class="categorie_presonne">
-            <label for=""><strong>bebe</strong>(-2ans)</label>
+            <label for=""><strong>bebe</strong>(-3ans)</label>
             <div class="nbr_personne_btn">
               <button type="button" name="button" class="minus"></button>
               <input type="text" name="" value="0">

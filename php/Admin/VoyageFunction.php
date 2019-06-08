@@ -18,11 +18,6 @@ function issetVoyage($post){
   return ((!empty($post['nom']))&&(!empty($post['lieu_depart']))&&(!empty($post['nbr_jour']))&&(!empty($post['hotel_id'])));
 }
 
-function removeVoyage($list) {
-  $database=new database();
-  foreach ($list as $k  => $voyage_id) {
-    $database->query("DELETE from voyage where voyage_id=".$voyage_id);
-  }
-}
+
 
 ?>

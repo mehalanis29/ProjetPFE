@@ -4,30 +4,32 @@ require '../php/Admin/standard.php';
  require "../php/Voyage.inc";
  require '../php/Admin/Control.php';
  include "../php/Admin/VoyageFunction.php";
+ $database=new database();
  if(isset($_POST["ville_id"])){
-   $voyage=new voyage($_POST["voyage_id"],$_POST["ville_id"]
-                     ,$_POST["nbr_jour"],$_POST["hotel_id"],$_POST["description"]
-                     ,$_POST["prix"],$_POST["capacite"],$_POST["img"]);
+   $voyage=new voyage($_POST["voyage_id"],$_POST["NomVoyage"],$_POST["ville_id"],$_POST["nbr_jour"]
+                      ,$_POST["hotel_id"],$_POST["description"],"test.jpg");
 
    if(isset($_POST["controlAjoutebtn"]))
    {
-    $voyage->Insertvoyage();
-    header("location: Voyage.php");
+    $id_voyage=$voyage->Insertvoyage();
+    
 
    }else{
      $voyage->Updatevoyage();
-     header("location: Voyage.php");
+     $id_voyage=$_POST["voyage_id"];
    }
-
+  foreach ($_POST["date_depart"] as $key => $date_depart) {
+    if($_POST["id_voyage_date"][$key]==-1){
+      $database->query("INSERT INTO `voyage_date`( `voyage_id`, `date_depart`, `date_retour`, `capacite`, `prix_A_S`, `prix_A_D`, `prix_A_T`, `prix_E`, `prix_B`) VALUES ($id_voyage,'$date_depart','".$_POST["date_retour"][$key]."',".$_POST["capacite"][$key].",".$_POST["A_S"][$key].",".$_POST["A_D"][$key].",".$_POST["A_T"][$key].",".$_POST["E"][$key].",".$_POST["B"][$key].")");
+    }else{
+      $database->query("UPDATE `voyage_date` SET `date_depart`='$date_depart',`date_retour`='".$_POST["date_retour"][$key]."',`capacite`=".$_POST["capacite"][$key].",`prix_A_S`=".$_POST["A_S"][$key].",`prix_A_D`=".$_POST["A_D"][$key].",`prix_A_T`=".$_POST["A_T"][$key].",`prix_E`=".$_POST["E"][$key].",`prix_B`=".$_POST["B"][$key]." WHERE `voyage_date_id`=".$_POST["id_voyage_date"][$key]);
+    }
+  }
+  header("location: Voyage.php");
  }
  if(isset($_GET["voyage_id"]))
  {
- $etat="Modifie";
  $voyage = Loadvoyage($_GET["voyage_id"]);
- }else
- {
-   $etat="Ajoute";
-   $voyage = Loadvoyage(-1);
  }
  ?>
 
@@ -37,6 +39,7 @@ require '../php/Admin/standard.php';
     <meta charset="utf-8">
     <title></title>
     <?php CSS();?>
+    <script type="text/javascript" src="..\js\jquery.js"></script>
     <script src="../js/Admin/Controle.js"></script>
     <script src="../js/Admin/Voyage.js"></script>
   </head>
@@ -48,25 +51,34 @@ require '../php/Admin/standard.php';
         <div class="titre_bar">
           <label for="" class="titre_bar_label">
             <a href="Voyage.php"><img src="../img/Admin/icon/back_bleu_40px.png" alt=""></a>
-            <?php echo $etat; ?> Voyage
+            <?php //echo $etat; ?> Voyage
           </label>
         </div>
         <div class="table">
+          <div class="nav_tab">
+            <div class="nav_tab_item nav_tab_item_active"  id="Information_label">
+               <label onclick="suivant('debut')" for="">Information</label>
+            </div>
+            <div class="nav_tab_item" id="list_date_label">
+              <label onclick="suivant('Information')" for="">List date</label>
+            </div>
+          </div>
           <form class="" action="VoyageControl.php" method="post" onsubmit="return VerifieNom()">
+           <div id="Information_div"  class="nav_tab_div nav_tab_div_active">
             <div class="left_tab">
             <fieldset class="fields">
               <legend class="legends">Information Du Voyage</legend>
               <div class="control_table">
                 <div class="control_table_item">
                   <label for="" class="controllabel" >Nom </label>
-                  <input type="text" name="Nom" class="controlinput" required value="<?php if(isset($voyage))echo $voyage->nom; ?>">
+                  <input type="text" name="NomVoyage" class="controlinput" required value="<?php if(isset($voyage))echo $voyage->nom; ?>">
                 </div>
                 <div class="control_table_item">
                   <label for="" class="controllabel">Pays</label>
                   <select class="controlinput" name="pays" required onchange="LoadVille(this.value)">
                     <?php
-                      if(isset($_POST["pays"])){ $pays=$_POST["pays"];  }
-                      else{ $pays=VilletoPays($voyage->ville_id); }
+                      if(isset($voyage)){ $pays=VilletoPays($voyage->ville_id);  }
+                      else{ $pays="-1"; }
                       LoadPays($pays);
 
                     ?>
@@ -101,36 +113,83 @@ require '../php/Admin/standard.php';
                 </div>
               </div>
             </fieldset>
-
            </div>
-           <div class="left_tab">
-           <fieldset class="fields">
-             <legend class="legends">Les Date Du Voyage</legend>
-             <div class="control_table">
-               <div class="control_table_4item">
-                 <label for="" class="controllabel" >Date Depart </label>
-                 <label for="" class="controllabel" >Date Arrive </label>
-                 <label for="" class="controllabel" >Capacite </label>
-                 <label for="" class="controllabel" >Prix </label>
-               </div>
-               <div class="control_table_4item">
-                 <input type="date" name="date_naissance" class="controlinput">
-                 <input type="date" name="date_naissance" class="controlinput">
-                 <input type="number" name="date_naissance" class="controlinput">
-                 <input type="number" name="date_naissance" class="controlinput" onkeyup="Calcul(this.value)">
-                 <label for="" class="controllabel"  id="prix">000 DA  </label>
-               </div>
+           </div>
+            <div id="list_date_div" class="nav_tab_div">
+              <div class="left_tab">
+              <fieldset class="fields">
+                <legend class="legends">Les Date Du Voyage</legend>
+                <div class="control_table" id="list_voyage">
+                  <div class="control_table_9item">
+                    <button style="background: none;border: none" type="button" id="AjouterVoyage"  >
+                      <img src="..\img\Client\icon\add22px.png">
+                    </button>
+                    <label for="" class="controllabel" >Date Depart </label>
+                    <label for="" class="controllabel" >Date Retour </label>
+                    <label for="" class="controllabel" >Capacite </label>
+                    <label for="" class="controllabel" >Adulte Single</label>
+                    <label for="" class="controllabel" >Adulte Double</label>
+                    <label for="" class="controllabel" >Adulte Triple</label>
+                    <label for="" class="controllabel" >Enfant </label>
+                    <label for="" class="controllabel" >Bebe</label>
+                  </div>
+                  <?php
+                    if (isset($_GET["voyage_id"])):
+                     $result=$database->query("SELECT * FROM `voyage_date` where voyage_id=".$voyage->voyage_id);
+                     while ($row=mysqli_fetch_assoc($result)):
+                   ?>
+                    <div class="control_table_9item" id="row_<?php echo $row["voyage_date_id"] ?>" >
+                      <button style="background: none;border: none" type="button" id="<?php echo $row["voyage_date_id"] ?>" class="remove_list" >
+                        <img src="..\img\Client\icon\exit22px.png">
+                      </button>
+                      <input type="hidden" name="id_voyage_date[]" required value="<?php echo $row["voyage_date_id"] ?>">
+                      <input type="date" name="date_depart[]" required class="controlinput" value="<?php echo $row["date_depart"]; ?>">
+                      <input type="date" name="date_retour[]" required class="controlinput" value="<?php echo $row["date_retour"]; ?>">
+                      <input type="number" name="capacite[]" required class="controlinput" value="<?php echo $row["capacite"]; ?>">
+                      <input type="number" name="A_S[]" required class="controlinput" value="<?php echo $row["prix_A_S"]; ?>">
+                      <input type="number" name="A_D[]" required class="controlinput" value="<?php echo $row["prix_A_D"]; ?>">
+                      <input type="number" name="A_T[]" required class="controlinput" value="<?php echo $row["prix_A_T"]; ?>">
+                      <input type="number" name="E[]" required class="controlinput" value="<?php echo $row["prix_E"]; ?>">
+                      <input type="number" name="B[]" required class="controlinput" value="<?php echo $row["prix_B"]; ?>">
+                    </div>
+                  <?php endwhile;
+                endif;?>
+                </div>
+              </fieldset>
              </div>
-           </fieldset>
-          </div>
+            </div>
            <hr>
            <div class="control_div_btn">
              <input type="hidden" name="voyage_id" value="<?php if(isset($voyage)) {echo $voyage->voyage_id;}else{ echo "-1";} ?>">
-             <button type="submit" class="control_btn" name="control<?php echo $etat; ?>btn"><?php echo $etat; ?></button>
+              <?php if (isset($_GET["voyage_id"])): ?>
+              <button type="submit" class="control_btn" name="controlModifierbtn">
+               Modifier
+              </button>
+              <?php else: ?>
+                <button type="button" class="control_btn" id="Ajouter" name="controlModifierbtn" onclick="suivant('Information')">
+                  Suivant
+                </button>
+              <?php endif ; ?>
            </div>
           </form>
         </div>
       </div>
+    </div>
+    <div style="display: none" id="row_voyage">
+       <div class="control_table_9item" id="row_$id_voyage$">
+          <button style="background: none;border: none"  type="button" id="$id_voyage$" class="remove_list" >
+            <img src="..\img\Client\icon\exit22px.png">
+          </button>
+          <input type="hidden" name="id_voyage_date[]" value="-1">
+          <input type="date" required name="date_depart[]" class="controlinput">
+          <input type="date" required name="date_retour[]" class="controlinput">
+          <input type="number" required name="capacite[]" class="controlinput">
+          <input type="number" required name="A_S[]" class="controlinput">
+          <input type="number" required name="A_D[]" class="controlinput">
+          <input type="number" required name="A_T[]" class="controlinput">
+          <input type="number" required name="E[]" class="controlinput">
+          <input type="number" required name="B[]" class="controlinput">
+       </div>
     </div>
   </body>
 </html>

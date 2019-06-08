@@ -1,3 +1,9 @@
+<?php 
+  if(isset($_GET["deco"])){
+    session_destroy();
+    header("location: index.php");
+  }
+ ?>
 <div class="nav_bar_head">
   <div class="nav_bar_head_left">
     <div class="nav_bar_div_logo">
@@ -12,6 +18,9 @@
   <div class="nav_bar_head_right">
     <?php if (isset($_SESSION["email"])): ?>
       <a href="#">Bonjour  , <?php echo $_SESSION["prenom"]." ".$_SESSION["nom"]; ?></a>
+      <a href="index.php?deco">
+        <img src="img\Client\icon\sort-down-filled-16.png">
+      </a>
     <?php else: ?>
       <a href="Connexion.php">Connexion</a>
       <a href="Inscription.php" class="nav_bar_head_right_creer">Inscription</a>

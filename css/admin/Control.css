@@ -14,7 +14,12 @@
   grid-template-columns: 25% 25% 25% 20% 120px;
   grid-column-gap: 18px;
 }
-.control_table_4item label{
+.control_table_9item{
+  display: grid;
+  grid-template-columns: 26px 11% 11% 10% 10% 10% 10% 10% 10%;
+  grid-column-gap: 18px;
+}
+.control_table_4item label,.control_table_9item label{
   text-align: center;
  }
 .left_tab{
@@ -65,4 +70,32 @@
   font-size: 18px;
   margin: 4px;
   padding: 4px;
+}
+.nav_tab{
+  display: flex;
+  justify-content: flex-start;
+  background-color: #34495e;
+}
+.nav_tab_item{
+  padding: 12px;
+  padding-right: 14px;
+}
+.nav_tab_item_active{
+    background-color: #337ab7;
+}
+.nav_tab_item label{
+  font-size: 24px;
+  color: white;
+}
+.nav_tab_item:target{
+    background-color: #337ab7;
+}
+.nav_tab_div{
+  display: none;
+}
+.nav_tab_div_active{
+  display: block;
+}
+.info_table_control{
+  width: 900px;
 }

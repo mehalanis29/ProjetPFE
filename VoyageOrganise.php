@@ -51,7 +51,7 @@ include 'php/Client/standard.php';
                   <label class="index_offre_top_voyage_day">7 Jours & 6 Nuit</label>
                 </div>
                 <div class="index_offre_top_voyage_prix">
-                  <label for="">25,000 DZ</label>
+                  <label for="">125,000 DZ</label>
                 </div>
               </div>
             </div>
@@ -59,7 +59,7 @@ include 'php/Client/standard.php';
               <div class="voyage_organise_voyage_description_titre">
                 <strong>Roma</strong>
                 <label >
-                  Durée: 5 jours & 4 nuits du 16/06/2019 au 20/06/2019
+                  Durée: 7 jours & 6 nuits du 16/06/2019 au 20/08/2019
                 </label>
               </div>
               <hr>

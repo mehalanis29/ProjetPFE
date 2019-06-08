@@ -176,3 +176,20 @@
 .espace_voyage .index_offre_top_voyage_btn_more a{
   width: 420px;
 }
+.table_tarifs{
+  width: 100%;
+  margin-top: 10px;
+  border-collapse: collapse;
+}
+.table_tarifs tbody td,.table_tarifs th{
+  padding: 8px;
+}
+.table_tarifs tbody tr{
+  background: rgb(0,0,0,.1);
+}
+.table_tarifs tbody tr:nth-child(odd){
+  background: rgb(0,0,0,.1);
+}
+.table_tarifs tbody tr:nth-child(even){
+  background: rgb(255,255,255,1);
+}

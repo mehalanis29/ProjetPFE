@@ -22,21 +22,21 @@ class Voyage{
 public function InsertVoyage()
 {
   $database=new database();
-  $database->query("INSERT INTO `voyage`( `ville_id`,
+  $result=$database->query("INSERT INTO `voyage`( nom,`ville_id`,
                                          `nbr_jour` ,`hotel_id`,
-                                         `description`,  `img`)
-                      VALUES ($this->ville_id
+                                         `description`,  `cover`)
+                      VALUES ('$this->nom',$this->ville_id
                               ,$this->nbr_jour,$this->hotel_id,'$this->description'
                               ,'$this->img')");
-
+  return $database->insertid($result);
 }
 
 public function UpdateVoyage()
 {
   $database=new database();
-  $database->query("UPDATE `voyage` SET   `ville_id`=$this->ville_id
+  $database->query("UPDATE `voyage` SET  nom='$this->nom' ,`ville_id`=$this->ville_id
                                          ,`nbr_jour`=$this->nbr_jour,`hotel_id`=$this->hotel_id,`description`='$this->description'
-                                         , `img`='$this->img' WHERE voyage_id=$this->voyage_id");
+                                         , `cover`='$this->img' WHERE voyage_id=$this->voyage_id");
 
 }
 

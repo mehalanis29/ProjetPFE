@@ -18,16 +18,23 @@ function AfficheImage() {
   }
   listimage[window.i].style.display="block";
 }
-function AjouterChambre() {
-  window.x++;
-  var x= (document.getElementById("chambre").innerHTML).replace("$NBR$",window.x)
-  x=x.replace("$NBR$",window.x)
-  x=x.replace("$NBR$",window.x)
-  document.getElementById("list_chambre").innerHTML+=x;
-}
 function RemoveChambre(x) {
   window.x--;
   document.getElementById("remove_"+x).innerHTML="";
   document.getElementById("remove_"+x).className ="";
   document.getElementById("remove_"+x).id="";
 }
+$(document).ready(function(){
+  $("#AjouterChambre").click(function(){
+    window.x++;
+    var x= (document.getElementById("chambre").innerHTML).replace("$NBR$",window.x)
+    x=x.replace("$NBR$",window.x)
+    x=x.replace("$NBR$",window.x)
+    $("#list_chambre").append(x)
+  });
+  $(document).on('click','.btn_remove', function(){
+    $("#remove_"+$(this).attr('id')+'').remove();
+    window.x--;
+  });
+});
+/* mise a jour num chambre*/

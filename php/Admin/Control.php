@@ -10,12 +10,12 @@ function VilletoPays($idVille)
 function LoadVille($ville,$pays)
 {
   $database =new database();
-  $result=$database->query("select ville_id as id,nom_ville from ville where pays_id=".$pays) ;
+  $result=$database->query("select ville_id as id,nom from ville where pays_id=".$pays) ;
   while ($row=mysqli_fetch_assoc($result)) {
     if($row['id']==$ville){
-      echo "<option value='".$row['id']."' selected>".$row["nom_ville"]."</option>";
+      echo "<option value='".$row['id']."' selected>".$row["nom"]."</option>";
     }else{
-      echo "<option value='".$row['id']."'>".$row["nom_ville"]."</option>";
+      echo "<option value='".$row['id']."'>".$row["nom"]."</option>";
     }
   }
 }
