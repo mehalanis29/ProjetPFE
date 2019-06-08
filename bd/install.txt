@@ -1,3 +1,6 @@
 cmd :
 mysql -u root -p
+drop database pfe;
+create database pfe;
+use pfe;
 source C:\xampp\htdocs\Projet\ProjetPFE\bd\PFE.sql
