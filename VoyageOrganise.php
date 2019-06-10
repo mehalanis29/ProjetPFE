@@ -68,7 +68,7 @@ include 'php/Client/standard.php';
               </div>
               <hr>
               <div class="voyage_organise_btn_more">
-                <a href="Voyage.php">
+                <a href="Voyage.php?voyage_id=1">
                   <div class="index_offre_top_voyage_btn_more_titre">
                     <label for="">Voir toutes nos offres</label>
                     <img src="img/Client/icon/suivant18px.png" alt="">

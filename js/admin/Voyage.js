@@ -1,4 +1,14 @@
-var x=1;
+$(document).ready(function(){
+  $("#AjouterVoyage").click(function(){
+    $("#list_voyage").append(document.getElementById("row_voyage").innerHTML)
+    initrow();
+  });
+  $(document).on('click','.remove_list', function(){
+      $("#row_"+$(this).attr('id')+'').remove();
+      initrow();
+  });
+});
+
 function Calcul(v) {
   var valeur=parseInt(v);
   var ch=valeur;
@@ -8,20 +18,15 @@ function Calcul(v) {
   }
   document.getElementById('prix').innerHTML=ch+m+" DA";
 }
-$(document).ready(function(){
-  $("#AjouterVoyage").click(function(){
-    window.x++;
-    var x= (document.getElementById("row_voyage").innerHTML).replace("$id_voyage$",window.x)
-    x=x.replace("$id_voyage$",window.x)
-    x=x.replace("$id_voyage$",window.x)
-    $("#list_voyage").append(x)
-  });
-  $(document).on('click','.remove_list', function(){
-    $("#row_"+$(this).attr('id')+'').remove();
-    window.x--;
-  });
-});
 
+function initrow(){
+  var list_div=document.getElementsByClassName("control_table_9item");
+  var list_btn=document.getElementsByClassName("remove_list");
+  for(var i=0;i<list_div.length;i++){
+    list_div[i+1].id="row_"+i;
+    list_btn[i].id=i;
+  }
+}
 function suivant(etat){
   var btn_ajouter=document.getElementById("Ajouter");
   switch(etat){
@@ -35,7 +40,7 @@ function suivant(etat){
     case "Information" :{
       Tab('list_date');
       btn_ajouter.innerHTML="Ajouter";
-      btn_ajouter.type="submit";
+      setTimeout(function(){btn_ajouter.type="submit";}, 1500);
       break;
     }
   }

@@ -5,12 +5,8 @@ require 'php/Admin/Control.php';
 require 'php/database.inc';
 require 'php/Client.inc';
 $database=new database();
+if(isset($_GET["voyage_id"])){
 
-if(isset($_POST["creer_compte"])){
-  $client=new Client("",$_POST["num_passeport"],$_POST["nom"],$_POST["prenom"],$_POST["date_naissance"],$_POST["email"]
-  ,$_POST["mot_de_passe"],$_POST["phone"],$_POST["nationalite"],$_POST['emission_passeport'],$_POST['expiration_passport']);
-  $client->InsertClient();
-  header("location: index.php");
 }
  ?>
 <html lang="en" dir="ltr">

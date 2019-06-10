@@ -68,7 +68,7 @@ include 'php/Client/standard.php';
         </label>
       </div>
       <div class="index_offre_top_voyage_list_offre">
-        <a href="Voyage.php">
+        <a href="Voyage.php?voyage_id=1">
           <div class="index_offre_top_voyage_offre">
             <img src="img/Client/roma.jpeg" alt="">
             <div class="index_offre_top_voyage_desc">
@@ -82,7 +82,7 @@ include 'php/Client/standard.php';
             </div>
           </div>
         </a>
-        <a href="Voyage.php">
+        <a href="Voyage.php?voyage_id=1">
           <div class="index_offre_top_voyage_offre">
             <img src="img/Client/roma.jpeg" alt="">
             <div class="index_offre_top_voyage_desc">
@@ -96,7 +96,7 @@ include 'php/Client/standard.php';
             </div>
           </div>
         </a>
-        <a href="Voyage.php">
+        <a href="Voyage.php?voyage_id=1">
           <div class="index_offre_top_voyage_offre">
             <img src="img/Client/roma.jpeg" alt="">
             <div class="index_offre_top_voyage_desc">

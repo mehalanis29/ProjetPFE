@@ -4,9 +4,17 @@ session_start();
 require 'php/database.inc';
 include 'php/Client/standard.php';
 require 'php/Voyage.inc';
-//$voyage=new Voyage(1,"","","","","","","");
-//$list_photo=$voyage->LoadListPhoto();
-//$jour=$voyage->LoadListEndroit();
+$database=new database();
+if(isset($_GET["voyage_id"])){
+  $result=$database->query("select voyage_id,voyage.nom,ville.nom as ville,nbr_jour,hotel_id,description,cover from voyage join ville on voyage.ville_id=voyage_id where voyage_id=".$_GET["voyage_id"]) ;
+  $row=mysqli_fetch_assoc($result);
+  $voyage=new Voyage($row["voyage_id"],$row["nom"],$row["ville"],$row["nbr_jour"],$row["hotel_id"],$row["description"],$row["cover"]);
+  $jour=$voyage->LoadListEndroit();
+  //$list_photo=$voyage->LoadListPhoto();
+}else{
+  die("erreur voyage_id");
+}
+
  ?>
 <html lang="en" dir="ltr">
   <head>
@@ -18,7 +26,7 @@ require 'php/Voyage.inc';
     <script type="text/javascript" src="js\Client\Voyage.js">
     </script>
   </head>
-  <body onload="window.i=0;AfficheImage()">
+  <body onload="LoadDate(<?php echo $_GET["voyage_id"]; ?>);window.i=0;AfficheImage();">
     <div class="nav_bar">
       <?php NabBar(); ?>
       <div class="nav_bar_cover_index">
@@ -26,7 +34,7 @@ require 'php/Voyage.inc';
           <img src="img/Client/Cover/cover-roma.jpeg" alt="">
         </div>
         <div class="nav_bar_titre">
-          Roma
+          <?php echo $voyage->ville; ?>
         </div>
       </div>
       <div class="nav_bar_titre_bar">
@@ -43,7 +51,7 @@ require 'php/Voyage.inc';
               <a href="#">
                 <img src="img\Client\icon\suivant18pxlemon.png" class="nav_bar_titre_bar_url_icon_suivant">
               </a>
-              <label>Roma</label>
+              <label><?php echo $voyage->nom; ?></label>
             </div>
           </div>
         </div>
@@ -74,30 +82,7 @@ require 'php/Voyage.inc';
             </div>
             <hr class="formulaire_ligne">
             <div class="les_jours_voyage">
-              <div class="jour_voyage">
-                <label for="">Jour</label>
-                <div class="numero_jour_voyage">1</div>
-                <div class="description_jour">
-                  <strong>Alger - Rome</strong>
-                  <p>
-                    Départ de Alger à destination de ROME sur vol Air-algerie.
-                    Arrivé assistance et départ vers Rome ,
-                    arriver à Hôtel, répartition des chambres et soirée libre
-                  </p>
-                </div>
-              </div>
-              <div class="jour_voyage">
-                <label for="">Jour</label>
-                <div class="numero_jour_voyage">2</div>
-                <div class="description_jour">
-                  <strong>Big Bus Rome Hop-on Hop-off</strong>
-                  <p>
-                    Asseyez-vous et profitez de la balade à bord d'un bus à toit ouvert et découvrez l'histoire unique et ancienne de Rome.
-                  </p>
-                </div>
-              </div>
-            <!-- Affiche list des jour -->
-              <?php /* foreach ($jour as $k => $v) {?>
+              <?php  foreach ($jour as $k => $v) {?>
                 <div class="jour_voyage">
                   <label for="">Jour</label>
                   <div class="numero_jour_voyage"><?php echo $v->id; ?></div>
@@ -108,7 +93,7 @@ require 'php/Voyage.inc';
                     </p>
                   </div>
                 </div>
-              <?php } */ ?>
+              <?php }  ?>
             </div>
           </div>
           <div class="espace_voyage">
@@ -120,10 +105,8 @@ require 'php/Voyage.inc';
               <div class="formulaire_row_item"></div>
               <div class="formulaire_row_item">
                 <label for="Online" class="formulaire_row_item_label"> Prochains départs </label>
-                <select class="formulaire_row_item_input" name="">
-                  <option value="">30/06/2019</option>
-                  <option value="">07/07/2019</option>
-                  <option value="">14/07/2019</option>
+                <select class="formulaire_row_item_input" name="" id="table_date_prix" onchange="AffichePrix(this.value)">
+                
                 </select>
               </div>
             </div>
@@ -137,23 +120,23 @@ require 'php/Voyage.inc';
               <tbody>
                 <tr>
                   <td>Adulte en chambre Single</td>
-                  <th>135,000 DA</th>
+                  <th class="prix"></th>
                 </tr>
                 <tr>
                   <td>Adulte en chambre Double</td>
-                  <th>130,000 DA</th>
+                  <th class="prix"></th>
                 </tr>
                 <tr>
                   <td>Adulte en chambre Triple</td>
-                  <th>125,000 DA</th>
+                  <th class="prix"></th>
                 </tr>
                 <tr>
                   <td>Enfant (3-12ans)</td>
-                  <th>95,000 DA</th>
+                  <th class="prix"></th>
                 </tr>
                 <tr>
                   <td>Bebe</td>
-                  <th>60,000 DA</th>
+                  <th class="prix"aa></th>
                 </tr>
               </tbody>
             </table>
@@ -175,10 +158,7 @@ require 'php/Voyage.inc';
             </div>
             <div class="formulaire_row_item">
               <label for="" class="formulaire_row_item_label">Périodes</label>
-              <select class="formulaire_row_item_input" name="">
-                <option value="">du 30/06/2019 au 06/07/2019 </option>
-                <option value="">du 07/07/2019 au 13/07/2019 </option>
-                <option value="">du 14/07/2019 au 20/07/2019 </option>
+              <select class="formulaire_row_item_input" name="" id="text_reserve">
               </select>
             </div>
             <div class="list_chambre">
@@ -238,10 +218,10 @@ require 'php/Voyage.inc';
       <div class="page_cover"></div>
     </div>
     <div style="display:none;" id="chambre">
-      <div class="formulaire_row_item" id="remove_$NBR$">
+      <div class="formulaire_row_item list_div" >
         <div class="voyage_titre_remove">
-          <label for="" class="formulaire_row_item_label">Chambre $NBR$</label>
-          <button type="button" name="button" id="$NBR$" class="btn_remove" >
+          <label for="" class="formulaire_row_item_label Nom_chambre">Chambre $NBR$</label>
+          <button type="button" name="button"  class="btn_remove" >
             <img src="img\Client\icon\exit22px.png" alt="" width="22">
           </button>
         </div>

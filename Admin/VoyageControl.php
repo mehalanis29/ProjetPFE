@@ -5,7 +5,10 @@ require '../php/Admin/standard.php';
  require '../php/Admin/Control.php';
  include "../php/Admin/VoyageFunction.php";
  $database=new database();
- if(isset($_POST["ville_id"])){
+ if(isset($_POST["remove_date"])){
+  $database->query("delete from voyage_date where voyage_date_id=".$_POST["remove_date"]);
+  header("location: VoyageControl.php?voyage_id=".$_POST['voyage_id']);
+ }elseif(isset($_POST["ville_id"])){
    $voyage=new voyage($_POST["voyage_id"],$_POST["NomVoyage"],$_POST["ville_id"],$_POST["nbr_jour"]
                       ,$_POST["hotel_id"],$_POST["description"],"test.jpg");
 
@@ -63,7 +66,7 @@ require '../php/Admin/standard.php';
               <label onclick="suivant('Information')" for="">List date</label>
             </div>
           </div>
-          <form class="" action="VoyageControl.php" method="post" onsubmit="return VerifieNom()">
+          <form class="" action="VoyageControl.php" method="post" >
            <div id="Information_div"  class="nav_tab_div nav_tab_div_active">
             <div class="left_tab">
             <fieldset class="fields">
@@ -77,7 +80,7 @@ require '../php/Admin/standard.php';
                   <label for="" class="controllabel">Pays</label>
                   <select class="controlinput" name="pays" required onchange="LoadVille(this.value)">
                     <?php
-                      if(isset($voyage)){ $pays=VilletoPays($voyage->ville_id);  }
+                      if(isset($voyage)){ $pays=VilletoPays($voyage->ville);  }
                       else{ $pays="-1"; }
                       LoadPays($pays);
 
@@ -87,13 +90,13 @@ require '../php/Admin/standard.php';
                 <div class="control_table_item">
                   <label for="" class="controllabel" >Ville</label>
                   <select class="controlinput" name="ville_id" id="ville" required onchange="LoadHotel(this.value)">
-                    <?php if(isset($voyage))LoadVille($voyage->ville_id,$pays) ?>
+                    <?php if(isset($voyage))LoadVille($voyage->ville,$pays) ?>
                   </select>
                 </div>
                 <div class="control_table_item">
                   <label for="" class="controllabel" >Hotel</label>
                   <select class="controlinput" name="hotel_id" id="hotel" required >
-                    <?php if(isset($voyage))LoadHotel($voyage->hotel_id,$voyage->ville_id) ?>
+                    <?php if(isset($voyage))LoadHotel($voyage->hotel_id,$voyage->ville) ?>
                   </select>
                 </div>
                 <div class="control_table_item">
@@ -139,7 +142,9 @@ require '../php/Admin/standard.php';
                      while ($row=mysqli_fetch_assoc($result)):
                    ?>
                     <div class="control_table_9item" id="row_<?php echo $row["voyage_date_id"] ?>" >
-                      <button style="background: none;border: none" type="button" id="<?php echo $row["voyage_date_id"] ?>" class="remove_list" >
+                      <button style="background: none;border: none" type="submit" name="remove_date" class="remove_list"
+                         value="<?php echo $row["voyage_date_id"] ?>" 
+                          id="<?php echo $row["voyage_date_id"] ?>" >
                         <img src="..\img\Client\icon\exit22px.png">
                       </button>
                       <input type="hidden" name="id_voyage_date[]" required value="<?php echo $row["voyage_date_id"] ?>">
@@ -166,7 +171,7 @@ require '../php/Admin/standard.php';
                Modifier
               </button>
               <?php else: ?>
-                <button type="button" class="control_btn" id="Ajouter" name="controlModifierbtn" onclick="suivant('Information')">
+                <button type="button" class="control_btn" id="Ajouter" name="controlAjoutebtn" onclick="suivant('Information')">
                   Suivant
                 </button>
               <?php endif ; ?>
@@ -176,8 +181,8 @@ require '../php/Admin/standard.php';
       </div>
     </div>
     <div style="display: none" id="row_voyage">
-       <div class="control_table_9item" id="row_$id_voyage$">
-          <button style="background: none;border: none"  type="button" id="$id_voyage$" class="remove_list" >
+       <div class="control_table_9item">
+          <button style="background: none;border: none"  type="submit"  class="remove_list" >
             <img src="..\img\Client\icon\exit22px.png">
           </button>
           <input type="hidden" name="id_voyage_date[]" value="-1">

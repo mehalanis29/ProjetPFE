@@ -6,7 +6,7 @@ include '../php/Admin/VoyageFunction.php';
 $database=new database();
 if(isset($_POST["remove_list"])){
   foreach ($_POST["remove_list"] as $k  => $voyage_id) {
-    $database->query("DELETE FROM `voyage` WHERE voyage_id=".$voyage_id);
+    $database->query("DELETE FROM  `voyage` WHERE voyage_id=".$voyage_id);
   }
 }
 $where="";
