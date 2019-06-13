@@ -63,15 +63,41 @@ function RemoveChambre(x) {
   document.getElementById("remove_"+x).id="";
 }
 function InitNumChambre(){
+  var num_chambre=document.getElementsByClassName("num_chambre");
   var list_div=document.getElementsByClassName("list_div");
   var list_btn=document.getElementsByClassName("btn_remove");
   var list_nom=document.getElementsByClassName("Nom_chambre");
+  var list_select=document.getElementsByClassName("list_select");
+  var list_minus=document.getElementsByClassName("list_minus");
+  var list_plus=document.getElementsByClassName("list_plus");
+  var list_input=document.getElementsByClassName("list_input");
+  var j=-1;
+  var list=["adulte","enfant","bebe"];
   for(var i=0;i<list_div.length;i++){
+    num_chambre[i].value=parseInt(i+2);
     list_div[i].id="remove_"+parseInt(i+2);
-    list_btn[i].id=i+2;
-    list_nom[i].innerHTML="Chambre "+parseInt(i+2);
+    list_btn[i].id=parseInt(i+2)
+    list_nom[i].innerHTML="Chambre "+parseInt(i+2)
+    list_select[i].id="select_row_"+parseInt(i+2)
+    list_select[i].onchange=function(){InitChambre(i);}
+      j++;
+    list_input[j].className="list_input nbr_personne_row_"+parseInt(i+2);
+    list_input[j].id="btn_"+list[0]+"_row_"+parseInt(i+2);
+    list_minus[j].onclick=function(){BtnMoinsChambre(i,list[0])}
+    list_plus[j].onclick=function(){BtnPlusChambre(i,list[0])}
+      j++;
+    list_input[j].className="list_input nbr_personne_row_"+parseInt(i+2);
+    list_input[j].id="btn_"+list[1]+"_row_"+parseInt(i+2);
+    list_minus[j].onclick=function(){BtnMoinsChambre(i,list[1])}
+    list_plus[j].onclick=function(){BtnPlusChambre(i,list[1])}
+    j++;
+    list_input[j].className="list_input nbr_personne_row_"+parseInt(i+2);
+    list_input[j].id="btn_"+list[2]+"_row_"+parseInt(i+2);
+    list_minus[j].onclick=function(){BtnMoinsChambre(i,list[2])}
+    list_plus[j].onclick=function(){BtnPlusChambre(i,list[2])}
   }
 }
+
 
 $(document).ready(function(){
   $("#AjouterChambre").click(function(){
@@ -83,3 +109,31 @@ $(document).ready(function(){
     InitNumChambre();
   });
 });
+
+function BtnPlusChambre(row_id,type_nom) {
+  var input=document.getElementById("btn_"+type_nom+"_row_"+row_id);
+  var value_input=parseInt(input.value);
+  var list_input_chambre=document.getElementsByClassName("nbr_personne_row_"+row_id);
+  var select=document.getElementById("select_row_"+row_id);
+  var nbr_personne=0;
+  for(var i=0;i<list_input_chambre.length;i++){
+    nbr_personne+=parseInt(list_input_chambre[i].value)
+  }
+  if(parseInt(select.value) >=(nbr_personne+1)){
+    input.value=value_input+1;
+  }
+}
+function BtnMoinsChambre(row_id,type_nom) {
+  var input=document.getElementById("btn_"+type_nom+"_row_"+row_id);
+  var value_input=parseInt(input.value);
+  value_input=value_input-1
+  if(value_input>=0)input.value=value_input;
+}
+function InitChambre(row_id) {
+  var list_input_chambre=document.getElementsByClassName("nbr_personne_row_"+row_id);
+  var v= parseInt(document.getElementById("select_row_"+row_id).value);
+  for(var i=0;i<list_input_chambre.length;i++){
+    list_input_chambre[i].value=0
+  }
+  list_input_chambre[0].value=v;
+}

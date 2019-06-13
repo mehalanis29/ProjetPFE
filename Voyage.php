@@ -146,10 +146,12 @@ if(isset($_GET["voyage_id"])){
       <div class="voyage_page_droite">
         <div class="page_droite">
           <div class="espace_voyage" id="espace_reservation">
-            <div class="formulaire_titre">
-              Reservation
-            </div>
-            <hr class="formulaire_ligne">
+            <form id="my_form" method="post" action="Reservez.php" >
+              <input type="hidden" name="voyage_id" value="<?php echo $_GET["voyage_id"]; ?>">
+              <div class="formulaire_titre">
+                Reservation
+              </div>
+              <hr class="formulaire_ligne">
             <div class="reservation_prix">
               <label >à partir de</label>
               <span>
@@ -158,7 +160,7 @@ if(isset($_GET["voyage_id"])){
             </div>
             <div class="formulaire_row_item">
               <label for="" class="formulaire_row_item_label">Périodes</label>
-              <select class="formulaire_row_item_input" name="" id="text_reserve">
+              <select class="formulaire_row_item_input" name="periodes" id="text_reserve">
               </select>
             </div>
             <div class="list_chambre">
@@ -169,48 +171,50 @@ if(isset($_GET["voyage_id"])){
             </div>
             <div id="list_chambre">
               <div class="formulaire_row_item">
+                <input type="hidden"  name="num_chambre[]" value="1">
                 <label for="" class="formulaire_row_item_label">Chambre 1</label>
-                <select class="formulaire_row_item_input" name="">
-                  <option value=""> Chambre Single </option>
-                  <option value=""> Chambre Double </option>
-                  <option value=""> Chambre Triple</option>
+                <select class="formulaire_row_item_input" name="type_chambre[]" id="select_row_1" onchange="InitChambre(1)">
+                  <option value="1"> Chambre Single </option>
+                  <option value="2"> Chambre Double </option>
+                  <option value="3"> Chambre Triple</option>
                 </select>
                 <div class="nbr_personne">
                   <div class="categorie_presonne">
                     <label for=""><strong>adulte</strong></label>
                     <div class="nbr_personne_btn">
-                      <button type="button" name="button" class="minus"></button>
-                      <input type="text" name="" value="1">
-                      <button type="button" name="button" class="plus"></button>
+                      <button type="button" name="button" class="minus" onclick="BtnMoinsChambre(1,'adulte')" ></button>
+                      <input type="text"  class="nbr_personne_row_1" name="adulte[]" value="1" id="btn_adulte_row_1" readonly>
+                      <button type="button" name="button" class="plus" onclick="BtnPlusChambre(1,'adulte')"></button>
                     </div>
                   </div>
                   <div class="categorie_presonne" >
                     <label for=""><strong>enfant</strong>(-12ans)</label>
                     <div class="nbr_personne_btn">
-                      <button type="button" name="button" class="minus"></button>
-                      <input type="text" name="" value="0">
-                      <button type="button" name="button" class="plus"></button>
+                      <button type="button" name="button" class="minus" onclick="BtnMoinsChambre(1,'enfant')" ></button>
+                      <input type="text" class="nbr_personne_row_1" name="enfant[]" id="btn_enfant_row_1" value="0" readonly>
+                      <button type="button" name="button" class="plus" onclick="BtnPlusChambre(1,'enfant')" ></button>
                     </div>
                   </div>
                   <div class="categorie_presonne">
                     <label for=""><strong>bebe</strong>(-3ans)</label>
                     <div class="nbr_personne_btn">
-                      <button type="button" name="button" class="minus"></button>
-                      <input type="text" name="" value="0">
-                      <button type="button" name="button" class="plus"></button>
+                      <button type="button" name="button" class="minus" onclick="BtnMoinsChambre(1,'bebe')" ></button>
+                      <input type="text" class="nbr_personne_row_1" name="bebe[]" id="btn_bebe_row_1" value="0" readonly>
+                      <button type="button" name="button" class="plus" onclick="BtnPlusChambre(1,'bebe')" ></button>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
             <div class="index_offre_top_voyage_btn_more">
-              <a href="Reservez.php">
+              <a href="javascript:{}" onclick="document.getElementById('my_form').submit();">
                 <div class="index_offre_top_voyage_btn_more_titre">
                   <label for="">Réservez</label>
                   <img src="img/Client/icon/suivant18px.png" alt="">
                 </div>
               </a>
             </div>
+            </form>
           </div>
           <!-- -->
         </div>
@@ -220,39 +224,40 @@ if(isset($_GET["voyage_id"])){
     <div style="display:none;" id="chambre">
       <div class="formulaire_row_item list_div" >
         <div class="voyage_titre_remove">
-          <label for="" class="formulaire_row_item_label Nom_chambre">Chambre $NBR$</label>
+          <input type="hidden" class="num_chambre"  name="num_chambre[]" value="0">
+          <label for="" class="formulaire_row_item_label Nom_chambre">Chambre X</label>
           <button type="button" name="button"  class="btn_remove" >
             <img src="img\Client\icon\exit22px.png" alt="" width="22">
           </button>
         </div>
-        <select class="formulaire_row_item_input" name="">
-          <option value=""> Chambre Single </option>
-          <option value=""> Chambre Double </option>
-          <option value=""> Chambre Triple</option>
+        <select class="formulaire_row_item_input list_select" name="type_chambre[]">
+          <option value="1"> Chambre Single </option>
+          <option value="2"> Chambre Double </option>
+          <option value="3"> Chambre Triple</option>
         </select>
         <div class="nbr_personne">
           <div class="categorie_presonne">
             <label for=""><strong>adulte</strong></label>
             <div class="nbr_personne_btn">
-              <button type="button" name="button" class="minus"></button>
-              <input type="text" name="" value="1">
-              <button type="button" name="button" class="plus"></button>
+              <button type="button" name="button" class="list_minus  minus"></button>
+              <input type="text" name="adulte[]" value="1" class="list_input" readonly>
+              <button type="button" name="button" class="list_plus plus"></button>
             </div>
           </div>
           <div class="categorie_presonne" >
             <label for=""><strong>enfant</strong>(-12ans)</label>
             <div class="nbr_personne_btn">
-              <button type="button" name="button" class="minus"></button>
-              <input type="text" name="" value="0">
-              <button type="button" name="button" class="plus"></button>
+              <button type="button" name="button" class="list_minus minus"></button>
+              <input type="text" name="enfant[]" value="0" class="list_input" readonly>
+              <button type="button" name="button" class="list_plus plus"></button>
             </div>
           </div>
           <div class="categorie_presonne">
             <label for=""><strong>bebe</strong>(-3ans)</label>
             <div class="nbr_personne_btn">
-              <button type="button" name="button" class="minus"></button>
-              <input type="text" name="" value="0">
-              <button type="button" name="button" class="plus"></button>
+              <button type="button" name="button" class="list_minus minus"></button>
+              <input type="text" name="bebe[]" value="0" class="list_input" readonly>
+              <button type="button" name="button" class="list_plus plus"></button>
             </div>
           </div>
         </div>
