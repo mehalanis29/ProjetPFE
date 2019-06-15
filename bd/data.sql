@@ -76,22 +76,33 @@ INSERT INTO `pays`( pays_code, nom, nationalite) VALUES ('ZA', 'Afrique du Sud' 
 ('UY', 'Uruguay' , 'Uruguayen' ) ,
 ('VE', 'Venezuela' , 'Vénézuélien' );
 
-INSERT INTO `client`( `num_passport`, `nom`, `prenom`, `date_naissance`, `email`, `password`, `phone`, `nationalite`, `date_emission_passport`, `date_expiration_passport`) 
-VALUES ('2015','mehal','anis','1999-05-29','mehalanis29@gmail.com',md5('anis'),'01264521',1,'2018-05-19','2022-06-19');
+
+INSERT INTO `client` (`client_id`, `num_passport`, `nom`, `prenom`, `date_naissance`, `email`, `password`, `phone`, `nationalite`, `date_emission_passport`, `date_expiration_passport`) VALUES
+(1, '321521', 'mehal', 'anis', '1999-05-29', 'mehalanis29@gmail.com', '38a1ffb5ccad9612d3d28d99488ca94b', '01264521', 3, '2018-05-19', '2022-06-19');
+
 
 INSERT INTO `ville` (`ville_id`, `nom`, `pays_id`) VALUES
-(1, 'Paris', 33);
+(1, 'ROMA', 45);
 
-INSERT INTO `hotel` (`hotel_id`, `nom`, `telephone`, `ville_id`, `address`, `class`, `img`) VALUES
-  (1, 'Novotel Paris Centre Gare Montparnasse', '+3345123326', 1, '17 rue du Cotentin, 75015 Paris France', 4, 'test');
+INSERT INTO `endroit` (`endroit_id`, `endroit_nom`, `ville_id`, `description`) VALUES
+(1, 'Alger - Rome', 1, 'Départ de Alger à destination de ROME sur vol Air-algerie. Arrivé assistance et départ vers Rome , arriver à Hôtel, répartition des chambres et soirée libre '),
+(2, 'Big Bus Rome Hop-on Hop-off', 1, 'Asseyez-vous et profitez de la balade à bord d\'un bus à toit ouvert et découvrez l\'histoire unique et ancienne de Rome. ');
 
-INSERT INTO `voyage`(`ville_id`, `nbr_jour`, `hotel_id`, `description`, `cover`) VALUES
-  (1,7,1,'paris la ville la plus belle','cover-roma.jpeg');
+INSERT INTO `hotel` (`hotel_id`, `ville_id`, `nom`, `telephone`, `address`, `class`, `img`) VALUES
+(1, 1, 'Novotel Paris Centre Gare Mont', '+3345123326', '17 rue du Cotentin, 75015 Paris France', 4, 'test');
 
-INSERT INTO `voyage_image`(`voyage_id`, `img`) VALUES (1,'1-1.jpeg') , (1,'1-2.jpeg');
 
-INSERT INTO `endroit`(`endroit_nom`,`ville_id`, `description`) VALUES ('Tour Eiffel',1,'La tour Eiffel est une tour de fer puddlé
-	   de 324 mètres de hauteur située à Paris, à l’extrémité nord-ouest du parc du Champ-de-Mars en bordure
-		 de la Seine dans le 7ᵉ arrondissement');
 
-INSERT INTO `voyage_jour`(`voyage_id`, `nbr_jour`, `endroit_id`) VALUES (1,1,1);
+INSERT INTO `voyage` (`voyage_id`, `nom`, `ville_id`, `guide_id`, `nbr_jour`, `hotel_id`, `cover`, `description`) VALUES
+(1, 'ROMA 2019', 1, NULL, 7, 1, 'test.jpg', 'Roma la ville la plus belle'),
+(2, 'test_nom', 1, NULL, 7, 1, 'test.jpg', 'test');
+
+
+INSERT INTO `voyage_date` (`voyage_date_id`, `voyage_id`, `date_depart`, `date_retour`, `capacite`, `prix_A_S`, `prix_A_D`, `prix_A_T`, `prix_E`, `prix_B`) VALUES
+(1, 2, '2019-05-29', '2019-05-07', 251, 11, 12, 13, 14, 15),
+(2, 2, '2020-05-18', '2020-05-23', 101, 6, 7, 8, 9, 10),
+(3, 1, '2019-01-05', '2019-01-15', 100, 1, 2, 3, 4, 5);
+
+INSERT INTO `voyage_jour` (`voyage_jour_id`, `voyage_id`, `nbr_jour`, `endroit_id`) VALUES
+(2, 1, 1, 1),
+(3, 1, 2, 2);

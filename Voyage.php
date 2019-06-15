@@ -6,7 +6,7 @@ include 'php/Client/standard.php';
 require 'php/Voyage.inc';
 $database=new database();
 if(isset($_GET["voyage_id"])){
-  $result=$database->query("select voyage_id,voyage.nom,ville.nom as ville,nbr_jour,hotel_id,description,cover from voyage join ville on voyage.ville_id=voyage_id where voyage_id=".$_GET["voyage_id"]) ;
+  $result=$database->query("select voyage_id,voyage.nom,ville.nom as ville,nbr_jour,hotel_id,description,cover from voyage join ville on voyage.ville_id=voyage.ville_id where voyage_id=".$_GET["voyage_id"]) ;
   $row=mysqli_fetch_assoc($result);
   $voyage=new Voyage($row["voyage_id"],$row["nom"],$row["ville"],$row["nbr_jour"],$row["hotel_id"],$row["description"],$row["cover"]);
   $jour=$voyage->LoadListEndroit();
@@ -160,7 +160,7 @@ if(isset($_GET["voyage_id"])){
             </div>
             <div class="formulaire_row_item">
               <label for="" class="formulaire_row_item_label">Périodes</label>
-              <select class="formulaire_row_item_input" name="periodes" id="text_reserve">
+              <select class="formulaire_row_item_input" name="voyage_date_id" id="text_reserve">
               </select>
             </div>
             <div class="list_chambre">
@@ -207,7 +207,7 @@ if(isset($_GET["voyage_id"])){
               </div>
             </div>
             <div class="index_offre_top_voyage_btn_more">
-              <a href="javascript:{}" onclick="document.getElementById('my_form').submit();">
+              <a href="javascript:{}" onclick="ButtonReserver(<?php if(isset($_SESSION["client_id"])) echo "'ok'";else echo "'no'";?>)">
                 <div class="index_offre_top_voyage_btn_more_titre">
                   <label for="">Réservez</label>
                   <img src="img/Client/icon/suivant18px.png" alt="">

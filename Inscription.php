@@ -11,11 +11,12 @@ require 'php/Client.inc';
 $database=new database();
 
 if(isset($_POST["creer_compte"])){
-  $client=new Client("",$_POST["num_passeport"],$_POST["nom"],$_POST["prenom"],$_POST["date_naissance"],$_POST["email"]
-  ,$_POST["mot_de_passe"],$_POST["phone"],$_POST["nationalite"],$_POST['emission_passeport'],$_POST['expiration_passport']);
+  $client=new Client(""," ",$_POST["nom"],$_POST["prenom"],$_POST["date_naissance"],$_POST["email"]
+  ,$_POST["mot_de_passe"],$_POST["phone"],'NULL'," "," ");
   $client->InsertClient();
   header("location: index.php");
 }
+
  ?>
 <html lang="en" dir="ltr">
   <head>
@@ -29,14 +30,6 @@ if(isset($_POST["creer_compte"])){
   <body>
     <div class="nav_bar">
       <?php NabBar(); ?>
-      <div class="nav_bar_cover_index">
-        <div class="nav_bar_cover_index_img">
-          <img src="img/Client/Cover/formulaire.jpeg" alt="">
-        </div>
-        <div class="nav_bar_titre">
-          Inscription
-        </div>
-      </div>
       <div class="nav_bar_titre_bar">
         <div class="nav_bar_titre_bar_url">
           <div class="nav_bar_titre_bar_url_icon">
@@ -78,6 +71,7 @@ if(isset($_POST["creer_compte"])){
               <input type="text" name="phone" value="" class="formulaire_row_item_input">
             </div>
           </div>
+          <!--
           <label for="" class="formulaire_titre">Information Passeport </label>
           <hr class="formulaire_ligne"/>
           <div class="formulaire_row_2item">
@@ -88,7 +82,7 @@ if(isset($_POST["creer_compte"])){
             <div class="formulaire_row_item">
               <label for="" class="formulaire_row_item_label">Nationalite</label>
               <select class="formulaire_row_item_input" name="nationalite">
-                <?php LoadNationalite("0"); ?>
+                <?php //LoadNationalite("0"); ?>
               </select>
             </div>
           </div>
@@ -102,6 +96,7 @@ if(isset($_POST["creer_compte"])){
               <input type="date" name="expiration_passport" value="" class="formulaire_row_item_input">
             </div>
           </div>
+        -->
           <label for="" class="formulaire_titre">Inscription</label>
           <hr class="formulaire_ligne"/>
           <div class="formulaire_row_2item">
@@ -122,7 +117,7 @@ if(isset($_POST["creer_compte"])){
           </div>
         </form>
       </div>
-      <div class="page_cover"></div>
     </div>
+    <div class="page_cover"></div>
   </body>
 </html>

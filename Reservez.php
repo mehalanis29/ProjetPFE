@@ -4,7 +4,24 @@ include 'php/Client/standard.php';
 require 'php/Admin/Control.php';
 require 'php/database.inc';
 require 'php/Client.inc';
+session_start();
 $database=new database();
+if(isset($_POST["paiement"])){
+  if($_POST["paiement"]=="ligne"){$type_paiement=1;}else{$type_paiement=0;}
+  $result= $database->query("INSERT INTO `reserve`( `voyage_date_id`, `client_id`, `date_reserve`, `date_rendezvous`, `type_paiement`, `etat_paiement`) VALUES (".$_POST["voyage_date_id"].",".$_SESSION["client_id"].",'".date("Y-m-d")."','".date('Y-m-d', strtotime("+3 day"))."',".$type_paiement.",-1)");
+  $reserve_id=$database->insertid($result);
+  foreach ($_POST["num_chambre"] as $key => $num_chambre) {
+    $result=$database->query("INSERT INTO `chambre`( `reserve_id`, `numero`) VALUES (".$reserve_id.",".$num_chambre.")");
+    $chambre_id=$database->insertid($result);
+    foreach ($_POST["chambre_".$num_chambre."_nom_prenom"] as $key => $nom_prenom) {
+      $database->query("INSERT INTO `invite`( `chambre_id`, `nom_prenom` , `type`) VALUES (".$chambre_id.",'".$nom_prenom."',".$_POST["chambre_".$num_chambre."_type"][$key].")");
+    }
+  }
+  if($_POST["paiement"]=="ligne"){
+    $database->query("INSERT INTO `paiement`(`reserve_id`, `nom_prenom`, `num_carte`, `date_expiration`, `cvv`) VALUES ($reserve_id,'".$_POST["nom_prenom_carte"]."','".$_POST["num_carte"]."','".$_POST["date_expiration"]."','".$_POST["cvv"]."')");
+  }
+  header("location: EtatReservation.php");
+}
 ?>
 <html lang="en" dir="ltr">
   <head>
@@ -49,8 +66,9 @@ $database=new database();
       <div class="page_gauche">
         <div class="voyage_page_gauche">
           <div class="Inscription_formulaire">
-            <form class="formulaire_form" action="Inscription.php" method="post">
+            <form class="formulaire_form" action="Reservez.php" method="post">
               <label for="" class="formulaire_titre">Réservation</label>
+              <input type="hidden" name="voyage_date_id" value="<?php echo $_POST["voyage_date_id"];?>">
               <hr class="formulaire_ligne"/>
               <div class="formulaire_row_2item">
                 <div class="formulaire_row_item">
@@ -71,18 +89,19 @@ $database=new database();
                 </div>
               </div>
               <?php 
-              function Affiche($nbr,$type)
+              function Affiche($nbr,$numero_chambre,$type)
               {
                  $list_type=array(1=>"Adulte",2=>"Enfant(-12ans)",3=>"Bebe(-3ans)");
                  for ($i=0;$i<$nbr;$i++){
                   echo "<div class=\"formulaire_row_2item\">
+                  <input type=\"hidden\" value=\"".$numero_chambre."\"/>
                   <div class=\"formulaire_row_item\">
                     <label class=\"formulaire_row_item_label\">Nom et Prenom</label>
-                    <input type=\"text\" class=\"formulaire_row_item_input\">
+                    <input type=\"text\" name=\"chambre_".$numero_chambre."_nom_prenom[]\" class=\"formulaire_row_item_input\">
                   </div>
                   <div class=\"formulaire_row_item\">
                     <label class=\"formulaire_row_item_label\">Age</label>
-                    <select width=\"200\" class=\"formulaire_row_item_input\" >";
+                    <select width=\"200\" name=\"chambre_".$numero_chambre."_type[]\" class=\"formulaire_row_item_input\" >";
                     foreach ($list_type as $key => $value) {
                       if($key==$type){
                         echo "<option value=".$key." selected>".$value."</option>";
@@ -95,42 +114,43 @@ $database=new database();
               }
              
               foreach ($_POST["num_chambre"] as $key => $num_chambre): ?>
+                <input type="hidden" name="num_chambre[]" value="<?php echo $num_chambre; ?>">
                 <label for="" class="formulaire_titre">Chambre <?php echo $num_chambre; ?></label>
                 <hr class="formulaire_ligne"/>
-                <?php Affiche($_POST["adulte"][$key],1) ; ?>
-                <?php Affiche($_POST["enfant"][$key],2) ; ?>
-                <?php Affiche($_POST["bebe"][$key],3) ; ?>
+                <?php Affiche($_POST["adulte"][$key],$num_chambre,1) ; ?>
+                <?php Affiche($_POST["enfant"][$key],$num_chambre,2) ; ?>
+                <?php Affiche($_POST["bebe"][$key],$num_chambre,3) ; ?>
               <?php endforeach; ?>
               
               <label for="" class="formulaire_titre">Mode de paiement</label>
               <hr class="formulaire_ligne"/>
               <div class="formulaire_row_2item" style="margin-bottom: 16px;">
                 <div class="">
-                  <input type="radio" onclick="Formulaire('none')" id="liquide" name="paiement" class="formulaire_row_item_input" value="">
+                  <input type="radio" onclick="Formulaire('none')" id="liquide" name="paiement" class="formulaire_row_item_input" value="especes">
                   <label for="liquide"  class="formulaire_row_item_label">Paiement en espèces</label>
                 </div>
                 <div class="">
-                  <input type="radio" onclick="Formulaire('grid')" id="Online" name="paiement" class="formulaire_row_item_input" value="">
+                  <input type="radio" onclick="Formulaire('grid')" id="Online" name="paiement" class="formulaire_row_item_input" value="ligne">
                   <label for="Online"  class="formulaire_row_item_label">paiement en ligne</label>
                 </div>
               </div>
               <div class="formulaire_form" id="formulaire_paiement" style="display: none;">
                 <div class="formulaire_row_item">
                   <label class="formulaire_row_item_label">Nom et Prenom :</label>
-                  <input type="text" class="formulaire_row_item_input">
+                  <input type="text" name="nom_prenom_carte" class="formulaire_row_item_input">
                 </div>
                 <div class="formulaire_row_item">
                     <label class="formulaire_row_item_label">Numéro de la carte de crédit :  </label>
-                    <input type="text" class="formulaire_row_item_input">
+                    <input type="text" name="num_carte" class="formulaire_row_item_input">
                 </div>
                 <div class="formulaire_row_2item">
                   <div class="formulaire_row_item">
                     <label  class="formulaire_row_item_label">Date d'expiration :</label>
-                    <input type="month"  class="formulaire_row_item_input" placeholder="MM/YYYY">
+                    <input type="text" name="date_expiration"  class="formulaire_row_item_input" placeholder="MM/YYYY">
                   </div>
                   <div class="formulaire_row_item">
                     <label class="formulaire_row_item_label">Entrez le code CVC2/CVV2 :</label>
-                    <input type="text" class="formulaire_row_item_input">
+                    <input type="text" name="cvv" class="formulaire_row_item_input">
                   </div>
                 </div>
               </div>

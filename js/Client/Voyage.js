@@ -137,3 +137,10 @@ function InitChambre(row_id) {
   }
   list_input_chambre[0].value=v;
 }
+
+function ButtonReserver(v){
+  if(v!="ok"){
+    document.getElementById('my_form').action="Connexion.php"
+  }
+  document.getElementById('my_form').submit();
+}

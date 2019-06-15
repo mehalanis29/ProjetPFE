@@ -29,6 +29,11 @@ class Client{
   public function InsertClient()
   {
     $database=new database();
+    echo "INSERT INTO `client`(`num_passport`, `nom`, `prenom`, `date_naissance` ,`email`, `password`
+                , `phone`,`nationalite`, `date_emission_passport`, `date_expiration_passport`)
+                VALUES ('$this->num_passport','$this->nom','$this->prenom','$this->date_naissance','$this->email'
+                  ,'$this->password','$this->phone',$this->nationalite
+                  ,'$this->date_emission_passport','$this->date_expiration_passport')";
     $database->query("INSERT INTO `client`(`num_passport`, `nom`, `prenom`, `date_naissance` ,`email`, `password`
                 , `phone`,`nationalite`, `date_emission_passport`, `date_expiration_passport`)
                 VALUES ('$this->num_passport','$this->nom','$this->prenom','$this->date_naissance','$this->email'

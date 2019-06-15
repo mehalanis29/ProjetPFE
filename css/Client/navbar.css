@@ -128,7 +128,8 @@
   margin-right: 8px;
 }
 .nav_bar_titre_bar_url_icon label{
-  font-size: 16px;
+  font-size: 15px;
+  font-weight: 600;
   color: var(--color-gris);
 }
 .nav_bar_from{

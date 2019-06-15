@@ -17,13 +17,19 @@ if(isset($_POST["Connecter"])){
     $i++; $user=$row;
   }
   if($i==1){
+    $_SESSION["client_id"]=$user["client_id"];
     $_SESSION["nom"]=$user["nom"];
     $_SESSION["prenom"]=$user["prenom"];
     $_SESSION["email"]=$user["email"];
     $_SESSION["password"]=$user["password"];
-    header("location: index.php");
+    if(isset($_POST["voyage_id"])){
+      header("location: Voyage.php?voyage_id=".$_POST["voyage_id"]);
+    }else{
+      header("location: index.php");
+    }
   }
 }
+
  ?>
 <html lang="en" dir="ltr">
   <head>
@@ -37,29 +43,6 @@ if(isset($_POST["Connecter"])){
   <body>
     <div class="nav_bar">
       <?php NabBar(); ?>
-      <!--<div class="nav_bar_cover_index">
-        <div class="nav_bar_cover_index_img">
-          <img src="img/Client/Cover/formulaire.jpeg" alt="">
-        </div>
-        <div class="nav_bar_titre">
-          Connexion
-        </div>
-      </div>-->
-      <div class="nav_bar_titre_bar">
-        <div class="nav_bar_titre_bar_url">
-          <div class="nav_bar_titre_bar_url_icon">
-            <div class="nav_bar_titre_bar_url_icon_btn">
-              <a href="index.php" >
-                <img src="img\Client\icon\home18pxgris.png" alt="">
-              </a>
-              <a href="#">
-                <img src="img\Client\icon\suivant18pxlemon.png" class="nav_bar_titre_bar_url_icon_suivant">
-              </a>
-              <label>Connexion</label>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
     <div class="Inscription_page">
       <div class="Connexion_formulaire">
@@ -67,6 +50,9 @@ if(isset($_POST["Connecter"])){
           <form class="formulaire_form" action="Connexion.php" method="post">
             <label for="" class="formulaire_titre">Se connecter</label>
             <hr class="formulaire_ligne"/>
+            <?php  if(isset($_POST["voyage_id"])):?>
+              <input type="hidden" name="voyage_id" value="<?php echo $_POST["voyage_id"]; ?>">
+            <?php endif;?>
             <?php if($i==0){  ?>
                   <div class="AlertErreur">
                     <strong>Échoué !</strong> votre email ou mot de passe est incorrect 

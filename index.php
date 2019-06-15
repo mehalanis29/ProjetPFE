@@ -32,7 +32,7 @@ include 'php/Client/standard.php';
                        onclick="change('hotel')" name="button">hotel</button>
             </div>
             <div class="nav_bar_div_form nav_bar_div_form_activ" id="voyage_organis_form">
-              <form class="formtest" action="indexclient.php" method="post">
+              <form class="formtest" action="VoyageOrganise.php" method="post">
                 <div class="nab_bar_index_div_input">
                   <select class="nab_bar_index_input" placeholder="pays" name="">
                     <option value="">Pays</option>

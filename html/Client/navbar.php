@@ -12,6 +12,7 @@
     <div class="nav_bar_list_btn">
       <a href="index.php" class="nav_bar_btn">Home</a>
       <a href="VoyageOrganise.php" class="nav_bar_btn">Voyage Organise</a>
+      <a href="Contact.php" class="nav_bar_btn">Contact</a>
       <a href="Admin" class="nav_bar_btn">Cote Admin</a>
     </div>
   </div>
