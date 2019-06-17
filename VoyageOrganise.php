@@ -81,5 +81,6 @@ include 'php/Client/standard.php';
       </div>
       <div class="page_cover"></div>
     </div>
+    <?php  Footer(); ?>
   </body>
 </html>

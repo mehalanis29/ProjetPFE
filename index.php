@@ -120,5 +120,6 @@ include 'php/Client/standard.php';
         </a>
       </div>
     </div>
+    <?php  Footer(); ?>
   </body>
 </html>

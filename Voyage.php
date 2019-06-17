@@ -265,5 +265,6 @@ if(isset($_GET["voyage_id"])){
         </div>
       </div>
     </div>
+    <?php  Footer(); ?>
   </body>
 </html>

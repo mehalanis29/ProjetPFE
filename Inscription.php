@@ -117,7 +117,8 @@ if(isset($_POST["creer_compte"])){
           </div>
         </form>
       </div>
+      <div class="page_cover"></div>
     </div>
-    <div class="page_cover"></div>
+    <?php  Footer(); ?>
   </body>
 </html>

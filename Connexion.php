@@ -105,7 +105,8 @@ if(isset($_POST["Connecter"])){
           </form>
         </div>
       </div>
+      <div class="page_cover"></div>
     </div>
-    <div class="page_cover"></div>
+    <?php  Footer(); ?>
   </body>
 </html>
