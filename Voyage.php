@@ -152,12 +152,14 @@ if(isset($_GET["voyage_id"])){
                 Reservation
               </div>
               <hr class="formulaire_ligne">
+              <!--
             <div class="reservation_prix">
               <label >à partir de</label>
               <span>
                 125,000 DA
               </span>
             </div>
+             -->
             <div class="formulaire_row_item">
               <label for="" class="formulaire_row_item_label">Périodes</label>
               <select class="formulaire_row_item_input" name="voyage_date_id" id="text_reserve">
@@ -174,7 +176,7 @@ if(isset($_GET["voyage_id"])){
                 <input type="hidden"  name="num_chambre[]" value="1">
                 <label for="" class="formulaire_row_item_label">Chambre 1</label>
                 <select class="formulaire_row_item_input" name="type_chambre[]" id="select_row_1" onchange="InitChambre(1)">
-                  <option value="1"> Chambre Single </option>
+                  <option value="1" > Chambre Single </option>
                   <option value="2"> Chambre Double </option>
                   <option value="3"> Chambre Triple</option>
                 </select>

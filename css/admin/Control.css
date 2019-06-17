@@ -11,7 +11,7 @@
 }
 .control_table_4item{
   display: grid;
-  grid-template-columns: 25% 25% 25% 20% 120px;
+  grid-template-columns: 26px 25% 25% 25% 20% 120px;
   grid-column-gap: 18px;
 }
 .control_table_9item{

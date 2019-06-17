@@ -1,62 +1,7 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     15/06/2019 12:39:03                          */
+/* Created on:     17/06/2019 18:24:53                          */
 /*==============================================================*/
-
-
-drop table if exists chambre;
-
-drop index client_id on client;
-
-drop table if exists client;
-
-drop index endroit_id on endroit;
-
-drop table if exists endroit;
-
-drop index guide_id on guide;
-
-drop table if exists guide;
-
-drop index hotel_id on hotel;
-
-drop table if exists hotel;
-
-drop table if exists invite;
-
-drop index on_demande_id on on_demande;
-
-drop table if exists on_demande;
-
-drop table if exists paiement;
-
-drop index pays_id on pays;
-
-drop table if exists pays;
-
-drop index programe_on_demande_id on programe_on_demande;
-
-drop table if exists programe_on_demande;
-
-drop index reserve_id on reserve;
-
-drop table if exists reserve;
-
-drop index ville on ville;
-
-drop table if exists ville;
-
-drop index voyage_id on voyage;
-
-drop table if exists voyage;
-
-drop index voyage_date_id on voyage_date;
-
-drop table if exists voyage_date;
-
-drop index voyage_jour_id on voyage_jour;
-
-drop table if exists voyage_jour;
 
 /*==============================================================*/
 /* Table: chambre                                               */
@@ -94,6 +39,20 @@ create table client
 create index client_id on client
 (
    client_id
+);
+
+/*==============================================================*/
+/* Table: contact                                               */
+/*==============================================================*/
+create table contact
+(
+   contact_id           int not null auto_increment,
+   nom                  varchar(25),
+   prenom               varchar(25),
+   email                varchar(50),
+   telephone            varchar(50),
+   message              varchar(300),
+   primary key (contact_id)
 );
 
 /*==============================================================*/
@@ -170,6 +129,7 @@ create table invite
    invite_id            int not null auto_increment,
    chambre_id           int,
    nom_prenom           varchar(50),
+   type                 int,
    primary key (invite_id)
 );
 

@@ -63,7 +63,7 @@ require '../php/Admin/standard.php';
                <label onclick="suivant('debut')" for="">Information</label>
             </div>
             <div class="nav_tab_item" id="list_date_label">
-              <label onclick="suivant('Information')" for="">List date</label>
+              <label onclick="suivant('Information')" for="">Date</label>
             </div>
           </div>
           <form class="" action="VoyageControl.php" method="post" >

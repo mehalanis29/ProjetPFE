@@ -3,14 +3,14 @@ class database{
   public $connection;
   public function __construct()
   {
-    $this->connection=mysqli_connect("localhost","root","","pfe");
+    $this->connection=mysqli_connect("localhost","root","anis","pfe");
     $this->connection->set_charset("utf8");
     if(mysqli_connect_errno())echo "erreur connect database";
   }
   public function query($sql)
   {
     $result=mysqli_query($this->connection,$sql);
-    if(!$result) { die("error query");}
+    if(!$result) { die($sql);}
     return $result;
   }
   public function insertid(){

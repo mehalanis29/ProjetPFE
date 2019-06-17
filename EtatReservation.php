@@ -31,7 +31,7 @@ $database=new database();
             <label for="" class="formulaire_titre">Félicitation</label>
             <hr class="formulaire_ligne"/>
             <div class="AlertConfirme">
-              <strong>Échoué !</strong> votre email ou mot de passe est incorrect 
+              <strong>Félicitation !</strong>  
             </div>  
           </form>
         </div>
