@@ -9,7 +9,8 @@ require 'php/Admin/Control.php';
 require 'php/database.inc';
 require 'php/Client.inc';
 $database=new database();
-$i=-1;
+
+ $i=-1;
 if(isset($_POST["Connecter"])){
   $result=$database->query("select * from client where email='".$_POST["email"]."' and password='".md5($_POST["password"])."'");
   $i=0;
@@ -23,9 +24,24 @@ if(isset($_POST["Connecter"])){
     $_SESSION["email"]=$user["email"];
     $_SESSION["password"]=$user["password"];
     if(isset($_POST["voyage_id"])){
-      header("location: Voyage.php?voyage_id=".$_POST["voyage_id"]);
+       function AfficheGET($POST,$nom)
+       {
+        $txt="";
+         foreach ($POST[$nom] as $key => $value) {
+            $txt.= $nom."[]=".$value."&";
+         }
+         return $txt;
+        }
+        $text="";
+        $text.=AfficheGET($_POST,"num_chambre");
+        $text.=AfficheGET($_POST,"type_chambre");
+        $text.=AfficheGET($_POST,"adulte");
+        $text.=AfficheGET($_POST,"enfant");
+        $text.=AfficheGET($_POST,"bebe");
+        header("location: Reservez.php?voyage_id=".$_POST["voyage_id"]."&voyage_date_id=".$_POST["voyage_date_id"]."&".$text);
     }else{
-      header("location: index.php");
+      var_dump($_POST);
+     // header("location: index.php");
     }
   }
 }
@@ -50,9 +66,23 @@ if(isset($_POST["Connecter"])){
           <form class="formulaire_form" action="Connexion.php" method="post">
             <label for="" class="formulaire_titre">Se connecter</label>
             <hr class="formulaire_ligne"/>
-            <?php  if(isset($_POST["voyage_id"])):?>
-              <input type="hidden" name="voyage_id" value="<?php echo $_POST["voyage_id"]; ?>">
-            <?php endif;?>
+            <?php 
+            function Affiche($POST,$v)
+            {
+                foreach ($POST[$v] as $key => $value) {
+            		echo "<input type=\"hidden\" name=\"".$v."[]\" value=\"".$value."\">";
+            	}	
+            }
+            if(isset($_GET["voyage_id"])):?>
+              <input type="hidden" name="voyage_id" value="<?php echo $_GET["voyage_id"]; ?>">
+              <input type="hidden" name="voyage_date_id" value="<?php echo $_GET["voyage_date_id"]; ?>">
+            <?php
+            Affiche($_GET,"num_chambre");
+            Affiche($_GET,"type_chambre");
+            Affiche($_GET,"adulte");
+            Affiche($_GET,"enfant");
+            Affiche($_GET,"bebe");
+            endif;?>
             <?php if($i==0){  ?>
                   <div class="AlertErreur">
                     <strong>Échoué !</strong> votre email ou mot de passe est incorrect 

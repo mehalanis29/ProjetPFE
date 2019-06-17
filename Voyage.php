@@ -146,7 +146,7 @@ if(isset($_GET["voyage_id"])){
       <div class="voyage_page_droite">
         <div class="page_droite">
           <div class="espace_voyage" id="espace_reservation">
-            <form id="my_form" method="post" action="Reservez.php" >
+            <form id="my_form" method="GET" action="Reservez.php" >
               <input type="hidden" name="voyage_id" value="<?php echo $_GET["voyage_id"]; ?>">
               <div class="formulaire_titre">
                 Reservation

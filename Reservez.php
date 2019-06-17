@@ -76,7 +76,7 @@ if(isset($_POST["paiement"])){
                   <select class="formulaire_row_item_input" name="periodes" >
                     <?php
                       $database=new database(); 
-                      $result=$database->query("select voyage_date_id,DATE_FORMAT(date_depart,'%d/%m/%Y') as date_depart,DATE_FORMAT(date_retour,'%d/%m/%Y') as date_retour from voyage_date where voyage_id=".$_POST["voyage_id"]);
+                      $result=$database->query("select voyage_date_id,DATE_FORMAT(date_depart,'%d/%m/%Y') as date_depart,DATE_FORMAT(date_retour,'%d/%m/%Y') as date_retour from voyage_date where voyage_id=".$_GET["voyage_id"]);
                       while($row=mysqli_fetch_assoc($result)){
                         if($_POST["periodes"]==$row["voyage_date_id"]){
                           echo "<option value=".$row["voyage_date_id"]." selected>Du ".$row["date_depart"]." AU ".$row["date_retour"]."</option>";
@@ -113,20 +113,20 @@ if(isset($_POST["paiement"])){
                  }
               }
              
-              foreach ($_POST["num_chambre"] as $key => $num_chambre): ?>
+              foreach ($_GET["num_chambre"] as $key => $num_chambre): ?>
                 <input type="hidden" name="num_chambre[]" value="<?php echo $num_chambre; ?>">
                 <label for="" class="formulaire_titre">Chambre <?php echo $num_chambre; ?></label>
                 <hr class="formulaire_ligne"/>
-                <?php Affiche($_POST["adulte"][$key],$num_chambre,1) ; ?>
-                <?php Affiche($_POST["enfant"][$key],$num_chambre,2) ; ?>
-                <?php Affiche($_POST["bebe"][$key],$num_chambre,3) ; ?>
+                <?php Affiche($_GET["adulte"][$key],$num_chambre,1) ; ?>
+                <?php Affiche($_GET["enfant"][$key],$num_chambre,2) ; ?>
+                <?php Affiche($_GET["bebe"][$key],$num_chambre,3) ; ?>
               <?php endforeach; ?>
               
               <label for="" class="formulaire_titre">Mode de paiement</label>
               <hr class="formulaire_ligne"/>
               <div class="formulaire_row_2item" style="margin-bottom: 16px;">
                 <div class="">
-                  <input type="radio" onclick="Formulaire('none')" id="liquide" name="paiement" class="formulaire_row_item_input" value="especes">
+                  <input type="radio" checked="" onclick="Formulaire('none')" id="liquide" name="paiement" class="formulaire_row_item_input" value="especes">
                   <label for="liquide"  class="formulaire_row_item_label">Paiement en espèces</label>
                 </div>
                 <div class="">
