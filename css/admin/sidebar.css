@@ -50,7 +50,7 @@
   opacity: 1;
 }
 #sidebarcheckbox:checked ~ .sidebar{
-  width: 200px;
+  width: 220px;
 }
 #sidebarcheckbox{
   position: absolute;
