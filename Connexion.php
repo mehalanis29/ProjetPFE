@@ -40,8 +40,7 @@ if(isset($_POST["Connecter"])){
         $text.=AfficheGET($_POST,"bebe");
         header("location: Reservez.php?voyage_id=".$_POST["voyage_id"]."&voyage_date_id=".$_POST["voyage_date_id"]."&".$text);
     }else{
-      var_dump($_POST);
-     // header("location: index.php");
+      header("location: index.php");
     }
   }
 }
@@ -66,12 +65,12 @@ if(isset($_POST["Connecter"])){
           <form class="formulaire_form" action="Connexion.php" method="post">
             <label for="" class="formulaire_titre">Se connecter</label>
             <hr class="formulaire_ligne"/>
-            <?php 
+            <?php
             function Affiche($POST,$v)
             {
                 foreach ($POST[$v] as $key => $value) {
             		echo "<input type=\"hidden\" name=\"".$v."[]\" value=\"".$value."\">";
-            	}	
+            	}
             }
             if(isset($_GET["voyage_id"])):?>
               <input type="hidden" name="voyage_id" value="<?php echo $_GET["voyage_id"]; ?>">
@@ -85,7 +84,7 @@ if(isset($_POST["Connecter"])){
             endif;?>
             <?php if($i==0){  ?>
                   <div class="AlertErreur">
-                    <strong>Échoué !</strong> votre email ou mot de passe est incorrect 
+                    <strong>Échoué !</strong> votre email ou mot de passe est incorrect
                   </div>
             <?php } ?>
             <div class="formulaire_row_item">

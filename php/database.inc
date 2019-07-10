@@ -3,7 +3,7 @@ class database{
   public $connection;
   public function __construct()
   {
-    $this->connection=mysqli_connect("localhost","root","anis","pfe");
+    $this->connection=mysqli_connect("localhost","root","","pfe");
     $this->connection->set_charset("utf8");
     if(mysqli_connect_errno())echo "erreur connect database";
   }

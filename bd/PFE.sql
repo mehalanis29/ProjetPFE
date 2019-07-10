@@ -1,7 +1,66 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     17/06/2019 18:24:53                          */
+/* Created on:     21/06/2019 13:06:03                          */
 /*==============================================================*/
+
+
+drop table if exists chambre;
+
+drop index client_id on client;
+
+drop table if exists client;
+
+drop table if exists compte_agence;
+
+drop table if exists contact;
+
+drop index endroit_id on endroit;
+
+drop table if exists endroit;
+
+drop index guide_id on guide;
+
+drop table if exists guide;
+
+drop index hotel_id on hotel;
+
+drop table if exists hotel;
+
+drop table if exists invite;
+
+drop index on_demande_id on on_demande;
+
+drop table if exists on_demande;
+
+drop table if exists paiement;
+
+drop index pays_id on pays;
+
+drop table if exists pays;
+
+drop index programe_on_demande_id on programe_on_demande;
+
+drop table if exists programe_on_demande;
+
+drop index reserve_id on reserve;
+
+drop table if exists reserve;
+
+drop index ville on ville;
+
+drop table if exists ville;
+
+drop index voyage_id on voyage;
+
+drop table if exists voyage;
+
+drop index voyage_date_id on voyage_date;
+
+drop table if exists voyage_date;
+
+drop index voyage_jour_id on voyage_jour;
+
+drop table if exists voyage_jour;
 
 /*==============================================================*/
 /* Table: chambre                                               */
@@ -20,6 +79,7 @@ create table chambre
 create table client
 (
    client_id            int not null auto_increment,
+   compte_agence_id     int,
    num_passport         varchar(35),
    nom                  varchar(30),
    prenom               varchar(30),
@@ -39,6 +99,18 @@ create table client
 create index client_id on client
 (
    client_id
+);
+
+/*==============================================================*/
+/* Table: compte_agence                                         */
+/*==============================================================*/
+create table compte_agence
+(
+   compte_agence_id     int not null auto_increment,
+   nom                  varchar(50),
+   email                varchar(50),
+   prassword            varchar(50),
+   primary key (compte_agence_id)
 );
 
 /*==============================================================*/
@@ -220,6 +292,7 @@ create table reserve
    reserve_id           int not null auto_increment,
    voyage_date_id       int,
    client_id            int,
+   compte_agence_id     int,
    date_reserve         date,
    date_rendezvous      date,
    type_paiement        int,
@@ -261,6 +334,7 @@ create index ville on ville
 create table voyage
 (
    voyage_id            int not null auto_increment,
+   compte_agence_id     int,
    nom                  varchar(20),
    ville_id             int,
    guide_id             int,
@@ -328,6 +402,9 @@ create index voyage_jour_id on voyage_jour
 alter table chambre add constraint FK_Reference_21 foreign key (reserve_id)
       references reserve (reserve_id) on delete cascade on update cascade;
 
+alter table client add constraint FK_Reference_24 foreign key (compte_agence_id)
+      references compte_agence (compte_agence_id) on delete restrict on update restrict;
+
 alter table endroit add constraint FK_Reference_11 foreign key (ville_id)
       references ville (ville_id) on delete restrict on update restrict;
 
@@ -358,6 +435,9 @@ alter table programe_on_demande add constraint FK_Reference_10 foreign key (endr
 alter table programe_on_demande add constraint FK_Reference_8 foreign key (on_demande_id)
       references on_demande (on_demande_id) on delete restrict on update restrict;
 
+alter table reserve add constraint FK_Reference_25 foreign key (compte_agence_id)
+      references compte_agence (compte_agence_id) on delete restrict on update restrict;
+
 alter table reserve add constraint FK_Reference_3 foreign key (voyage_date_id)
       references voyage_date (voyage_date_id) on delete restrict on update restrict;
 
@@ -372,6 +452,9 @@ alter table voyage add constraint FK_Reference_12 foreign key (hotel_id)
 
 alter table voyage add constraint FK_Reference_15 foreign key (guide_id)
       references guide (guide_id) on delete restrict on update restrict;
+
+alter table voyage add constraint FK_Reference_23 foreign key (compte_agence_id)
+      references compte_agence (compte_agence_id) on delete restrict on update restrict;
 
 alter table voyage add constraint FK_Reference_6 foreign key (ville_id)
       references ville (ville_id) on delete restrict on update restrict;

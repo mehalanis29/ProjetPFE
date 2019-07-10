@@ -1,4 +1,4 @@
-<?php 
+<?php
   if(isset($_GET["deco"])){
     session_destroy();
     header("location: index.php");
@@ -13,7 +13,7 @@
       <a href="index.php" class="nav_bar_btn">Home</a>
       <a href="VoyageOrganise.php" class="nav_bar_btn">Voyage Organise</a>
       <a href="Contact.php" class="nav_bar_btn">Contact</a>
-      <a href="Admin" class="nav_bar_btn">Cote Admin</a>
+      <a href="Admin\Login.php" class="nav_bar_btn">Cote Admin</a>
     </div>
   </div>
   <div class="nav_bar_head_right">

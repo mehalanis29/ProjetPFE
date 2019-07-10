@@ -8,10 +8,10 @@
               <hr>
               <li><p>Agence de Voyage</p></li>
               <hr>
-              <li> <span>Adresse :</span><a href="#" target="_blank"> Adresse Blida (09000) , Alegrie</a></li>
-              <li><span>Mail :</span><a href="#" target="_blank"> EmailTest@Gmail.com</a></li>
-              <li><span>Tél :</span><a href="#"> (+ 213) 67 123 456</a></li>
-              <li><span>Fax :</span><a href="#"> (+ 213) 25 123 456</a></li>
+              <li> <a href="#" target="_blank">Adresse :</a> <span>Adresse Blida (09000) , Alegrie</span></a></li>
+              <li> <a href="#" target="_blank">Mail :</a> <span>EmailTest@Gmail.com</span></a></li>
+              <li> <a href="#" target="_blank">Tél :</a> <span>(+ 213) 67 123 456</span></a></li>
+              <li> <a href="#" target="_blank">Fax :</a> <span>(+ 213) 25 123 456</span></a></li>
           </ul>
     </div>
     <div class="col">
