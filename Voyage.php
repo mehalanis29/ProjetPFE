@@ -6,7 +6,7 @@ include 'php/Client/standard.php';
 require 'php/Voyage.inc';
 $database=new database();
 if(isset($_GET["voyage_id"])){
-  $result=$database->query("select voyage_id,voyage.nom,ville.nom as ville,nbr_jour,hotel_id,description,cover from voyage join ville on voyage.ville_id=voyage.ville_id where voyage_id=".$_GET["voyage_id"]) ;
+  $result=$database->query("select voyage_id,compte_agence_id,voyage.nom,ville.nom as ville,nbr_jour,hotel_id,description,cover from voyage join ville on voyage.ville_id=voyage.ville_id where voyage_id=".$_GET["voyage_id"]) ;
   $row=mysqli_fetch_assoc($result);
   $voyage=new Voyage($row["voyage_id"],$row["nom"],$row["ville"],$row["nbr_jour"],$row["hotel_id"],$row["description"],$row["cover"]);
   $jour=$voyage->LoadListEndroit();
@@ -148,6 +148,7 @@ if(isset($_GET["voyage_id"])){
           <div class="espace_voyage" id="espace_reservation">
             <form id="my_form" method="GET" action="Reservez.php" >
               <input type="hidden" name="voyage_id" value="<?php echo $_GET["voyage_id"]; ?>">
+              <input type="hidden" name="compte_agence_id" value="<?php echo $row["compte_agence_id"]; ?>">
               <div class="formulaire_titre">
                 Reservation
               </div>

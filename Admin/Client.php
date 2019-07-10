@@ -5,14 +5,15 @@ require '../php/database.inc';
 require '../php/Client.inc';
 include '../php/Admin/ClientFunction.php';
 $database=new database();
+session_start();
 if(isset($_POST["remove_list"])){
   removeClient($_POST["remove_list"]);
 }
 $where="";
 if(isset($_POST["rech"])){
-  $where="where nom like '".$_POST["rech"]."%' or prenom like '%".$_POST["rech"]."%'";
+  $where="and nom like '".$_POST["rech"]."%' or prenom like '%".$_POST["rech"]."%'";
 }
-$result=$database->query("select client_id,nom,prenom from client $where limit ".CalculDebut($_GET).", 10")
+$result=$database->query("select client_id,nom,prenom from client where client_id in (SELECT `client_id` FROM `reserve` WHERE `compte_agence_id`=".$_SESSION['compte_agence_id']." ) $where limit ".CalculDebut($_GET).", 10")
 ?>
 <html lang="en" dir="ltr">
   <head>

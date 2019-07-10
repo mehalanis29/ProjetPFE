@@ -90,7 +90,7 @@ INSERT INTO `endroit` (`endroit_id`, `endroit_nom`, `ville_id`, `description`) V
 (2, 'Big Bus Rome Hop-on Hop-off', 1, 'Asseyez-vous et profitez de la balade a bord d\'un bus a toit ouvert et decouvrez l\'histoire unique et ancienne de Rome. ');
 
 INSERT INTO `hotel` (`hotel_id`, `ville_id`, `nom`, `telephone`, `address`, `class`, `img`) VALUES
-(1, 1, 'Novotel Paris Centre Gare Mont', '+3345123326', '17 rue du Cotentin, 75015 Paris France', 4, 'test');
+(1, 1, 'Novotel Roma Centre Gare Mont', '+3345123326', '17 rue du Cotentin, 75015 Roma Italie', 4, 'test');
 
 
 

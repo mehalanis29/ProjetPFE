@@ -9,7 +9,7 @@ session_start();
 $database=new database();
 if(isset($_POST["paiement"])){
   if($_POST["paiement"]=="ligne"){$type_paiement=1; $etat_paiement=1;}else{$type_paiement=0; $etat_paiement=-1;}
-  $result= $database->query("INSERT INTO `reserve`( `voyage_date_id`, `client_id`, `date_reserve`, `date_rendezvous`, `type_paiement`, `etat_paiement`) VALUES (".$_POST["voyage_date_id"].",".$_SESSION["client_id"].",'".date("Y-m-d")."','".date('Y-m-d', strtotime("+3 day"))."',".$type_paiement.",$etat_paiement)");
+  $result= $database->query("INSERT INTO `reserve`( `voyage_date_id`, compte_agence_id,`client_id`, `date_reserve`, `date_rendezvous`, `type_paiement`, `etat_paiement`) VALUES (".$_POST["voyage_date_id"].",".$_POST["compte_agence_id"].",".$_SESSION["client_id"].",'".date("Y-m-d")."','".date('Y-m-d', strtotime("+3 day"))."',".$type_paiement.",$etat_paiement)");
   $reserve_id=$database->insertid($result);
   foreach ($_POST["num_chambre"] as $key => $num_chambre) {
     $result=$database->query("INSERT INTO `chambre`( `reserve_id`, `numero`) VALUES (".$reserve_id.",".$num_chambre.")");
@@ -70,6 +70,7 @@ if(isset($_POST["paiement"])){
             <form class="formulaire_form" action="Reservez.php" method="post">
               <label for="" class="formulaire_titre">Réservation</label>
               <input type="hidden" name="voyage_date_id" value="<?php echo $_GET["voyage_date_id"];?>">
+              <input type="hidden" name="compte_agence_id" value="<?php echo $_GET["compte_agence_id"];?>">
               <hr class="formulaire_ligne"/>
               <div class="formulaire_row_2item">
                 <div class="formulaire_row_item">

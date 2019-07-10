@@ -35,6 +35,7 @@ $client = LoadClient($_GET["idclient"]);
     <script src="../js/Admin/Controle.js">
 
     </script>
+
   </head>
   <body>
     <?php NavBar(); ?>
@@ -48,8 +49,20 @@ $client = LoadClient($_GET["idclient"]);
           </label>
         </div>
         <div class="table">
+          <div class="nav_tab">
+            <div class="nav_tab_item nav_tab_item_active"  id="Information_label">
+               <label onclick="Tab('Information')" for="">Information</label>
+            </div>
+            <div class="nav_tab_item" id="passport_label">
+              <label onclick="Tab('passport')" for="">Passport</label>
+            </div>
+            <div class="nav_tab_item" id="reservation_label">
+              <label onclick="Tab('reservation')" for="">Reservation</label>
+            </div>
+          </div>
           <form class="" action="ClientControle.php" method="post" onsubmit="return VerifieNom()">
-            <div class="left_tab">
+            <div id="Information_div"  class="nav_tab_div nav_tab_div_active">
+              <div class="left_tab">
             <fieldset class="fields">
               <legend class="legends">Information Du Client</legend>
               <div class="control_table">
@@ -80,7 +93,11 @@ $client = LoadClient($_GET["idclient"]);
                 </div>
               </div>
                </fieldset>
-              <fieldset class="fields">
+             </div>
+            </div>
+            <div id="passport_div"  class="nav_tab_div">
+               <div class="left_tab">
+                 <fieldset class="fields">
                   <legend class="legends">Information Du Passport</legend>
                   <div class="control_table">
                     <div class="control_table_item">
@@ -120,13 +137,25 @@ $client = LoadClient($_GET["idclient"]);
                                       }?>">
                     </div>
                   </div>
-             </fieldset>
-           </div>
-           <hr>
+                </fieldset>
+               </div>
+            </div>
+            <div id="reservation_div"  class="nav_tab_div">
+              <div class="left_tab">
+                 <fieldset class="fields">
+                  <legend class="legends">Information Du Passport</legend>
+                  <div class="control_table">
+                  </div>
+                </fieldset>
+              </div>
+            </div>
+            <hr>
            <div class="control_div_btn">
              <input type="hidden" name="client_id" value="<?php if(isset($client)) {echo $client->id;}else{ echo "-1";} ?>">
              <button type="submit" class="control_btn" name="control<?php echo $etat; ?>btn"><?php echo $etat; ?></button>
            </div>
+           </div>
+           
           </form>
         </div>
       </div>

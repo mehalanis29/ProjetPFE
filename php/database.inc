@@ -10,7 +10,7 @@ class database{
   public function query($sql)
   {
     $result=mysqli_query($this->connection,$sql);
-    if(!$result) { die($sql);}
+    if(!$result) { die("erreur ".$sql);}
     return $result;
   }
   public function insertid(){

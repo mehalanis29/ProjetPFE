@@ -4,6 +4,7 @@ require '../php/database.inc';
 require '../php/Voyage.inc';
 include '../php/Admin/VoyageFunction.php';
 $database=new database();
+session_start();
 if(isset($_POST["remove_list"])){
   foreach ($_POST["remove_list"] as $k  => $reserve_id) {
     $database->query("DELETE FROM  reserve WHERE reserve_id=".$reserve_id);
@@ -12,13 +13,13 @@ if(isset($_POST["remove_list"])){
 $where="";
 if(isset($_POST["rech"]))
 {
-  $where="where nom_ville like '%".$_POST["rech"]."%'";
+  $where="and  nom_ville like '%".$_POST["rech"]."%'";
 }
 $result=$database->query("select reserve_id,concat(client.nom,\" \",client.prenom) as nom_client,voyage.nom as voyage_nom from  reserve
                           join voyage_date on reserve.voyage_date_id=voyage_date.voyage_date_id
                           join voyage on  voyage_date.voyage_id=voyage.voyage_id
                           join client on reserve.client_id=client.client_id
-                          $where limit ".CalculDebut($_GET).", 10");
+                          where reserve.compte_agence_id=".$_SESSION['compte_agence_id']."  $where limit ".CalculDebut($_GET).", 10");
  ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
