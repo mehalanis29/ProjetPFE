@@ -5,6 +5,7 @@ $database=new database();
 session_start();
 if(isset($_POST["exit"])){
   session_destroy();
+  header("location: ../index.php");
 }
 if(isset($_POST["button"])){
 

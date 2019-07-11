@@ -13,6 +13,7 @@ $database=new database();
     <script type="text/javascript" src="js/Client/index.js">
 
     </script>
+
   </head>
   <body>
     <div class="nav_bar">
@@ -29,35 +30,36 @@ $database=new database();
               </button>
               <button type="button" class="nav_bar_from_titre_choix" id="voyage_btn"
                   onclick="change('voyage')" name="button">voyage</button>
-              <button type="button" class="nav_bar_from_titre_choix" id="hotel_btn"
-                       onclick="change('hotel')" name="button">hotel</button>
             </div>
             <div class="nav_bar_div_form nav_bar_div_form_activ" id="voyage_organis_form">
-              <form class="formtest" action="VoyageOrganise.php" method="post">
+              <form class="formtest" action="VoyageOrganise.php" method="GET">
                 <div class="nab_bar_index_div_input">
-                  <select class="nab_bar_index_input" placeholder="pays" name="">
+                  <select class="nab_bar_index_input" placeholder="pays" name="pays" onchange="LoadVille(this.value)">
                     <option value="">Pays</option>
+                    <?php 
+                    $pays =$database->query("select pays_id,nom from pays where pays_id in (select pays_id from ville where ville_id in (select ville_id from voyage where voyage_id in (select voyage_id from voyage_date where date_depart > '".date("Y-m-d")."')))") ;
+                    while ($row=mysqli_fetch_assoc($pays)) {
+                      echo "<option value=\"".$row["pays_id"]."\">".$row["nom"]."</option>";
+                    }
+                   ?>
                   </select>
                 </div>
                 <div class="nab_bar_index_div_input">
-                  <select class="nab_bar_index_input" placeholder="ville" name="">
+                  <select class="nab_bar_index_input" placeholder="ville" id="ville" name="ville">
                     <option value="">ville</option>
                   </select>
                 </div>
                 <div class="nab_bar_index_div_input">
                   <label class="nab_bar_index_label"> </label>
-                  <input type="date" class="nab_bar_index_input" placeholder="à partir" name="" value="">
+                  <input type="date" class="nab_bar_index_input" placeholder="à partir" name="date" value="<?php echo date("Y-m-d"); ?>">
                 </div>
                 <div class="nab_bar_index_div_input">
-                  <button type="submit" class="recharche_btn" name="Recharche">Recharche</button>
+                  <button type="submit" class="recharche_btn" name="Recharche">Recherche</button>
                 </div>
               </form>
             </div>
             <div class="nav_bar_div_form" id="voyage_form">
               voyage
-            </div>
-            <div class="nav_bar_div_form" id="hotel_form">
-              hotel
             </div>
           </div>
         </div>

@@ -145,7 +145,7 @@
 }
 .nav_bar_from_titre{
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto auto;
 }
 .nav_bar_from_titre_choix{
   border: none;

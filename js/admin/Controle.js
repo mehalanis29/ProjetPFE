@@ -31,7 +31,7 @@ function LoadHotel(id) {
   xhttp.send();
 }
 function  Affiche(list,nom) {
-  var s="<option value=''>---list--</option>";
+  var s="<option value=''>Ville</option>";
   for(var i=0;i<list.List.length;i++){
     s+="<option value=\""+list.List[i].id+"\" >"+list.List[i].nom+"</option>";
   }

@@ -10,8 +10,6 @@
 .voyage_organise_droite{
   width: 60%;
   z-index: 2;
-  display: grid;
-  grid-row-gap: 24px;
 }
 .voyage_organise_list_voyage{
   display: grid;
@@ -56,4 +54,28 @@
   padding: 14px;
   overflow: hidden;
   margin-top: 38px;
+}
+.filter-tags {
+  float: left;
+position: relative;
+border: 2px solid #ccc;
+cursor: pointer;
+padding: 0;
+width: 20px;
+height: 20px;
+position: relative;
+color: #fff;
+background: #fff !important;
+-webkit-appearance: none;
+}
+.filter-tags:checked::after{
+  color: #888DA0;
+}
+.filter-tags:checked:after   {
+  content: "\2713";
+  font-size: 17px;
+  position: absolute;
+  top:-4px;
+  left: 1px;
+  z-index:20;
 }

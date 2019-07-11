@@ -17,9 +17,11 @@ if(isset($_POST["Connecter"])){
   while ($row=mysqli_fetch_assoc($result)) {
     $i++; $user=$row;
   }
-  function AfficheGET($POST,$nom)
+  $txt="";
+  if(isset($_POST["voyage_id"])){
+   function AfficheGET($POST,$nom)
    {
-     $txt="";
+     
       foreach ($POST[$nom] as $key => $value) {
          $txt.= $nom."[]=".$value."&";
       }
@@ -31,7 +33,7 @@ if(isset($_POST["Connecter"])){
    $text.=AfficheGET($_POST,"adulte");
    $text.=AfficheGET($_POST,"enfant");
    $text.=AfficheGET($_POST,"bebe");
-
+  }
   if($i==1){
     $_SESSION["client_id"]=$user["client_id"];
     $_SESSION["nom"]=$user["nom"];
