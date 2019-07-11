@@ -22,10 +22,10 @@ class Voyage{
 public function InsertVoyage()
 {
   $database=new database();
-  $result=$database->query("INSERT INTO `voyage`( nom,`ville_id`,
+  $result=$database->query("INSERT INTO `voyage`( nom,`ville_id`,  compte_agence_id,
                                          `nbr_jour` ,`hotel_id`,
                                          `description`,  `cover`)
-                      VALUES ('$this->nom',$this->ville
+                      VALUES ('$this->nom',$this->ville,".$_SESSION['compte_agence_id']."
                               ,$this->nbr_jour,$this->hotel_id,'$this->description'
                               ,'$this->img')");
   return $database->insertid($result);

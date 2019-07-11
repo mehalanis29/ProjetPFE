@@ -9,6 +9,12 @@
   grid-template-columns: auto 400px;
   grid-column-gap: 18px;
 }
+.control_table_2item{
+  display: grid;
+  grid-template-columns: 25% 75%;
+  text-align: center;
+  grid-column-gap: 18px;
+}
 .control_table_4item{
   display: grid;
   grid-template-columns: 26px 25% 25% 25% 20% 120px;
@@ -19,8 +25,12 @@
   grid-template-columns: 26px 11% 11% 10% 10% 10% 10% 10% 10%;
   grid-column-gap: 18px;
 }
-.control_table_4item label,.control_table_9item label{
+.control_table_4item label,.control_table_9item label,.control_table_2item label {
   text-align: center;
+ }
+ .control_table_multi_row{
+  display: grid;
+  grid-row-gap: 10px;
  }
 .left_tab{
   padding: 16px;

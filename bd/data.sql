@@ -76,7 +76,7 @@ INSERT INTO `pays`( pays_code, nom, nationalite) VALUES ('ZA', 'Afrique du Sud' 
 ('UY', 'Uruguay' , 'Uruguayen' ) ,
 ('VE', 'Venezuela' , 'Venezuelien' );
 
-INSERT INTO `compte_agence`( `nom`, `email`, `prassword`) VALUES ('zemzem','test@gmail.com',md5('anis'));
+INSERT INTO `compte_agence`( `nom`, `email`, `prassword`) VALUES ('zemzem','test1@gmail.com',md5('anis')),('selectour','test2@gmail.com',md5('anis'));
 
 INSERT INTO `client`(`client_id`, `compte_agence_id`, `num_passport`, `nom`, `prenom`, `date_naissance`, `email`, `password`, `phone`, `nationalite`, `date_emission_passport`, `date_expiration_passport`)
 values (1, 1,'321521', 'mehal', 'anis', '1999-05-29', 'mehalanis29@gmail.com', '38a1ffb5ccad9612d3d28d99488ca94b', '01264521', 3, '2018-05-19', '2022-06-19');

@@ -16,6 +16,7 @@ while ($row=mysqli_fetch_assoc($result)) {
 
 if($cpt==1){
   $_SESSION['compte_agence_id']=$info["compte_agence_id"];
+  $_SESSION['nom']=$info["nom"];
   $_SESSION['username']=$_POST['username'];
   $_SESSION['password']=md5($_POST['password']);
   header("location: index.php");
@@ -36,7 +37,7 @@ if($cpt==1){
        <div class="login">
          <div class="content">
            <div class="image">
-             <img width="450" src="img/moza.png" alt="">
+             <img width="450" src="..\img\Admin\10476.jpg" alt="">
            </div>
            <div class="form" id="login_Compte">
            	<span class="member">Se connecter </span>

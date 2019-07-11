@@ -2,7 +2,8 @@
 <?php
 session_start();
 include 'php/Client/standard.php';
-
+require 'php/database.inc';
+$database=new database();
  ?>
 <html lang="en" dir="ltr">
   <head>
@@ -68,48 +69,27 @@ include 'php/Client/standard.php';
         </label>
       </div>
       <div class="index_offre_top_voyage_list_offre">
+        <?php 
+          $result=$database->query("select voyage.nom as voyage_nom,nbr_jour,min(prix_A_T) as prix from voyage join voyage_date on voyage.voyage_id= voyage_date.voyage_id group by voyage.voyage_id order by voyage.voyage_id DESC limit 3");
+          while ($row=mysqli_fetch_assoc($result)):
+        ?>
         <a href="Voyage.php?voyage_id=1">
           <div class="index_offre_top_voyage_offre">
             <img src="img/Client/roma.jpeg" alt="">
             <div class="index_offre_top_voyage_desc">
               <div class="index_offre_top_voyage_nom_day">
-                <label class="index_offre_top_voyage_nom">Roma</label>
-                <label class="index_offre_top_voyage_day">7 Jours & 6 Nuit</label>
+                <label class="index_offre_top_voyage_nom"><?php echo $row["voyage_nom"]; ?></label>
+                <label class="index_offre_top_voyage_day">
+                  <?php echo $row["nbr_jour"]." Jours & ".intval($row["nbr_jour"]-1)." Nuit"; ?>
+                </label>
               </div>
               <div class="index_offre_top_voyage_prix">
-                <label for="">25,000 DZ</label>
+                <label for=""><?php echo number_format($row["prix"]*10000); ?> DZ</label>
               </div>
             </div>
           </div>
         </a>
-        <a href="Voyage.php?voyage_id=1">
-          <div class="index_offre_top_voyage_offre">
-            <img src="img/Client/roma.jpeg" alt="">
-            <div class="index_offre_top_voyage_desc">
-              <div class="index_offre_top_voyage_nom_day">
-                <label class="index_offre_top_voyage_nom">Roma</label>
-                <label class="index_offre_top_voyage_day">7 Jours & 6 Nuit</label>
-              </div>
-              <div class="index_offre_top_voyage_prix">
-                <label for="">25,000 DZ</label>
-              </div>
-            </div>
-          </div>
-        </a>
-        <a href="Voyage.php?voyage_id=1">
-          <div class="index_offre_top_voyage_offre">
-            <img src="img/Client/roma.jpeg" alt="">
-            <div class="index_offre_top_voyage_desc">
-              <div class="index_offre_top_voyage_nom_day">
-                <label class="index_offre_top_voyage_nom">Roma</label>
-                <label class="index_offre_top_voyage_day">7 Jours & 6 Nuit</label>
-              </div>
-              <div class="index_offre_top_voyage_prix">
-                <label for="">25,000 DZ</label>
-              </div>
-            </div>
-          </div>
-        </a>
+        <?php endwhile;?>
       </div>
       <div class="index_offre_top_voyage_btn_more">
         <a href="VoyageOrganise.php">

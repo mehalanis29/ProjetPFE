@@ -13,7 +13,7 @@ if(isset($_POST["remove_list"])){
 $where="";
 if(isset($_POST["rech"]))
 {
-  $where="and  nom_ville like '%".$_POST["rech"]."%'";
+ // $where="and  nom_ville like '%".$_POST["rech"]."%'";
 }
 $result=$database->query("select reserve_id,concat(client.nom,\" \",client.prenom) as nom_client,voyage.nom as voyage_nom from  reserve
                           join voyage_date on reserve.voyage_date_id=voyage_date.voyage_date_id

@@ -17,6 +17,21 @@ if(isset($_POST["Connecter"])){
   while ($row=mysqli_fetch_assoc($result)) {
     $i++; $user=$row;
   }
+  function AfficheGET($POST,$nom)
+   {
+     $txt="";
+      foreach ($POST[$nom] as $key => $value) {
+         $txt.= $nom."[]=".$value."&";
+      }
+      return $txt;
+   }
+   $text="voyage_id=".$_POST["voyage_id"]."&compte_agence_id=".$_POST["compte_agence_id"]."&voyage_date_id=".$_POST["voyage_date_id"]."&".$text."&";
+   $text.=AfficheGET($_POST,"num_chambre");
+   $text.=AfficheGET($_POST,"type_chambre");
+   $text.=AfficheGET($_POST,"adulte");
+   $text.=AfficheGET($_POST,"enfant");
+   $text.=AfficheGET($_POST,"bebe");
+
   if($i==1){
     $_SESSION["client_id"]=$user["client_id"];
     $_SESSION["nom"]=$user["nom"];
@@ -24,24 +39,13 @@ if(isset($_POST["Connecter"])){
     $_SESSION["email"]=$user["email"];
     $_SESSION["password"]=$user["password"];
     if(isset($_POST["voyage_id"])){
-       function AfficheGET($POST,$nom)
-       {
-        $txt="";
-         foreach ($POST[$nom] as $key => $value) {
-            $txt.= $nom."[]=".$value."&";
-         }
-         return $txt;
-        }
-        $text="";
-        $text.=AfficheGET($_POST,"num_chambre");
-        $text.=AfficheGET($_POST,"type_chambre");
-        $text.=AfficheGET($_POST,"adulte");
-        $text.=AfficheGET($_POST,"enfant");
-        $text.=AfficheGET($_POST,"bebe");
-        header("location: Reservez.php?voyage_id=".$_POST["voyage_id"]."&voyage_date_id=".$_POST["voyage_date_id"]."&".$text);
+       
+        header("location: Reservez.php?".$text);
     }else{
       header("location: index.php");
     }
+  }else{
+  	header("location: Connexion.php?".$text."&erreurpassword=-1");
   }
 }
 
@@ -74,6 +78,7 @@ if(isset($_POST["Connecter"])){
             }
             if(isset($_GET["voyage_id"])):?>
               <input type="hidden" name="voyage_id" value="<?php echo $_GET["voyage_id"]; ?>">
+              <input type="hidden" name="compte_agence_id" value="<?php echo $_GET["compte_agence_id"]; ?>">
               <input type="hidden" name="voyage_date_id" value="<?php echo $_GET["voyage_date_id"]; ?>">
             <?php
             Affiche($_GET,"num_chambre");
@@ -82,7 +87,7 @@ if(isset($_POST["Connecter"])){
             Affiche($_GET,"enfant");
             Affiche($_GET,"bebe");
             endif;?>
-            <?php if($i==0){  ?>
+            <?php if(isset($_GET["erreurpassword"])){  ?>
                   <div class="AlertErreur">
                     <strong>Échoué !</strong> votre email ou mot de passe est incorrect
                   </div>

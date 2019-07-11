@@ -5,6 +5,8 @@ require "../php/database.inc";
 require '../php/Client.inc';
 require '../php/Admin/Control.php';
 include '../php/Admin/ClientFunction.php';
+ session_start();
+
 if(isset($_POST["nom"])){
   $client=new client($_POST["client_id"],$_POST["num_passport"],$_POST["nom"],$_POST["prenom"],$_POST["date_naissance"],
                     $_POST["email"],"",$_POST["phone"],
@@ -56,9 +58,11 @@ $client = LoadClient($_GET["idclient"]);
             <div class="nav_tab_item" id="passport_label">
               <label onclick="Tab('passport')" for="">Passport</label>
             </div>
-            <div class="nav_tab_item" id="reservation_label">
-              <label onclick="Tab('reservation')" for="">Reservation</label>
-            </div>
+            <?php if(isset($_GET["idclient"])):?>
+              <div class="nav_tab_item" id="reservation_label">
+                <label onclick="Tab('reservation')" for="">Reservation</label>
+              </div>
+            <?php endif;?>
           </div>
           <form class="" action="ClientControle.php" method="post" onsubmit="return VerifieNom()">
             <div id="Information_div"  class="nav_tab_div nav_tab_div_active">
@@ -140,6 +144,7 @@ $client = LoadClient($_GET["idclient"]);
                 </fieldset>
                </div>
             </div>
+            <?php if(isset($_GET["idclient"])):?>
             <div id="reservation_div"  class="nav_tab_div">
               <div class="left_tab">
                  <fieldset class="fields">
@@ -149,6 +154,7 @@ $client = LoadClient($_GET["idclient"]);
                 </fieldset>
               </div>
             </div>
+            <?php endif;?>
             <hr>
            <div class="control_div_btn">
              <input type="hidden" name="client_id" value="<?php if(isset($client)) {echo $client->id;}else{ echo "-1";} ?>">

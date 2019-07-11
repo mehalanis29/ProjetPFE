@@ -3,6 +3,7 @@ require '../php/Admin/standard.php';
  require "../php/database.inc";
  require '../php/Admin/Control.php';
  $database=new database();
+ session_start();
 if(isset($_GET["reserve_id"])){
   $result=$database->query("select reserve_id,client.client_id,reserve.voyage_date_id,voyage_date.voyage_id,concat(client.nom,\" \",client.prenom) as nom_prenom,DATE_FORMAT(date_reserve,'%d/%m/%Y') as  date_reserve,DATE_FORMAT(date_rendezvous,'%d/%m/%Y') as date_rendezvous,type_paiement,etat_paiement from reserve 
 join voyage_date on voyage_date.voyage_date_id=reserve.voyage_date_id
@@ -66,9 +67,9 @@ join client on reserve.client_id=client.client_id where reserve_id=".$_GET["rese
                 </div>
                 <div class="control_table_item">
                   <label for="" class="controllabel">Voyage</label>
-                  <select class="controlinput" name="voyage" required >
+                  <select class="controlinput" name="voyage" required  onchange="AfficheDate(this.value)">
                   <?php 
-                    $result=$database->query("SELECT voyage_id,nom FROM `voyage`");
+                    $result=$database->query("SELECT voyage_id,nom FROM `voyage` where `compte_agence_id`=".$_SESSION['compte_agence_id']."");
                     while($voyage=mysqli_fetch_assoc($result)){
                       if($voyage["voyage_id"]==$reserver["voyage_id"]){
                         echo "<option value=\"".$voyage["voyage_id"]."\" selected>".$voyage["nom"]."</option>";
@@ -81,7 +82,7 @@ join client on reserve.client_id=client.client_id where reserve_id=".$_GET["rese
                 </div>
                  <div class="control_table_item">
                   <label for="" class="controllabel">Voyage Date</label>
-                  <select class="controlinput" name="voyage" required >
+                  <select class="controlinput" name="voyage" required id='date_voyage'  >
                   <?php 
                   if(isset($reserver)){
                     $result=$database->query("SELECT voyage_date_id,concat('Du ',DATE_FORMAT(date_depart,'%d/%m/%Y'),' Au ',DATE_FORMAT(date_retour,'%d/%m/%Y')) as date FROM `voyage_date` where voyage_id=".$reserver["voyage_id"]);
@@ -118,7 +119,7 @@ join client on reserve.client_id=client.client_id where reserve_id=".$_GET["rese
                   ?>">
                 </div>
                 <div class="control_table_item">
-                  <label for="" class="controllabel">etat_paiement</label>
+                  <label for="" class="controllabel">Paiement</label>
                   <select class="controlinput" name="voyage" required >
                   <?php 
                     $list=array(-1=>"pas encore",1=>"paye");
@@ -143,16 +144,21 @@ join client on reserve.client_id=client.client_id where reserve_id=".$_GET["rese
               <fieldset class="fields">
                 <legend class="legends">les invités</legend>
                 <div class="control_table" id="list_voyage">
-                  <div class="control_table_4item">
-                    <button style="background: none;border: none" type="button" id="AjouterVoyage"  >
-                      <img src="..\img\Client\icon\add22px.png">
-                    </button>
-                    <label for="" class="controllabel" >Nom et Prenom</label>
+                  <div class="control_table_2item">
                     <label for="" class="controllabel" >Chambre </label>
-                    <label for="" class="controllabel" >Capacite </label>
+                    <div class="control_table_4item">
+                      <button style="opacity: 0; background: none;border: none" type="button" id="AjouterVoyage"  >
+                         <img src="..\img\Client\icon\add22px.png">
+                      </button>
+                      <label for="" class="controllabel" >Nom et Prenom</label>
+                      <label for="" class="controllabel" >Type </label>
+                    </div>
                   </div>
                   <?php foreach ($chambre as $key => $value): ?>
-                    <?php foreach ($value["invite"] as $key => $ivite): ?>
+                    <div class="control_table_2item">
+                     <input type="text" style="text-align:center;" required name="" class="controlinput" value="<?php echo $value["nbr"]; ?>">
+                     <div class="control_table_multi_row">
+                     <?php foreach ($value["invite"] as $key => $ivite): ?>
                       <div class="control_table_4item">
                         <button style="background: none;border: none" type="submit" name="remove_date" class="remove_list"
                              value="<?php echo $row["voyage_date_id"] ?>" 
@@ -160,14 +166,15 @@ join client on reserve.client_id=client.client_id where reserve_id=".$_GET["rese
                            <img src="..\img\Client\icon\exit22px.png">
                          </button>
                          <input type="text"  name="" class="controlinput" value="<?php echo $ivite["nom_prenom"]; ?>">
-                        <input type="number" required name="" class="controlinput" value="<?php echo $value["nbr"]; ?>">
                         <select class="controlinput" >
                            <option value="1" >Adult </option>
                            <option value="2">Enfant </option>
                            <option value="3">Bebe</option>
                         </select>
                       </div>
-                    <?php endforeach ?>
+                     <?php endforeach ?>
+                      </div>
+                    </div>
                   <?php endforeach ?>
                 </div>
               </fieldset>

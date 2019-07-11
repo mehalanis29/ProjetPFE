@@ -8,13 +8,14 @@
   color: white;
   text-align: center;
   font-size: 14px;
-  height: 50px;
+  margin-top: 10px;
+  display: none;
 }
 .sidebaruserinfo{
   color: white;
   text-align: center;
   font-size: 32px;
-  height: 60px;
+  height: 65px;
   opacity: 0;
 }
 .sidebarlistitem{
@@ -44,13 +45,15 @@
   width: 200px;
 }
 #sidebarcheckbox:checked ~ .sidebar .sidebarlogo{
-  font-size: 32px;
+  display: block;
+
 }
 #sidebarcheckbox:checked ~ .sidebar .sidebaruserinfo{
-  opacity: 1;
+  opacity: 0;
+  height: 0px;
 }
 #sidebarcheckbox:checked ~ .sidebar{
-  width: 220px;
+  width: 230px;
 }
 #sidebarcheckbox{
   position: absolute;

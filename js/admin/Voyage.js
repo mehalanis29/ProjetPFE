@@ -45,3 +45,19 @@ function suivant(etat){
     }
   }
 }
+function AfficheDate(id) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var list =JSON.parse(this.responseText);
+      var date_voyage =document.getElementById("date_voyage");
+      var text_reserve="";
+      for(var i=0;i<list.length;i++){
+        text_reserve+="<option value=\""+list[i]["voyage_date_id"]+"\">Du "+list[i]["date_depart"]+" Au "+list[i]["date_retour"]+"</option>";
+      }
+      date_voyage.innerHTML=text_reserve;
+    }
+  };
+  xhttp.open("GET", "../php/Client/VoyageJSON.php?voyage_id="+id, false);
+  xhttp.send();
+}

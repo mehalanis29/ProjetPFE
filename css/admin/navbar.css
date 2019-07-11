@@ -1,8 +1,19 @@
 .navbar{
   background-color:  #34495e;
+    display: flex;
+  justify-content: space-between;
+
+}
+.btnmenu{
+  padding: 12px;
+  padding-bottom: 8px;
 }
 .navbarbtnmenu{
   padding:8px;
   width: 32px;
   cursor: pointer;
+}
+.navbarbtnexit{
+	background: none;
+	border: none;
 }

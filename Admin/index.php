@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <?php
 require '../php/Admin/standard.php';
+ session_start();
+
  ?>
 <html lang="en" dir="ltr">
   <head>

@@ -4,6 +4,7 @@ require '../php/Admin/standard.php';
  require "../php/Voyage.inc";
  require '../php/Admin/Control.php';
  include "../php/Admin/VoyageFunction.php";
+ session_start();
  $database=new database();
  if(isset($_POST["remove_date"])){
   $database->query("delete from voyage_date where voyage_date_id=".$_POST["remove_date"]);
