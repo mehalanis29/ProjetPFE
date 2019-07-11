@@ -43,20 +43,20 @@ require '../php/Admin/standard.php';
             <a href="Reserver.php" class="item_page_a">
               <div class="item_page">
                 <div class="item_page_icon">
-                  <img src="../img/Admin/icon/reservationwhite32px.png" alt="">
+                  <img src="../img/Admin/icon/reservationwhite62px.png" alt="">
                 </div>
                 <div class="item_page_titre">
                    <label for="">Reserver</label>
                 </div>
               </div>
             </a>
-            <a href="Client.php" class="item_page_a">
+            <a href="Parametre.php" class="item_page_a">
               <div class="item_page">
                 <div class="item_page_icon">
-                  <img src="../img/Admin/icon/clientxwhite62px.png" alt="">
+                  <img src="../img/Admin/icon/setting62px.png" alt="">
                 </div>
                 <div class="item_page_titre">
-                   <label for="">Client</label>
+                   <label for="">Parametre</label>
                 </div>
               </div>
             </a>

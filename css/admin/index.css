@@ -4,7 +4,7 @@
 .list_item{
   display: grid;
   justify-content: center;
-  grid-template-columns: 18% 18% 18% 18% 18% ;
+  grid-template-columns: 22% 22% 22% 22% ;
   grid-column-gap: 24px;
   padding: 8px;
 }
@@ -21,7 +21,7 @@
 .item_page_titre{
   display: table;
   text-align: center;
-  font-size: 40px;
+  font-size: 36px;
   color: var(--colorbleu);
 }
 .item_page_titre label{
@@ -38,4 +38,5 @@
 .item_page_icon img{
   display:table-cell;
   vertical-align: middle;
+  padding: 4px
 }
