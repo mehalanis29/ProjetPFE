@@ -5,6 +5,8 @@ require "../php/database.inc";
 require '../php/Client.inc';
 require '../php/Admin/Control.php';
 include '../php/Admin/ClientFunction.php';
+session_start();
+
 if(isset($_POST["nom"])){
   $agence=new agence($_POST["compte_agence_id"],$_POST["nom"],$_POST["adress"],$_POST["telephone"],$_POST["fax"],
                     $_POST["email"],"",$_POST["password"]);

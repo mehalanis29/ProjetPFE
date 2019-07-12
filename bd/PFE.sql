@@ -113,6 +113,7 @@ create table compte_agence
    fax                  varchar(50),
    email                varchar(50),
    password            varchar(50),
+   icon varchar(20),
    primary key (compte_agence_id)
 );
 
