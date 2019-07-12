@@ -11,13 +11,14 @@ require 'php/Client.inc';
 $database=new database();
 
  $i=-1;
+ $txt="";
 if(isset($_POST["Connecter"])){
   $result=$database->query("select * from client where email='".$_POST["email"]."' and password='".md5($_POST["password"])."'");
   $i=0;
   while ($row=mysqli_fetch_assoc($result)) {
     $i++; $user=$row;
   }
-  $txt="";
+  
   if(isset($_POST["voyage_id"])){
    function AfficheGET($POST,$nom)
    {
