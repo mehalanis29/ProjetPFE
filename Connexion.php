@@ -22,7 +22,7 @@ if(isset($_POST["Connecter"])){
   if(isset($_POST["voyage_id"])){
    function AfficheGET($POST,$nom)
    {
-     
+      $txt="";
       foreach ($POST[$nom] as $key => $value) {
          $txt.= $nom."[]=".$value."&";
       }
