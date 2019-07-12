@@ -48,3 +48,11 @@
   justify-content: flex-end;
   padding: 12px;
 }
+
+.formulaire_table_row_5item_titre label{
+color: #001f39;  
+}
+.formulaire_table_row_5item{
+  display: grid;
+  grid-template-columns: 14% 25%  13% 13% 30%;
+}

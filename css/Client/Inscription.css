@@ -1,10 +1,11 @@
 .Inscription_page{
   position: relative;
   overflow: hidden;
-  padding: 32px;
+  padding: 20px;
+  min-height: 400px;
 }
 
-.Inscription_formulaire{
+.Inscription_formulaire,.list_Reseravtion_formulaire{
   height: auto;
   width: 800px;
   padding: 18px;
@@ -12,4 +13,8 @@
   border-radius: 8px;
   position: relative;
   z-index: 6;
+}
+
+.list_Reseravtion_formulaire{
+  width: 97%;
 }
