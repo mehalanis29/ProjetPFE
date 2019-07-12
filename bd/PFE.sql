@@ -108,8 +108,11 @@ create table compte_agence
 (
    compte_agence_id     int not null auto_increment,
    nom                  varchar(50),
+   adress               varchar(300),
+   telephone            varchar(50),
+   fax                  varchar(50),
    email                varchar(50),
-   prassword            varchar(50),
+   password            varchar(50),
    primary key (compte_agence_id)
 );
 
@@ -467,4 +470,3 @@ alter table voyage_jour add constraint FK_Reference_1 foreign key (voyage_id)
 
 alter table voyage_jour add constraint FK_Reference_14 foreign key (endroit_id)
       references endroit (endroit_id) on delete restrict on update restrict;
-
