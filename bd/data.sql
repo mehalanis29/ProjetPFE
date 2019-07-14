@@ -76,27 +76,32 @@ INSERT INTO `pays`( pays_code, nom, nationalite) VALUES ('ZA', 'Afrique du Sud' 
 ('UY', 'Uruguay' , 'Uruguayen' ) ,
 ('VE', 'Venezuela' , 'Venezuelien' );
 
-INSERT INTO `compte_agence`( `nom`, `email`, `prassword`) VALUES ('zemzem','test1@gmail.com',md5('anis')),('selectour','test2@gmail.com',md5('anis'));
+INSERT INTO `compte_agence`( `nom`, `adresse`, `telephone`, `fax`, `description`, `email`, `password`) VALUES
+ ('zemzem','rhgaia ','+21377352312','+251232965','zemzem description','test1@gmail.com',md5('anis')),
+ ('selectour','France ','+21377352312','+251232965','selectour description','test2@gmail.com',md5('anis'));
 
-INSERT INTO `client`(`client_id`, `compte_agence_id`, `num_passport`, `nom`, `prenom`, `date_naissance`, `email`, `password`, `phone`, `nationalite`, `date_emission_passport`, `date_expiration_passport`)
-values (1, 1,'321521', 'mehal', 'anis', '1999-05-29', 'mehalanis29@gmail.com', '38a1ffb5ccad9612d3d28d99488ca94b', '01264521', 3, '2018-05-19', '2022-06-19');
+INSERT INTO `client`( `num_passport`, `nom`, `prenom`, `date_naissance`, `email`, `password`, `phone`, `nationalite`, `date_emission_passport`, `date_expiration_passport`)
+values ( '321521', 'mehal', 'anis', '1999-05-29', 'mehalanis29@gmail.com', '38a1ffb5ccad9612d3d28d99488ca94b', '01264521', 3, '2018-05-19', '2022-06-19');
 
 
-INSERT INTO `ville` (`ville_id`, `nom`, `pays_id`) VALUES
-(1, 'ROMA', 45);
+INSERT INTO `ville` (`nom`, `pays_id`) VALUES 
+('Roma', 45),('Naples', 45),('Venise', 45),('Paris', 33),('Lyon', 33),('Marseille', 33),('Toulouse', 33),('Barcelona',29);
 
 INSERT INTO `endroit` (`endroit_id`, `endroit_nom`, `ville_id`, `description`) VALUES
 (1, 'Alger - Rome', 1, 'Depart de Alger a destination de ROME sur vol Air-algerie. Arrive assistance et depart vers Rome , arriver a Hotel, repartition des chambres et soiree libre '),
 (2, 'Big Bus Rome Hop-on Hop-off', 1, 'Asseyez-vous et profitez de la balade a bord d\'un bus a toit ouvert et decouvrez l\'histoire unique et ancienne de Rome. ');
 
-INSERT INTO `hotel` (`hotel_id`, `ville_id`, `nom`, `telephone`, `address`, `class`, `img`) VALUES
-(1, 1, 'Novotel Roma Centre Gare Mont', '+3345123326', '17 rue du Cotentin, 75015 Roma Italie', 4, 'test');
+INSERT INTO `hotel` ( `ville_id`, `nom`, `telephone`, `address`, `class`, `img`) VALUES  
+( 1, 'Novotel Roma Centre Gare Mont', '+3345123326', '17 rue du Cotentin, 75015 Roma Italie', 4, 'test'),
+( 2, 'Novotel Roma Centre Gare Mont', '+3345123326', '17 rue du Cotentin, 75015 Roma Italie', 4, 'test'),
+(4, 'Novotel Paris Centre Gare Mont', '+3345123326', '17 rue du Cotentin, 75015 Paris France', 4, 'test'),
+(8, 'Novotel Barcelona Centre Gare', '+3345123326', '17 rue du Cotentin, 75015 Barcelona Espagne', 4, 'test')
+;
 
 
-
-INSERT INTO `voyage` (`voyage_id`, `nom`, `ville_id`, `guide_id`, `nbr_jour`, `hotel_id`, `cover`, `description`) VALUES
-(1, 'ROMA 2019', 1, NULL, 7, 1, 'test.jpg', 'Roma la ville la plus belle'),
-(2, 'test_nom', 1, NULL, 7, 1, 'test.jpg', 'test');
+INSERT INTO `voyage` (`voyage_id`,`compte_agence_id`, `nom`, `ville_id`, `guide_id`, `nbr_jour`, `hotel_id`, `cover`, `description`) VALUES
+(1,1, 'ROMA 2019', 1, NULL, 7, 1, 'test.jpg', 'Roma la ville la plus belle'),
+(2, 2,'test_nom', 1, NULL, 7, 1, 'test.jpg', 'test');
 
 
 INSERT INTO `voyage_date` (`voyage_date_id`, `voyage_id`, `date_depart`, `date_retour`, `capacite`, `prix_A_S`, `prix_A_D`, `prix_A_T`, `prix_E`, `prix_B`) VALUES

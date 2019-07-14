@@ -1,20 +1,29 @@
-<!DOCTYPE html>
 <?php
-require '../php/Admin/standard.php';
+require '../php/Agence/standard.php';
 require '../php/database.inc';
-require '../php/Client.inc';
-include '../php/Admin/ClientFunction.php';
+require '../php/Voyage.inc';
+include '../php/Agence/VoyageFunction.php';
 $database=new database();
 session_start();
+require '../php/Agence/verefieuser.php';
+
 if(isset($_POST["remove_list"])){
-  removeClient($_POST["remove_list"]);
+  foreach ($_POST["remove_list"] as $k  => $reserve_id) {
+    $database->query("DELETE FROM  reserve WHERE reserve_id=".$reserve_id);
+  }
 }
 $where="";
-if(isset($_POST["rech"])){
-  $where="and nom like '".$_POST["rech"]."%' or prenom like '%".$_POST["rech"]."%'";
+if(isset($_POST["rech"]))
+{
+ // $where="and  nom_ville like '%".$_POST["rech"]."%'";
 }
-$result=$database->query("select client_id,nom,prenom from client where client_id in (SELECT `client_id` FROM `reserve` WHERE `compte_agence_id`=".$_SESSION['compte_agence_id']." ) $where limit ".CalculDebut($_GET).", 10")
-?>
+$result=$database->query("select reserve_id,concat(client.nom,\" \",client.prenom) as nom_client,voyage.nom as voyage_nom from  reserve
+                          join voyage_date on reserve.voyage_date_id=voyage_date.voyage_date_id
+                          join voyage on  voyage_date.voyage_id=voyage.voyage_id
+                          join client on reserve.client_id=client.client_id
+                          where reserve.compte_agence_id=".$_SESSION['compte_agence_id']."  $where limit ".CalculDebut($_GET).", 10");
+ ?>
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
@@ -27,18 +36,18 @@ $result=$database->query("select client_id,nom,prenom from client where client_i
   <body>
     <?php NavBar(); ?>
     <div class="page">
-      <?php SideBar();?>
+      <?php SideBar(); ?>
       <div class="detail">
         <div class="titre_bar">
           <label for="" class="titre_bar_label">
             <a href="index.php"><img src="../img/Admin/icon/back_bleu_40px.png" alt=""></a>
-            Client
+            Reserver
           </label>
         </div>
         <div class="table">
-          <form class="" action="Client.php" method="post">
+          <form class="" action="Reserver.php" method="post">
           <div class="bartable">
-              <a href="ClientControle.php"><img src="../img/Admin/icon/add32pxgreen.png" alt=""></a>
+              <a href="ReserverControl.php"><img src="../img/Admin/icon/add32pxgreen.png" alt=""></a>
               <button type="submit" class="btn_remove_all" name="button"><img src="../img/Admin/icon/remove32px.png" alt=""></button>
           </div>
           <div class="divtable">
@@ -50,8 +59,9 @@ $result=$database->query("select client_id,nom,prenom from client where client_i
               <thead>
                 <tr>
                   <th><input type="checkbox" id="checkbox_all" onclick="SelecteAll()" /></th>
-                  <th>Nom</th>
-                  <th>Prenom</th>
+                  <th>Id</th>
+                  <th>Nom Du Client</th>
+                  <th>Nom du Voyage</th>
                   <th>Operation</th>
                 </tr>
               </thead>
@@ -59,12 +69,13 @@ $result=$database->query("select client_id,nom,prenom from client where client_i
                 <?php while ($row=mysqli_fetch_assoc($result)): ?>
                   <tr>
                     <td width='10'>
-                      <input type="checkbox" class="remove_list" name="remove_list[]" value="<?php echo $row["client_id"]; ?>"/>
+                      <input type="checkbox" class="remove_list" name="remove_list[]" value="<?php echo $row["reserve_id"]; ?>"/>
                     </td>
-                    <td><?php echo $row["nom"]; ?></td>
-                    <td><?php echo $row["prenom"]; ?></td>
+                    <td><?php echo $row["reserve_id"]; ?></td>
+                    <td><?php echo $row["nom_client"]; ?></td>
+                    <td><?php echo $row["voyage_nom"]; ?></td>
                     <td>
-                      <a href="ClientControle.php?idclient=<?php echo $row["client_id"]; ?>" class="produitbtn produitbtnedit">Detail</a>
+                      <a href="ReserverControl.php?reserve_id=<?php echo $row["reserve_id"]; ?>" class="produitbtn produitbtnedit">Detail</a>
                     </td>
                   </tr>
                 <?php endwhile; ?>
@@ -73,7 +84,7 @@ $result=$database->query("select client_id,nom,prenom from client where client_i
             <div class="tableinfo">
               <ul class="listinfo">
                 <?php
-                  bar($_GET,IssetRech($_POST),"Client.php");
+                  bar($_GET,IssetRech($_POST),"Reserver.php");
                 ?>
               </ul>
             </div>

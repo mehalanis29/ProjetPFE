@@ -1,6 +1,6 @@
 <?php
 function CSS() {
-  include '../php/Admin/css.php';
+  include '../php/Agence/css.php';
 }
 function NavBar()
 {

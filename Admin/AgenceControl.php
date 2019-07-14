@@ -1,30 +1,23 @@
 <!DOCTYPE html>
 <?php
+session_start();
+/*if(!isset($_SESSION["compte_agence_id"])){
+  header('location: ../index.php');
+}*/
 require '../php/Admin/standard.php';
 require "../php/database.inc";
-require '../php/Client.inc';
-require '../php/Admin/Control.php';
-include '../php/Admin/ClientFunction.php';
-session_start();
-
-if(isset($_POST["nom"])){
-  $agence=new agence($_POST["compte_agence_id"],$_POST["nom"],$_POST["adress"],$_POST["telephone"],$_POST["fax"],
-                    $_POST["email"],"",$_POST["password"]);
-  if(isset($_POST["controlModifiebtn"])){
-    $agence->UpdateClient();
-    header("location: Client.php");
-  }elseif(issetClient($_POST))
-  {
-    $agence->InsertAgence();
-    header("location: Client.php");
-  }
+require '../php/agence.inc';
+require '../php/Agence/Control.php';
+$database=new database();
+if(isset($_POST["Modifier"])){
+  $agence=new agence($_POST["Modifier"],$_POST["nom"],$_POST["adress"],$_POST["telephone"],$_POST["fax"],
+                    $_POST["email"],$_POST["password"]);
+  $agence->UpdateAgence();
 
 }
-$etat="Modifie";
-if(isset($_GET["compte_agence_id"])){
-$etat="Modifie";
-$agence = LoadClient($_GET["compte_agence_id"]);
-}
+$database=new database();
+$query_agence=$database->query("select * from compte_agence where compte_agence_id=".$_GET["compte_agence_id"]);
+$result_agence=mysqli_fetch_assoc($query_agence);
 ?>
 <html lang="en" dir="ltr">
   <head>
@@ -59,7 +52,7 @@ $agence = LoadClient($_GET["compte_agence_id"]);
               <label onclick="Tab('Compte')" for="">Compte</label>
             </div>
           </div>
-          <form class="" action="Parametre.php" method="post" onsubmit="return VerifieNom()">
+          <form class="" action="Parametre.php" method="post" >
             <div id="Information_div"  class="nav_tab_div nav_tab_div_active">
               <div class="left_tab">
             <fieldset class="fields">
@@ -68,23 +61,25 @@ $agence = LoadClient($_GET["compte_agence_id"]);
                 <div class="control_table_item">
                   <label class="controllabel" for="" >Nom</label>
                   <input type="text" id="nom" name="nom"  class="controlinput"
-                        value="<?php if(isset($agence))echo $agence->nom; ?>">
+                        value="<?php echo $result_agence["nom"]; ?>">
                 </div>
                 <div class="control_table_item">
                   <label class="controllabel" for="">Adresse</label>
-                  <input type="text" name="adress" class="controlinput"
-                         value="<?php if(isset($agence))echo $agence->adress; ?>">
+                  <textarea name="adress" class="controlinput"><?php echo $result_agence["adresse"]; ?></textarea>
                 </div>
-
                 <div class="control_table_item">
                   <label for="" class="controllabel">Phone</label>
                   <input type="text" name="telephone" class="controlinput"
-                       value="<?php if(isset($agence))echo $agence->telephone; ?>">
+                       value="<?php echo $result_agence["telephone"]; ?>">
                 </div>
                 <div class="control_table_item">
                   <label for="" class="controllabel">Fax</label>
                   <input type="text" name="fax" class="controlinput" required
-                      value="<?php if(isset($agence))echo $agence->fax;?>">
+                      value="<?php echo $result_agence["fax"]; ?>">
+                </div>
+                <div class="control_table_item">
+                  <label class="controllabel" for="">Description</label>
+                  <textarea name="adress" class="controlinput"><?php echo $result_agence["description"]; ?></textarea>
                 </div>
               </div>
                </fieldset>
@@ -93,9 +88,12 @@ $agence = LoadClient($_GET["compte_agence_id"]);
             <div id="image_div"  class="nav_tab_div">
                <div class="left_tab">
                  <fieldset class="fields">
-                  <legend class="legends">Les images</legend>
+                  <legend class="legends">Logo</legend>
                   <div class="control_table">
-                  
+                    <div class="control_table_item">
+                      <img src="..\img\Admin\AgenceLogo\<?php echo  $result_agence["compte_agence_id"]; ?>.png" style="width: 60px">
+                      <input type="file"  name="email"  class="controlinput" value="<?php echo $result_agence['compte_agence_id']; ?>.png">
+                    </div>
                   </div>
                 </fieldset>
                </div>
@@ -108,12 +106,12 @@ $agence = LoadClient($_GET["compte_agence_id"]);
                     <div class="control_table_item">
                       <label class="controllabel" for="" >Email</label>
                       <input type="email" id="email" name="email"  class="controlinput"
-                            value="<?php if(isset($agence))echo $agence->nom; ?>">
+                            value="<?php echo $result_agence["email"]; ?>">
                     </div>
                     <div class="control_table_item">
                           <label class="controllabel" for="" >Password</label>
                           <input type="password" id="password" name="password"  class="controlinput"
-                                value="<?php if(isset($agence))echo $agence->nom; ?>">
+                                value="">
                     </div>
                   </div>
                 </fieldset>
@@ -121,8 +119,7 @@ $agence = LoadClient($_GET["compte_agence_id"]);
             </div>
             <hr>
            <div class="control_div_btn">
-             <input type="hidden" name="compte_agence_id" value="<?php if(isset($agence)) {echo $agence->compte_agence_id;}else{ echo "-1";} ?>">
-              <button type="submit" class="control_btn" name="control<?php echo $etat; ?>btn"><?php echo $etat; ?></button>
+              <button type="submit" class="control_btn" value="<?php echo $result_agence["compte_agence_id"]; ?>" name="Modifier">Modifier</button>
            </div>
            </div>
 

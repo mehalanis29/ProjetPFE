@@ -20,12 +20,12 @@
   grid-template-columns: 26px 25% 25% 25% 20% 120px;
   grid-column-gap: 18px;
 }
-.control_table_9item{
+.control_table_10item{
   display: grid;
-  grid-template-columns: 26px 11% 11% 10% 10% 10% 10% 10% 10%;
+  grid-template-columns: 26px 12% 12% 9% 9% 9% 9% 9% 9% 6%;
   grid-column-gap: 18px;
 }
-.control_table_4item label,.control_table_9item label,.control_table_2item label {
+.control_table_4item label,.control_table_10item label,.control_table_2item label {
   text-align: center;
  }
  .control_table_multi_row{

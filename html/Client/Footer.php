@@ -6,7 +6,7 @@
           <ul>
               <li> <h3>  A PROPOS DE NOUS</h3></li>
               <hr>
-              <li><p>Agence de Voyage</p></li>
+              <li><p>Annuaire des agences de voyages</p></li>
               <hr>
               <li> <a href="#" target="_blank">Adresse :</a> <span>Adresse Blida (09000) , Alegrie</span></a></li>
               <li> <a href="#" target="_blank">Mail :</a> <span>EmailTest@Gmail.com</span></a></li>

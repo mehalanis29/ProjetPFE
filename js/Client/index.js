@@ -16,16 +16,16 @@ function LoadVille(id) {
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         var list =JSON.parse(this.responseText);
-        var s="<option value=''>Ville</option>";
-        for(var i=0;i<list.List.length;i++){
-          s+="<option value=\""+list.List[i].id+"\" >"+list.List[i].nom+"</option>";
+        var s="<option value=\"\">ALL Ville</option>";
+        for(var i=0;i<list.length;i++){
+          s+="<option value=\""+list[i].id+"\" >"+list[i].nom+"</option>";
         }
-        if(list.List.length>0){
+        if(list.length>0){
           document.getElementById("ville").innerHTML=s;
           document.getElementById("ville").options[0].defaultSelected=true;
         }
     }
   };
-  xhttp.open("GET", "php/Admin/VilleJSON.php?idVille="+id, false);
+  xhttp.open("GET", "php/Client/VilleJson.php?pays_id="+id, false);
   xhttp.send();
 }

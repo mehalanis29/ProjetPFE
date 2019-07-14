@@ -1,10 +1,8 @@
 <input type="checkbox" id="sidebarcheckbox"/> <!-- NavBar.html lable-->
 <div class="sidebar">
   <div class="sidebarlogo">
-    <img src="..\img\Admin\AgenceLogo\<?php echo $_SESSION['compte_agence_id']; ?>.png">
   </div>
   <div class="sidebaruserinfo">
-    <?php echo $_SESSION['nom']; ?>
   </div>
   <div class="sidebarlistitem">
     <a href="index.php" class="sidebaritem">
@@ -13,28 +11,17 @@
         <label for="">Accueil</label>
       </div>
     </a>
-    <a href="Client.php" class="sidebaritem">
+    <a href="Agence.php" class="sidebaritem">
       <div>
         <img src="../img/Admin/icon/clientxwhite32px.png" alt="">
-        <label for="">Client</label>
+        <label for="">Agence</label>
       </div>
     </a>
-    <a href="Voyage.php" class="sidebaritem">
-      <div>
-        <img src="../img/Admin/icon\voyagewhite32px.png" alt="">
-        <label for="">Voyage</label>
-      </div>
-    </a>
-    <a href="Reserver.php" class="sidebaritem">
-      <div>
-        <img src="..\img\Admin\icon\reservationwhite32px.png" alt="">
-        <label for="">Reserver</label>
-      </div>
-    </a>
-    <a href="Parametre.php" class="sidebaritem">
+
+    <a href="Contact.php" class="sidebaritem">
       <div>
         <img src="..\img\Admin\icon\setting.png" alt="">
-        <label for="">Parametre</label>
+        <label for="">Contact</label>
       </div>
     </a>
   </div>

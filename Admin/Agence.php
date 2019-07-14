@@ -2,24 +2,19 @@
 require '../php/Admin/standard.php';
 require '../php/database.inc';
 require '../php/Voyage.inc';
-include '../php/Admin/VoyageFunction.php';
 $database=new database();
 session_start();
+
 if(isset($_POST["remove_list"])){
-  foreach ($_POST["remove_list"] as $k  => $reserve_id) {
-    $database->query("DELETE FROM  reserve WHERE reserve_id=".$reserve_id);
+  foreach ($_POST["remove_list"] as $k  => $compte_agence_id) {
+    $database->query("DELETE FROM  `compte_agence` WHERE compte_agence_id=".$compte_agence_id);
   }
 }
 $where="";
-if(isset($_POST["rech"]))
-{
- // $where="and  nom_ville like '%".$_POST["rech"]."%'";
+if(isset($_POST["rech"])){
+  $where=" and ville.nom like '%".$_POST["rech"]."%'";
 }
-$result=$database->query("select reserve_id,concat(client.nom,\" \",client.prenom) as nom_client,voyage.nom as voyage_nom from  reserve
-                          join voyage_date on reserve.voyage_date_id=voyage_date.voyage_date_id
-                          join voyage on  voyage_date.voyage_id=voyage.voyage_id
-                          join client on reserve.client_id=client.client_id
-                          where reserve.compte_agence_id=".$_SESSION['compte_agence_id']."  $where limit ".CalculDebut($_GET).", 10");
+$result=$database->query("select compte_agence_id,nom,telephone from compte_agence limit ".CalculDebut($_GET).", 10")
  ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -39,13 +34,13 @@ $result=$database->query("select reserve_id,concat(client.nom,\" \",client.preno
         <div class="titre_bar">
           <label for="" class="titre_bar_label">
             <a href="index.php"><img src="../img/Admin/icon/back_bleu_40px.png" alt=""></a>
-            Reserver
+            Voyage
           </label>
         </div>
         <div class="table">
-          <form class="" action="Reserver.php" method="post">
+          <form class="" action="Voyage.php" method="post">
           <div class="bartable">
-              <a href="ReserverControl.php"><img src="../img/Admin/icon/add32pxgreen.png" alt=""></a>
+              <a href="VoyageControl.php"><img src="../img/Admin/icon/add32pxgreen.png" alt=""></a>
               <button type="submit" class="btn_remove_all" name="button"><img src="../img/Admin/icon/remove32px.png" alt=""></button>
           </div>
           <div class="divtable">
@@ -57,9 +52,8 @@ $result=$database->query("select reserve_id,concat(client.nom,\" \",client.preno
               <thead>
                 <tr>
                   <th><input type="checkbox" id="checkbox_all" onclick="SelecteAll()" /></th>
-                  <th>Id</th>
-                  <th>Nom Du Client</th>
-                  <th>Nom du Voyage</th>
+                  <th>Nom</th>
+                  <th>Telephone</th>
                   <th>Operation</th>
                 </tr>
               </thead>
@@ -67,13 +61,12 @@ $result=$database->query("select reserve_id,concat(client.nom,\" \",client.preno
                 <?php while ($row=mysqli_fetch_assoc($result)): ?>
                   <tr>
                     <td width='10'>
-                      <input type="checkbox" class="remove_list" name="remove_list[]" value="<?php echo $row["reserve_id"]; ?>"/>
+                      <input type="checkbox" class="remove_list" name="remove_list[]" value="<?php echo $row["compte_agence_id"]; ?>"/>
                     </td>
-                    <td><?php echo $row["reserve_id"]; ?></td>
-                    <td><?php echo $row["nom_client"]; ?></td>
-                    <td><?php echo $row["voyage_nom"]; ?></td>
+                    <td><?php echo $row["nom"]; ?></td>
+                    <td><?php echo $row["telephone"]; ?></td>
                     <td>
-                      <a href="ReserverControl.php?reserve_id=<?php echo $row["reserve_id"]; ?>" class="produitbtn produitbtnedit">Detail</a>
+                      <a href="AgenceControl.php?compte_agence_id=<?php echo $row["compte_agence_id"]; ?>" class="produitbtn produitbtnedit">Detail</a>
                     </td>
                   </tr>
                 <?php endwhile; ?>
@@ -82,7 +75,7 @@ $result=$database->query("select reserve_id,concat(client.nom,\" \",client.preno
             <div class="tableinfo">
               <ul class="listinfo">
                 <?php
-                  bar($_GET,IssetRech($_POST),"Reserver.php");
+                  bar($_GET,IssetRech($_POST),"Voyage.php");
                 ?>
               </ul>
             </div>
