@@ -34,7 +34,7 @@ $result=$database->query("select compte_agence_id,nom,telephone from compte_agen
         <div class="titre_bar">
           <label for="" class="titre_bar_label">
             <a href="index.php"><img src="../img/Admin/icon/back_bleu_40px.png" alt=""></a>
-            Voyage
+            Agence
           </label>
         </div>
         <div class="table">

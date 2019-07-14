@@ -26,7 +26,7 @@ require '../php/Admin/standard.php';
             <a href="Agence.php" class="item_page_a">
               <div class="item_page">
                 <div class="item_page_icon">
-                  <img src="../img/Admin/icon/clientxwhite62px.png" alt="">
+                  <img src="../img/Admin/icon/Agence62px.png" alt="">
                 </div>
                 <div class="item_page_titre">
                    <label for="">Agence</label>
@@ -36,10 +36,10 @@ require '../php/Admin/standard.php';
             <a href="Contact.php" class="item_page_a">
               <div class="item_page">
                 <div class="item_page_icon">
-                  <img src="../img/Admin/icon\voyagewhite62px.png" alt="">
+                  <img src="../img/Admin/icon\contact62px.png" alt="">
                 </div>
                 <div class="item_page_titre">
-                   <label for="">Voyage</label>
+                   <label for="">Contact</label>
                 </div>
               </div>
             </a>

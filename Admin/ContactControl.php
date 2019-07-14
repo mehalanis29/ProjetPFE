@@ -50,7 +50,7 @@ $result_contact=mysqli_fetch_assoc($query_contact);
             <div id="Information_div"  class="nav_tab_div nav_tab_div_active">
               <div class="left_tab">
             <fieldset class="fields">
-              <legend class="legends">Information De l'Agence</legend>
+              <legend class="legends">Information Contact</legend>
               <div class="control_table">
                 <div class="control_table_item">
                   <label class="controllabel" for="" >Nom & Prenom</label>
@@ -75,10 +75,7 @@ $result_contact=mysqli_fetch_assoc($query_contact);
                </fieldset>
              </div>
             </div>
-            <hr>
-           <div class="control_div_btn">
-              <button type="submit" class="control_btn" value="<?php echo $result_contact["contact_id"]; ?>" name="Modifier">Modifier</button>
-           </div>
+            
            </div>
 
           </form>

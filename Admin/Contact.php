@@ -34,7 +34,7 @@ $result=$database->query("select contact_id,concat(nom,' ',prenom) as nom_prenom
         <div class="titre_bar">
           <label for="" class="titre_bar_label">
             <a href="index.php"><img src="../img/Admin/icon/back_bleu_40px.png" alt=""></a>
-            Voyage
+            Contact
           </label>
         </div>
         <div class="table">
