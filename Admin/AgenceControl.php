@@ -91,8 +91,8 @@ $result_agence=mysqli_fetch_assoc($query_agence);
                   <legend class="legends">Logo</legend>
                   <div class="control_table">
                     <div class="control_table_item">
-                      <img src="..\img\Admin\AgenceLogo\<?php echo $_SESSION['compte_agence_id']; ?>.png" style="width: 60px">
-                      <input type="file"  name="email"  class="controlinput" value="<?php echo $_SESSION['compte_agence_id']; ?>.png">
+                      <img src="..\img\Admin\AgenceLogo\<?php echo  $result_agence["compte_agence_id"]; ?>.png" style="width: 60px">
+                      <input type="file"  name="email"  class="controlinput" value="<?php echo $result_agence['compte_agence_id']; ?>.png">
                     </div>
                   </div>
                 </fieldset>
@@ -119,7 +119,7 @@ $result_agence=mysqli_fetch_assoc($query_agence);
             </div>
             <hr>
            <div class="control_div_btn">
-              <button type="submit" class="control_btn" value="<?php echo $_SESSION["compte_agence_id"]; ?>" name="Modifier">Modifier</button>
+              <button type="submit" class="control_btn" value="<?php echo $result_agence["compte_agence_id"]; ?>" name="Modifier">Modifier</button>
            </div>
            </div>
 
