@@ -9,14 +9,15 @@ if(isset($_POST["exit"])){
 }
 if(isset($_POST["button"])){
 
-/*$result=$database->query("select * from compte_agence where email='".$_POST['email']."' and password='".md5($_POST['password'])."'");
+$result=$database->query("select * from compte_agence where email='".$_POST['email']."' and password='".md5($_POST['password'])."'");
 $cpt=0;
 while ($row=mysqli_fetch_assoc($result)) {
   $cpt++;  $info=$row;
 }
-*/
-$cpt=1;
+
 if($cpt==1){
+  $_SESSION['compte_agence_id']=$info["compte_agence_id"];
+  $_SESSION['nom']=$info["nom"];
   $_SESSION['email']=$_POST['email'];
   $_SESSION['password']=md5($_POST['password']);
   header("location: index.php");
@@ -39,7 +40,7 @@ if($cpt==1){
              <img width="450" src="..\img\Admin\10476.jpg" alt="">
            </div>
            <div class="form" id="login_Compte">
-           	<span class="member">Se connecter Admin </span>
+           	<span class="member">Se connecter </span>
               <form method="post" action="Login.php">
                     <?php if((isset($_POST['username']))&&(isset($_POST['password']))){ ?>
                        <div class="erreur member">

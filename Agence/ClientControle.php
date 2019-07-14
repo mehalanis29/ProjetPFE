@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <?php
-require '../php/Admin/standard.php';
+require '../php/Agence/standard.php';
 require "../php/database.inc";
 require '../php/Client.inc';
-require '../php/Admin/Control.php';
-include '../php/Admin/ClientFunction.php';
+require '../php/Agence/Control.php';
+include '../php/Agence/ClientFunction.php';
  session_start();
 $database=new database();
-require '../php/Admin/verefieuser.php';
+require '../php/Agence/verefieuser.php';
 if(isset($_POST["nom"])){
   $client=new client($_POST["client_id"],$_POST["num_passport"],$_POST["nom"],$_POST["prenom"],$_POST["date_naissance"],
                     $_POST["email"],"",$_POST["phone"],
@@ -163,7 +163,7 @@ $client = LoadClient($_GET["idclient"]);
              <button type="submit" class="control_btn" name="control<?php echo $etat; ?>btn"><?php echo $etat; ?></button>
            </div>
            </div>
-           
+
           </form>
         </div>
       </div>

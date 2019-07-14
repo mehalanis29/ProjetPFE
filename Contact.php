@@ -5,7 +5,10 @@ require 'php/database.inc';
 include 'php/Client/standard.php';
 require 'php/Voyage.inc';
 $database=new database();
-
+if(isset($_POST["envoyer"])){
+  $database->query("INSERT INTO `contact`( `nom`, `prenom`, `email`, `telephone`, `message`) VALUES ('".$_POST["nom"]."','".$_POST["prenom"]."','".$_POST["email"]."','".$_POST["telephone"]."' ,'".$_POST["message"]."')");
+  header("location: index.php");
+}
 ?>
 <html lang="en" dir="ltr">
   <head>
@@ -66,7 +69,7 @@ $database=new database();
               Conactez nous
             </div>
             <hr class="formulaire_ligne">
-            <form class="formulaire_form" action="Inscription.php" method="post">
+            <form class="formulaire_form" action="Contact.php" method="post">
               <div class="formulaire_row_2item" style="margin-top: 10px;">
                 <div class="formulaire_row_item">
                   <label for="" class="formulaire_row_item_label">Nom : </label>
@@ -80,19 +83,19 @@ $database=new database();
               <div class="formulaire_row_2item">
                 <div class="formulaire_row_item">
                   <label for="" class="formulaire_row_item_label">E-mail :</label>
-                  <input type="text" name="nom" value="" class="formulaire_row_item_input">
+                  <input type="text" name="email" value="" class="formulaire_row_item_input">
                 </div>
                 <div class="formulaire_row_item">
                   <label for="" class="formulaire_row_item_label">Téléphone :</label>
-                  <input type="text" name="prenom" value="" class="formulaire_row_item_input">
+                  <input type="text" name="telephone" value="" class="formulaire_row_item_input">
                 </div>
               </div>
               <div class="formulaire_row_item">
                   <label for="" class="formulaire_row_item_label">Votre message :</label>
-                  <textarea class="formulaire_row_item_input" rows="4"></textarea>
+                  <textarea class="formulaire_row_item_input" name="message" rows="4"></textarea>
               </div>
               <div class="formulaire_btn">
-                <button type="submit" name="creer_compte" class="index_offre_top_voyage_btn_more_titre btn_envoyee">
+                <button type="submit" name="envoyer" class="index_offre_top_voyage_btn_more_titre btn_envoyee">
                   <label for="">Envoyer</label>
                   <img src="img/Client/icon/suivant18px.png" alt="">
                 </button>

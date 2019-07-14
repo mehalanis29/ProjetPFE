@@ -4,11 +4,11 @@ function CSS() {
 }
 function NavBar()
 {
-  include '../html/Admin/navbar.html';
+  include '../html/Agence/navbar.html';
 }
 function SideBar()
 {
-  include '../html/Admin/sidebar.html';
+  include '../html/Agence/sidebar.html';
 }
 
 function CalculDebut($GET)

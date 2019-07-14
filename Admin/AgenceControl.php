@@ -1,26 +1,22 @@
 <!DOCTYPE html>
 <?php
 session_start();
-if(!isset($_SESSION["compte_agence_id"])){
+/*if(!isset($_SESSION["compte_agence_id"])){
   header('location: ../index.php');
-}
+}*/
 require '../php/Admin/standard.php';
 require "../php/database.inc";
 require '../php/agence.inc';
-require '../php/Admin/Control.php';
-include '../php/Admin/ClientFunction.php';
+require '../php/Agence/Control.php';
 $database=new database();
-require '../php/Admin/verefieuser.php';
-
-
 if(isset($_POST["Modifier"])){
   $agence=new agence($_POST["Modifier"],$_POST["nom"],$_POST["adress"],$_POST["telephone"],$_POST["fax"],
                     $_POST["email"],$_POST["password"]);
   $agence->UpdateAgence();
-  
+
 }
 $database=new database();
-$query_agence=$database->query("select * from compte_agence where compte_agence_id=".$_SESSION["compte_agence_id"]);
+$query_agence=$database->query("select * from compte_agence where compte_agence_id=".$_GET["compte_agence_id"]);
 $result_agence=mysqli_fetch_assoc($query_agence);
 ?>
 <html lang="en" dir="ltr">

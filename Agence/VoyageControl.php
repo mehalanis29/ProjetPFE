@@ -1,9 +1,9 @@
 <?php
-require '../php/Admin/standard.php';
+require '../php/Agence/standard.php';
  require "../php/database.inc";
  require "../php/Voyage.inc";
- require '../php/Admin/Control.php';
- include "../php/Admin/VoyageFunction.php";
+ require '../php/Agence/Control.php';
+ include "../php/Agence/VoyageFunction.php";
 
 $database=new database();
 session_start();
@@ -151,7 +151,7 @@ require '../php/Admin/verefieuser.php';
               <fieldset class="fields">
                 <legend class="legends">Les Date Du Voyage</legend>
                 <div class="control_table" id="list_voyage">
-                  <div class="control_table_9item">
+                  <div class="control_table_10item">
                     <button style="background: none;border: none" type="button" id="AjouterVoyage"  >
                       <img src="..\img\Client\icon\add22px.png">
                     </button>
@@ -163,19 +163,20 @@ require '../php/Admin/verefieuser.php';
                     <label for="" class="controllabel" >Adulte Triple</label>
                     <label for="" class="controllabel" >Enfant </label>
                     <label for="" class="controllabel" >Bebe</label>
+                    <label for="" class="controllabel" ></label>
                   </div>
                   <?php
                     if (isset($_GET["voyage_id"])):
                      $result=$database->query("SELECT * FROM `voyage_date` where voyage_id=".$voyage->voyage_id);
                      while ($row=mysqli_fetch_assoc($result)):
                    ?>
-                    <div class="control_table_9item list_date" id="row_<?php echo $row["voyage_date_id"] ?>" >
+                    <div class="control_table_10item list_date" id="row_<?php echo $row["voyage_date_id"] ?>" >
                       <button style="background: none;border: none" type="submit" name="remove_date" class="remove_list"
-                         value="<?php echo $row["voyage_date_id"] ?>" 
+                         value="<?php echo $row["voyage_date_id"] ?>"
                           id="<?php echo $row["voyage_date_id"] ?>" >
                         <img src="..\img\Client\icon\exit22px.png">
                       </button>
-                      <input type="hidden" name="id_voyage_date[]" required value="<?php echo $row["voyage_date_id"] ?>">
+                      <input type="hidden" name="id_voyage_date[]" required value="<?php echo $row["voyage_date_id"]; ?>">
                       <input type="date" name="date_depart[]" required class="controlinput" value="<?php echo $row["date_depart"]; ?>">
                       <input type="date" name="date_retour[]" required class="controlinput" value="<?php echo $row["date_retour"]; ?>">
                       <input type="number" name="capacite[]" required class="controlinput" value="<?php echo $row["capacite"]; ?>">
@@ -184,6 +185,10 @@ require '../php/Admin/verefieuser.php';
                       <input type="number" name="A_T[]" required class="controlinput" value="<?php echo $row["prix_A_T"]; ?>">
                       <input type="number" name="E[]" required class="controlinput" value="<?php echo $row["prix_E"]; ?>">
                       <input type="number" name="B[]" required class="controlinput" value="<?php echo $row["prix_B"]; ?>">
+                      <a href="../php/Admin/VoyageDatePDF.php?voyage_date_id=<?php echo $row["voyage_date_id"] ?>">
+                        <img src="..\img\Admin\icon\pdf32px.png" alt="">
+                      </a>
+
                     </div>
                   <?php endwhile;
                 endif;?>
@@ -224,7 +229,7 @@ require '../php/Admin/verefieuser.php';
           <input type="number" required name="B[]" class="controlinput">
        </div>
     </div>
-    <div style="display: none" id="row_image"> 
+    <div style="display: none" id="row_image">
       <div class="control_table_item list_image" id="">
         <button style="background: none;border: none" type="submit" name="remove_date" class="remove_list_image" id="" >
           <img src="..\img\Client\icon\exit22px.png">

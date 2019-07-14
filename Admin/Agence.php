@@ -1,22 +1,22 @@
-<!DOCTYPE html>
 <?php
 require '../php/Admin/standard.php';
 require '../php/database.inc';
-require '../php/Client.inc';
-include '../php/Admin/ClientFunction.php';
+require '../php/Voyage.inc';
 $database=new database();
 session_start();
-require '../php/Admin/verefieuser.php';
 
 if(isset($_POST["remove_list"])){
-  removeClient($_POST["remove_list"]);
+  foreach ($_POST["remove_list"] as $k  => $compte_agence_id) {
+    $database->query("DELETE FROM  `compte_agence` WHERE compte_agence_id=".$compte_agence_id);
+  }
 }
 $where="";
 if(isset($_POST["rech"])){
-  $where="and nom like '".$_POST["rech"]."%' or prenom like '%".$_POST["rech"]."%'";
+  $where=" and ville.nom like '%".$_POST["rech"]."%'";
 }
-$result=$database->query("select client_id,nom,prenom from client where client_id in (SELECT `client_id` FROM `reserve` WHERE `compte_agence_id`=".$_SESSION['compte_agence_id']." ) $where limit ".CalculDebut($_GET).", 10")
-?>
+$result=$database->query("select compte_agence_id,nom,telephone from compte_agence limit ".CalculDebut($_GET).", 10")
+ ?>
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
@@ -29,18 +29,18 @@ $result=$database->query("select client_id,nom,prenom from client where client_i
   <body>
     <?php NavBar(); ?>
     <div class="page">
-      <?php SideBar();?>
+      <?php SideBar(); ?>
       <div class="detail">
         <div class="titre_bar">
           <label for="" class="titre_bar_label">
             <a href="index.php"><img src="../img/Admin/icon/back_bleu_40px.png" alt=""></a>
-            Client
+            Voyage
           </label>
         </div>
         <div class="table">
-          <form class="" action="Client.php" method="post">
+          <form class="" action="Voyage.php" method="post">
           <div class="bartable">
-              <a href="ClientControle.php"><img src="../img/Admin/icon/add32pxgreen.png" alt=""></a>
+              <a href="VoyageControl.php"><img src="../img/Admin/icon/add32pxgreen.png" alt=""></a>
               <button type="submit" class="btn_remove_all" name="button"><img src="../img/Admin/icon/remove32px.png" alt=""></button>
           </div>
           <div class="divtable">
@@ -53,7 +53,7 @@ $result=$database->query("select client_id,nom,prenom from client where client_i
                 <tr>
                   <th><input type="checkbox" id="checkbox_all" onclick="SelecteAll()" /></th>
                   <th>Nom</th>
-                  <th>Prenom</th>
+                  <th>Telephone</th>
                   <th>Operation</th>
                 </tr>
               </thead>
@@ -61,12 +61,12 @@ $result=$database->query("select client_id,nom,prenom from client where client_i
                 <?php while ($row=mysqli_fetch_assoc($result)): ?>
                   <tr>
                     <td width='10'>
-                      <input type="checkbox" class="remove_list" name="remove_list[]" value="<?php echo $row["client_id"]; ?>"/>
+                      <input type="checkbox" class="remove_list" name="remove_list[]" value="<?php echo $row["compte_agence_id"]; ?>"/>
                     </td>
                     <td><?php echo $row["nom"]; ?></td>
-                    <td><?php echo $row["prenom"]; ?></td>
+                    <td><?php echo $row["telephone"]; ?></td>
                     <td>
-                      <a href="ClientControle.php?idclient=<?php echo $row["client_id"]; ?>" class="produitbtn produitbtnedit">Detail</a>
+                      <a href="AgenceControl.php?compte_agence_id=<?php echo $row["compte_agence_id"]; ?>" class="produitbtn produitbtnedit">Detail</a>
                     </td>
                   </tr>
                 <?php endwhile; ?>
@@ -75,7 +75,7 @@ $result=$database->query("select client_id,nom,prenom from client where client_i
             <div class="tableinfo">
               <ul class="listinfo">
                 <?php
-                  bar($_GET,IssetRech($_POST),"Client.php");
+                  bar($_GET,IssetRech($_POST),"Voyage.php");
                 ?>
               </ul>
             </div>
