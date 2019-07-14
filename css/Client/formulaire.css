@@ -56,3 +56,18 @@ color: #001f39;
   display: grid;
   grid-template-columns: 14% 25%  13% 13% 30%;
 }
+.produitbtn{
+    color: white;
+    text-decoration: none;
+    padding: 6px;
+    border-radius: 8px;
+    width: 40px;
+    margin-right: 8px;
+    cursor: pointer;
+}
+.produitbtnedit{
+  background-color: #1f3853;
+}
+.produitbtnsupprime{
+  background-color: #f35958;
+}

@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     10/07/2019 15:40:21                          */
+/* Created on:     13/07/2019 12:08:59                          */
 /*==============================================================*/
 
 
@@ -79,7 +79,6 @@ create table chambre
 create table client
 (
    client_id            int not null auto_increment,
-   compte_agence_id     int,
    num_passport         varchar(35),
    nom                  varchar(30),
    prenom               varchar(30),
@@ -108,12 +107,12 @@ create table compte_agence
 (
    compte_agence_id     int not null auto_increment,
    nom                  varchar(50),
-   adress               varchar(300),
+   adresse              varchar(50),
    telephone            varchar(50),
    fax                  varchar(50),
+   description          varchar(250),
    email                varchar(50),
-   password            varchar(50),
-   icon varchar(20),
+   password             varchar(50),
    primary key (compte_agence_id)
 );
 
@@ -317,7 +316,7 @@ create unique index reserve_id on reserve
 /*==============================================================*/
 create table ville
 (
-   ville_id             int not null,
+   ville_id             int not null auto_increment,
    nom                  varchar(50),
    pays_id              int,
    primary key (ville_id),
@@ -406,20 +405,17 @@ create index voyage_jour_id on voyage_jour
 alter table chambre add constraint FK_Reference_21 foreign key (reserve_id)
       references reserve (reserve_id) on delete cascade on update cascade;
 
-alter table client add constraint FK_Reference_24 foreign key (compte_agence_id)
-      references compte_agence (compte_agence_id) on delete restrict on update restrict;
-
 alter table endroit add constraint FK_Reference_11 foreign key (ville_id)
-      references ville (ville_id) on delete restrict on update restrict;
+      references ville (ville_id) on delete cascade on update cascade;
 
 alter table hotel add constraint FK_Reference_17 foreign key (ville_id)
-      references ville (ville_id) on delete restrict on update restrict;
+      references ville (ville_id) on delete cascade on update cascade;
 
 alter table invite add constraint FK_Reference_22 foreign key (chambre_id)
       references chambre (chambre_id) on delete cascade on update cascade;
 
 alter table on_demande add constraint FK_Reference_13 foreign key (hotel_id)
-      references hotel (hotel_id) on delete restrict on update restrict;
+      references hotel (hotel_id) on delete cascade on update cascade;
 
 alter table on_demande add constraint FK_Reference_16 foreign key (guide_id)
       references guide (guide_id) on delete restrict on update restrict;
@@ -428,16 +424,16 @@ alter table on_demande add constraint FK_Reference_7 foreign key (client_id)
       references client (client_id) on delete restrict on update restrict;
 
 alter table on_demande add constraint FK_Reference_9 foreign key (ville_id)
-      references ville (ville_id) on delete restrict on update restrict;
+      references ville (ville_id) on delete cascade on update cascade;
 
 alter table paiement add constraint FK_Reference_20 foreign key (reserve_id)
       references reserve (reserve_id) on delete cascade on update cascade;
 
 alter table programe_on_demande add constraint FK_Reference_10 foreign key (endroit_id)
-      references endroit (endroit_id) on delete restrict on update restrict;
+      references endroit (endroit_id) on delete cascade on update cascade;
 
 alter table programe_on_demande add constraint FK_Reference_8 foreign key (on_demande_id)
-      references on_demande (on_demande_id) on delete restrict on update restrict;
+      references on_demande (on_demande_id) on delete cascade on update cascade;
 
 alter table reserve add constraint FK_Reference_25 foreign key (compte_agence_id)
       references compte_agence (compte_agence_id) on delete restrict on update restrict;
@@ -449,7 +445,7 @@ alter table reserve add constraint FK_Reference_4 foreign key (client_id)
       references client (client_id) on delete cascade on update cascade;
 
 alter table ville add constraint FK_Reference_5 foreign key (pays_id)
-      references pays (pays_id) on delete restrict on update restrict;
+      references pays (pays_id) on delete cascade on update cascade;
 
 alter table voyage add constraint FK_Reference_12 foreign key (hotel_id)
       references hotel (hotel_id) on delete restrict on update restrict;
@@ -461,13 +457,14 @@ alter table voyage add constraint FK_Reference_23 foreign key (compte_agence_id)
       references compte_agence (compte_agence_id) on delete restrict on update restrict;
 
 alter table voyage add constraint FK_Reference_6 foreign key (ville_id)
-      references ville (ville_id) on delete restrict on update restrict;
+      references ville (ville_id) on delete cascade on update cascade;
 
 alter table voyage_date add constraint FK_Reference_2 foreign key (voyage_id)
       references voyage (voyage_id) on delete restrict on update restrict;
 
 alter table voyage_jour add constraint FK_Reference_1 foreign key (voyage_id)
-      references voyage (voyage_id) on delete restrict on update restrict;
+      references voyage (voyage_id) on delete cascade on update cascade;
 
 alter table voyage_jour add constraint FK_Reference_14 foreign key (endroit_id)
-      references endroit (endroit_id) on delete restrict on update restrict;
+      references endroit (endroit_id) on delete cascade on update cascade;
+

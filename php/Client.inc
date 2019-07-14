@@ -29,11 +29,6 @@ class Client{
   public function InsertClient()
   {
     $database=new database();
-    echo "INSERT INTO `client`(`num_passport`, `nom`, `prenom`, `date_naissance` ,`email`, `password`
-                , `phone`,`nationalite`, `date_emission_passport`, `date_expiration_passport`)
-                VALUES ('$this->num_passport','$this->nom','$this->prenom','$this->date_naissance','$this->email'
-                  ,'$this->password','$this->phone',$this->nationalite
-                  ,'$this->date_emission_passport','$this->date_expiration_passport')";
     $database->query("INSERT INTO `client`(`num_passport`, `nom`, `prenom`, `date_naissance` ,`email`, `password`
                 , `phone`,`nationalite`, `date_emission_passport`, `date_expiration_passport`)
                 VALUES ('$this->num_passport','$this->nom','$this->prenom','$this->date_naissance','$this->email'
@@ -43,10 +38,14 @@ class Client{
   public function UpdateClient()
   {
     $database=new database();
+    $password="";
+    if(!empty($this->password)){
+      $password=" , password=md5('".$this->password."') ";
+    }
     $database->query("UPDATE `client` SET `num_passport`='$this->num_passport' , `nom`='$this->nom'
          ,`prenom`='$this->prenom' , `date_naissance`='$this->date_naissance' , `email`='$this->email'
          ,`phone`='$this->phone' ,`nationalite`=$this->nationalite
          , `date_emission_passport`='$this->date_emission_passport'
-         , `date_expiration_passport`='$this->date_expiration_passport' WHERE client_id=$this->id");
+         , `date_expiration_passport`='$this->date_expiration_passport' $password WHERE client_id=$this->id");
   }
 }

@@ -31,6 +31,7 @@
   position: relative;
   border-radius: 6px;
   overflow: hidden;
+  height: 100%;
 }
 
 .index_offre_top_voyage_offre:hover  img{

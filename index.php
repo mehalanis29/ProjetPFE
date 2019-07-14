@@ -26,16 +26,16 @@ $database=new database();
             <div class="nav_bar_from_titre">
               <button type="button" class="nav_bar_from_titre_choix nav_bar_from_titre_choix_active"
                id="voyage_organis_btn" onclick="change('voyage_organis')" name="button">
-                voyage organisé
+                Voyage Organisé
               </button>
               <button type="button" class="nav_bar_from_titre_choix" id="voyage_btn"
-                  onclick="change('voyage')" name="button">voyage</button>
+                  onclick="change('voyage')" name="button">Voyage On Demande</button>
             </div>
             <div class="nav_bar_div_form nav_bar_div_form_activ" id="voyage_organis_form">
               <form class="formtest" action="VoyageOrganise.php" method="GET">
                 <div class="nab_bar_index_div_input">
                   <select class="nab_bar_index_input" placeholder="pays" name="pays" onchange="LoadVille(this.value)">
-                    <option value="">Pays</option>
+                    <option value="">ALL Pays</option>
                     <?php 
                     $pays =$database->query("select pays_id,nom from pays where pays_id in (select pays_id from ville where ville_id in (select ville_id from voyage where voyage_id in (select voyage_id from voyage_date where date_depart > '".date("Y-m-d")."')))") ;
                     while ($row=mysqli_fetch_assoc($pays)) {
@@ -46,7 +46,7 @@ $database=new database();
                 </div>
                 <div class="nab_bar_index_div_input">
                   <select class="nab_bar_index_input" placeholder="ville" id="ville" name="ville">
-                    <option value="">ville</option>
+                    <option value="">ALL Ville</option>
                   </select>
                 </div>
                 <div class="nab_bar_index_div_input">
@@ -59,7 +59,7 @@ $database=new database();
               </form>
             </div>
             <div class="nav_bar_div_form" id="voyage_form">
-              voyage
+              Voyage On Demande
             </div>
           </div>
         </div>
@@ -72,12 +72,12 @@ $database=new database();
       </div>
       <div class="index_offre_top_voyage_list_offre">
         <?php 
-          $result=$database->query("select voyage.nom as voyage_nom,nbr_jour,min(prix_A_T) as prix from voyage join voyage_date on voyage.voyage_id= voyage_date.voyage_id group by voyage.voyage_id order by voyage.voyage_id DESC limit 3");
+          $result=$database->query("select voyage.voyage_id,voyage.nom as voyage_nom,nbr_jour,min(prix_A_T) as prix from voyage join voyage_date on voyage.voyage_id= voyage_date.voyage_id group by voyage.voyage_id order by voyage.voyage_id DESC limit 3");
           while ($row=mysqli_fetch_assoc($result)):
         ?>
         <a href="Voyage.php?voyage_id=1">
           <div class="index_offre_top_voyage_offre">
-            <img src="img/Client/roma.jpeg" alt="">
+            <img src="img/Client/photo_index/<?php echo $row["voyage_id"]; ?>.jpg" alt="">
             <div class="index_offre_top_voyage_desc">
               <div class="index_offre_top_voyage_nom_day">
                 <label class="index_offre_top_voyage_nom"><?php echo $row["voyage_nom"]; ?></label>

@@ -2,8 +2,10 @@
 require '../php/Admin/standard.php';
  require "../php/database.inc";
  require '../php/Admin/Control.php';
- $database=new database();
+$database=new database();
  session_start();
+require '../php/Admin/verefieuser.php';
+
 if(isset($_GET["reserve_id"])){
   $result=$database->query("select reserve_id,client.client_id,reserve.voyage_date_id,voyage_date.voyage_id,concat(client.nom,\" \",client.prenom) as nom_prenom,DATE_FORMAT(date_reserve,'%d/%m/%Y') as  date_reserve,DATE_FORMAT(date_rendezvous,'%d/%m/%Y') as date_rendezvous,type_paiement,etat_paiement from reserve 
 join voyage_date on voyage_date.voyage_date_id=reserve.voyage_date_id
@@ -69,9 +71,10 @@ join client on reserve.client_id=client.client_id where reserve_id=".$_GET["rese
                   <label for="" class="controllabel">Voyage</label>
                   <select class="controlinput" name="voyage" required  onchange="AfficheDate(this.value)">
                   <?php 
+                    if(isset($reserver["voyage_id"]))$reserve=$reserver["voyage_id"];else $reserve=-1;
                     $result=$database->query("SELECT voyage_id,nom FROM `voyage` where `compte_agence_id`=".$_SESSION['compte_agence_id']."");
                     while($voyage=mysqli_fetch_assoc($result)){
-                      if($voyage["voyage_id"]==$reserver["voyage_id"]){
+                      if($voyage["voyage_id"]==$reserve){
                         echo "<option value=\"".$voyage["voyage_id"]."\" selected>".$voyage["nom"]."</option>";
                       }else{
                         echo "<option value=\"".$voyage["voyage_id"]."\">".$voyage["nom"]."</option>";
@@ -101,7 +104,7 @@ join client on reserve.client_id=client.client_id where reserve_id=".$_GET["rese
                 <div class="control_table_item">
                   <label for="" class="controllabel">Date Reserver</label>
                   <input type="text" name="NomVoyage" class="controlinput" disabled value="<?php if(isset($reserver)) echo $reserver["date_reserve"]; ?>">
-                </div>
+                </div >
                 <div class="control_table_item">
                   <label for="" class="controllabel">Date Rendez-Vous</label>
                   <input type="text" name="NomVoyage" class="controlinput" disabled value="<?php if(isset($reserver)) echo $reserver["date_rendezvous"]; ?>">

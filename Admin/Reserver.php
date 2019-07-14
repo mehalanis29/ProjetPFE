@@ -5,6 +5,8 @@ require '../php/Voyage.inc';
 include '../php/Admin/VoyageFunction.php';
 $database=new database();
 session_start();
+require '../php/Admin/verefieuser.php';
+
 if(isset($_POST["remove_list"])){
   foreach ($_POST["remove_list"] as $k  => $reserve_id) {
     $database->query("DELETE FROM  reserve WHERE reserve_id=".$reserve_id);

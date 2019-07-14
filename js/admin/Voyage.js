@@ -1,11 +1,15 @@
 $(document).ready(function(){
   $("#AjouterVoyage").click(function(){
     $("#list_voyage").append(document.getElementById("row_voyage").innerHTML)
-    initrow();
+    initrow("list_date","remove_list");
   });
   $(document).on('click','.remove_list', function(){
       $("#row_"+$(this).attr('id')+'').remove();
       initrow();
+  });
+  $("#Ajouterimage").click(function(){
+    $("#list_image").append(document.getElementById("row_image").innerHTML)
+    initrow("list_image","remove_list_image");
   });
 });
 
@@ -19,25 +23,33 @@ function Calcul(v) {
   document.getElementById('prix').innerHTML=ch+m+" DA";
 }
 
-function initrow(){
-  var list_div=document.getElementsByClassName("control_table_9item");
-  var list_btn=document.getElementsByClassName("remove_list");
+function initrow(x,y){
+  var list_div=document.getElementsByClassName(x);
+  var list_btn=document.getElementsByClassName(y);
   for(var i=0;i<list_div.length;i++){
-    list_div[i+1].id="row_"+i;
+    list_div[i].id="row_"+i;
     list_btn[i].id=i;
   }
 }
+
 function suivant(etat){
   var btn_ajouter=document.getElementById("Ajouter");
   switch(etat){
-    case "debut" :{
+    case "Information" :{
       Tab('Information');
-      btn_ajouter.onclick=function(){suivant('Information');};
+      btn_ajouter.onclick=function(){suivant('image');};
       btn_ajouter.innerHTML="Suivant";
       btn_ajouter.type="button";
       break;
     }
-    case "Information" :{
+    case "image" :{
+      Tab('image');
+      btn_ajouter.onclick=function(){suivant('list_date');};
+      btn_ajouter.innerHTML="Suivant";
+      btn_ajouter.type="button";
+      break;
+    }
+    case "list_date" :{
       Tab('list_date');
       btn_ajouter.innerHTML="Ajouter";
       setTimeout(function(){btn_ajouter.type="submit";}, 1500);

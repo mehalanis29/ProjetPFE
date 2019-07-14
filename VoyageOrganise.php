@@ -7,21 +7,41 @@ $database=new database();
 $where="";
 $having="";
 $b=false;
+
 if(isset($_GET["date"])){
   $date=$_GET["date"];
 }else{
   $date=date("Y-m-d");
 }
+$prix="-1";
 if(isset($_GET['prix'])){
   $having.="and min(prix_A_T) between ".$_GET['prix'];
+  $prix=$_GET['prix'];
 }
+$pays_id="-1";
+
+if((isset($_GET["pays"]))&&(!empty($_GET["pays"]))){
+  if($b==false){$where.=" where ";}else{$where.=" and ";}
+  $where.="ville.pays_id=".$_GET['pays'];
+  $b=true;
+  $pays_id=$_GET["pays"];
+}
+$ville="-1";
+if((isset($_GET["ville"]))&&(!empty($_GET["ville"]))){
+  if($b==false){$where.=" where ";}else{$where.=" and ";}
+  $where.="ville.ville_id=".$_GET['ville'];
+  $b=true;
+  $ville=$_GET["ville"];
+}
+$duree="-1";
 if(isset($_GET['duree'])){
   if($b==false){$where.=" where ";}else{$where.=" and ";}
   $where.="nbr_jour between ".$_GET['duree'];
   $b=true;
+  $duree=$_GET['duree'];
 }
-//
-$result=$database->query("select voyage.voyage_id,compte_agence_id,voyage.nom as voyage_nom,ville.nom as ville_nom,nbr_jour,description,min(prix_A_T) as prix , min(date_depart) as datedepart  from voyage join voyage_date on voyage.voyage_id= voyage_date.voyage_id  join ville on voyage.ville_id=ville.ville_id ".$where." group by voyage.voyage_id having min(date_depart) > '".$date."' $having  order by voyage.voyage_id ASC limit 3");
+
+$result=$database->query("select voyage.voyage_id,compte_agence_id,voyage.nom as voyage_nom,ville.nom as ville_nom,nbr_jour,description,min(prix_A_T) as prix , min(date_depart) as datedepart  from voyage join voyage_date on voyage.voyage_id= voyage_date.voyage_id  join ville on voyage.ville_id=ville.ville_id ".$where." group by voyage.voyage_id having min(date_depart) > '".$date."' $having  order by voyage.voyage_id DESC");
  ?>
 <html lang="en" dir="ltr">
   <head>
@@ -77,7 +97,11 @@ $result=$database->query("select voyage.voyage_id,compte_agence_id,voyage.nom as
                   <?php 
                     $pays =$database->query("select pays_id,nom from pays where pays_id in (select pays_id from ville where ville_id in (select ville_id from voyage where voyage_id in (select voyage_id from voyage_date where date_depart > '".$date."')))") ;
                     while ($row=mysqli_fetch_assoc($pays)) {
-                      echo "<option value=\"".$row["pays_id"]."\">".$row["nom"]."</option>";
+                      if($row['pays_id']==$pays_id){
+                        echo "<option value=\"".$row["pays_id"]."\" selected=\"selected\">".$row["nom"]."</option>";
+                      }else{
+                        echo "<option value=\"".$row["pays_id"]."\">".$row["nom"]."</option>";
+                      }     
                     }
                    ?>
                 </select>
@@ -86,6 +110,17 @@ $result=$database->query("select voyage.voyage_id,compte_agence_id,voyage.nom as
                 <label for="" class="formulaire_row_item_label">Ville :</label>
                 <select class="formulaire_row_item_input" name="ville" id="ville">
                   <option value="">ALL Ville</option>
+                  <?php 
+                    if($pays_id!="-1"){ $where_pays=" pays_id = ".$pays_id." and "; }
+                    $ville_sql =$database->query("select ville_id,nom from ville where $where_pays ville_id in (select ville_id from voyage where voyage_id in (select voyage_id from voyage_date where date_depart > '".$date."'))") ;
+                    while ($row=mysqli_fetch_assoc($ville_sql)) {
+                      if($row['ville_id']==$ville){
+                        echo "<option value=\"".$row["ville_id"]."\" selected=\"selected\">".$row["nom"]."</option>";
+                      }else{
+                        echo "<option value=\"".$row["ville_id"]."\">".$row["nom"]."</option>";
+                      }     
+                    }
+                   ?>
                 </select>
               </div>
               <div class="formulaire_row_item">
@@ -95,25 +130,25 @@ $result=$database->query("select voyage.voyage_id,compte_agence_id,voyage.nom as
               <div class="formulaire_row_item">
                 <label for="" class="formulaire_row_item_label" >Budget :</label>
                 <div class="formulaire_row_2item" style="grid-template-columns:3% auto"> 
-                  <input type="radio" class="filter-tags" value="0.1 and 2" name="prix" id="prix10">
+                  <input type="radio" <?php if($prix=="0.1 and 2") echo "checked=\"\""; ?> class="filter-tags" value="0.1 and 2" name="prix" id="prix10">
                   <label style="margin-top: 3px;color: #999;font-size: 14px;" for="prix10">
                     Entre 1,000 Et 20,000 DA
                   </label>
                 </div>
                 <div class="formulaire_row_2item" style="grid-template-columns:3% auto"> 
-                  <input type="radio" class="filter-tags" value="2.1 and 6" name="prix" id="prix21">
+                  <input type="radio" <?php if($prix=="2.1 and 6") echo "checked=\"\""; ?> class="filter-tags" value="2.1 and 6" name="prix" id="prix21">
                   <label style="margin-top: 3px;color: #999;font-size: 14px;" for="prix21">
                     Entre 21,000 Et 60,000 DA
                   </label>
                 </div>
                 <div class="formulaire_row_2item" style="grid-template-columns:3% auto"> 
-                  <input type="radio" class="filter-tags" value="6.1 and 10" name="prix" id="prix61">
+                  <input type="radio" <?php if($prix=="6.1 and 10") echo "checked=\"\""; ?> class="filter-tags" value="6.1 and 10" name="prix" id="prix61">
                   <label style="margin-top: 3px;color: #999;font-size: 14px;" for="prix61">
                     Entre 61,000 Et 100,000 DA
                   </label>
                 </div>
                 <div class="formulaire_row_2item" style="grid-template-columns:3% auto"> 
-                  <input type="radio" class="filter-tags" value="10 and 1000" name="prix" id="prix100">
+                  <input type="radio" <?php if($prix=="10 and 1000") echo "checked=\"\""; ?> class="filter-tags" value="10 and 1000" name="prix" id="prix100">
                   <label style="margin-top: 3px;color: #999;font-size: 14px;" for="prix100">
                     Plus Que 100,000 DA
                   </label>
@@ -122,15 +157,15 @@ $result=$database->query("select voyage.voyage_id,compte_agence_id,voyage.nom as
               <div class="formulaire_row_item">
                 <label for="" class="formulaire_row_item_label" >Duree :</label>
                 <div class="formulaire_row_2item" style="grid-template-columns:3% auto"> 
-                  <input type="radio" class="filter-tags" value="1 and 4" name="duree" id="4">
+                  <input type="radio" <?php if($duree=="1 and 4")echo "checked=\"\""; ?> class="filter-tags" value="1 and 4" name="duree" id="4">
                   <label style="margin-top: 3px;color: #999;font-size: 14px;" for="4">Max 4 Jours</label>
                 </div>
                 <div class="formulaire_row_2item" style="grid-template-columns:3% auto"> 
-                  <input type="radio" class="filter-tags" value="5 and 10" name="duree" id="10">
+                  <input type="radio" <?php if($duree=="5 and 10") echo "checked=\"\""; ?> class="filter-tags" value="5 and 10" name="duree" id="10">
                   <label style="margin-top: 3px;color: #999;font-size: 14px;" for="10">5 À 10 Jours</label>
                 </div>
                 <div class="formulaire_row_2item" style="grid-template-columns:3% auto"> 
-                  <input type="radio" class="filter-tags" value="11 and 365" name="duree" id="11">
+                  <input type="radio" <?php if($duree=="11 and 365") echo "checked=\"\""; ?> class="filter-tags" value="11 and 365" name="duree" id="11">
                   <label style="margin-top: 3px;color: #999;font-size: 14px;" for="11">Plus Que 11 Jours</label>
                 </div>
               </div>
@@ -152,7 +187,7 @@ $result=$database->query("select voyage.voyage_id,compte_agence_id,voyage.nom as
           <?php while ($row=mysqli_fetch_assoc($result)): ?>
           <div class="voyage_organise_voyage">
             <div class="index_offre_top_voyage_offre">
-              <img src="img/Client/roma.jpeg" alt="">
+              <img src="img/Client/photo_index/<?php echo $row["voyage_id"]; ?>.jpg" alt="">
               <div class="index_offre_top_voyage_desc">
                 <div class="index_offre_top_voyage_nom_day">
                   <label class="index_offre_top_voyage_day" style="opacity: 0;">

@@ -4,20 +4,22 @@ require '../php/Admin/standard.php';
  require "../php/Voyage.inc";
  require '../php/Admin/Control.php';
  include "../php/Admin/VoyageFunction.php";
- session_start();
- $database=new database();
+
+$database=new database();
+session_start();
+require '../php/Admin/verefieuser.php';
+
  if(isset($_POST["remove_date"])){
   $database->query("delete from voyage_date where voyage_date_id=".$_POST["remove_date"]);
   header("location: VoyageControl.php?voyage_id=".$_POST['voyage_id']);
  }elseif(isset($_POST["ville_id"])){
    $voyage=new voyage($_POST["voyage_id"],$_POST["NomVoyage"],$_POST["ville_id"],$_POST["nbr_jour"]
                       ,$_POST["hotel_id"],$_POST["description"],"test.jpg");
-
    if(isset($_POST["controlAjoutebtn"]))
    {
     $id_voyage=$voyage->Insertvoyage();
-    
-
+    $target_file = "../img/Client/photo_index/".$id_voyage.".jpg";
+    move_uploaded_file($_FILES["imge"]["tmp_name"], $target_file);
    }else{
      $voyage->Updatevoyage();
      $id_voyage=$_POST["voyage_id"];
@@ -61,13 +63,16 @@ require '../php/Admin/standard.php';
         <div class="table">
           <div class="nav_tab">
             <div class="nav_tab_item nav_tab_item_active"  id="Information_label">
-               <label onclick="suivant('debut')" for="">Information</label>
+               <label onclick="suivant('Information')" for="">Information</label>
+            </div>
+            <div class="nav_tab_item" id="image_label">
+              <label onclick="suivant('image')" for="">Image</label>
             </div>
             <div class="nav_tab_item" id="list_date_label">
-              <label onclick="suivant('Information')" for="">Date</label>
+              <label onclick="suivant('list_date')" for="">Date</label>
             </div>
           </div>
-          <form class="" action="VoyageControl.php" method="post" >
+          <form class="" action="VoyageControl.php" method="post" enctype="multipart/form-data">
            <div id="Information_div"  class="nav_tab_div nav_tab_div_active">
             <div class="left_tab">
             <fieldset class="fields">
@@ -113,12 +118,34 @@ require '../php/Admin/standard.php';
                 </div>
                 <div class="control_table_item">
                   <label for="" class="controllabel">Image</label>
-                  <input type="file" name="img" class="controlinput">
+                  <input type="file" name="imge" id="imge" class="controlinput">
                 </div>
               </div>
             </fieldset>
            </div>
            </div>
+           <div id="image_div" class="nav_tab_div">
+              <div class="left_tab">
+              <fieldset class="fields">
+                <legend class="legends">Les Date Du Voyage</legend>
+                <div class="control_table" id="list_image">
+                  <div class="control_table_item">
+                    <button style="background: none;border: none" type="button" id="Ajouterimage"  >
+                      <img src="..\img\Client\icon\add22px.png">
+                    </button>
+                    <label for="" class="controllabel" >  </label>
+                  </div>
+                  <div class="control_table_item list_image" id="">
+                    <button style="background: none;border: none" type="button" name="remove_date" class="remove_list_image"
+                          id="" >
+                      <img src="..\img\Client\icon\exit22px.png">
+                    </button>
+                    <input type="file"  name="list_image[]"  class="controlinput">
+                  </div>
+                </div>
+              </fieldset>
+             </div>
+            </div>
             <div id="list_date_div" class="nav_tab_div">
               <div class="left_tab">
               <fieldset class="fields">
@@ -142,7 +169,7 @@ require '../php/Admin/standard.php';
                      $result=$database->query("SELECT * FROM `voyage_date` where voyage_id=".$voyage->voyage_id);
                      while ($row=mysqli_fetch_assoc($result)):
                    ?>
-                    <div class="control_table_9item" id="row_<?php echo $row["voyage_date_id"] ?>" >
+                    <div class="control_table_9item list_date" id="row_<?php echo $row["voyage_date_id"] ?>" >
                       <button style="background: none;border: none" type="submit" name="remove_date" class="remove_list"
                          value="<?php echo $row["voyage_date_id"] ?>" 
                           id="<?php echo $row["voyage_date_id"] ?>" >
@@ -182,7 +209,7 @@ require '../php/Admin/standard.php';
       </div>
     </div>
     <div style="display: none" id="row_voyage">
-       <div class="control_table_9item">
+       <div class="control_table_9item list_date">
           <button style="background: none;border: none"  type="submit"  class="remove_list" >
             <img src="..\img\Client\icon\exit22px.png">
           </button>
@@ -195,6 +222,14 @@ require '../php/Admin/standard.php';
           <input type="number" required name="A_T[]" class="controlinput">
           <input type="number" required name="E[]" class="controlinput">
           <input type="number" required name="B[]" class="controlinput">
+       </div>
+    </div>
+    <div style="display: none" id="row_image"> 
+      <div class="control_table_item list_image" id="">
+        <button style="background: none;border: none" type="submit" name="remove_date" class="remove_list_image" id="" >
+          <img src="..\img\Client\icon\exit22px.png">
+        </button>
+        <input type="file"  name="list_image[]"  class="controlinput">
        </div>
     </div>
   </body>

@@ -6,7 +6,7 @@ include 'php/Client/standard.php';
 require 'php/Voyage.inc';
 $database=new database();
 if(isset($_GET["voyage_id"])){
-  $result=$database->query("select voyage_id,compte_agence_id,voyage.nom,ville.nom as ville,nbr_jour,hotel_id,description,cover from voyage join ville on voyage.ville_id=voyage.ville_id where voyage_id=".$_GET["voyage_id"]) ;
+  $result=$database->query("select voyage_id,compte_agence_id,voyage.nom,ville.nom as ville,nbr_jour,hotel_id,description,cover from voyage join ville on voyage.ville_id=ville.ville_id where voyage_id=".$_GET["voyage_id"]) ;
   $row=mysqli_fetch_assoc($result);
   $voyage=new Voyage($row["voyage_id"],$row["nom"],$row["ville"],$row["nbr_jour"],$row["hotel_id"],$row["description"],$row["cover"]);
   $jour=$voyage->LoadListEndroit();

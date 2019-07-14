@@ -6,6 +6,8 @@ require '../php/Client.inc';
 include '../php/Admin/ClientFunction.php';
 $database=new database();
 session_start();
+require '../php/Admin/verefieuser.php';
+
 if(isset($_POST["remove_list"])){
   removeClient($_POST["remove_list"]);
 }

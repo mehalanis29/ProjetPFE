@@ -6,7 +6,8 @@ require '../php/Client.inc';
 require '../php/Admin/Control.php';
 include '../php/Admin/ClientFunction.php';
  session_start();
-
+$database=new database();
+require '../php/Admin/verefieuser.php';
 if(isset($_POST["nom"])){
   $client=new client($_POST["client_id"],$_POST["num_passport"],$_POST["nom"],$_POST["prenom"],$_POST["date_naissance"],
                     $_POST["email"],"",$_POST["phone"],
@@ -28,6 +29,7 @@ $client = LoadClient($_GET["idclient"]);
   $etat="Ajoute";
   $client = LoadClient(-1);
 }
+
 ?>
 <html lang="en" dir="ltr">
   <head>

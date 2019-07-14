@@ -14,19 +14,19 @@ class agence{
       $this->nom=$nom;
       $this->adress=$adress;
       $this->telephone=$telephone;
-      $this->fax=$fax
+      $this->fax=$fax;
       $this->email=$email;
       $this->password=$password;
     }
 
     public function UpdateAgence()
     {
+      echo  $this->password;
+      $password="";
+      if(!empty($this->password)){
+        $password=",`password`=md5('$this->password')";
+      }
       $database=new database();
-      $database->query("UPDATE `compte_agence` SET `nom`='$this->nom' ,
-        `adress`='$this->adress',`telephone`='$this->telephone',
-        `fax`='$this->fax',`email`='$this->email',
-        `password`='$this->password' WHERE compte_agence_id=$this->compte_agence_id");
+      $database->query("UPDATE `compte_agence` SET `nom`='$this->nom',`adresse`='$this->adress',`telephone`='$this->telephone',`fax`='$this->fax',`email`='$this->email' $password WHERE compte_agence_id=$this->compte_agence_id");
     }
-
-
 }

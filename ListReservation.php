@@ -9,7 +9,11 @@ require 'php/Admin/Control.php';
 require 'php/database.inc';
 require 'php/Client.inc';
 $database=new database();
+if(isset($_GET["reserve_id"])){
+  $database->query("delete from reserve where reserve_id=".$_GET["reserve_id"]);
+}
  ?>
+
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
@@ -51,14 +55,20 @@ $database=new database();
             <label for="" class="formulaire_row_item_label">Operation</label>
           </div>
           <?php 
-           $result_resevation = $database->query("select voyage.nom as voyage_nom,DATE_FORMAT(date_depart,'%d/%m/%Y') as date_depart,DATE_FORMAT(date_retour,'%d/%m/%Y') as date_retour ,DATE_FORMAT(date_rendezvous,'%d/%m/%Y') as date_rendez_vous,etat_paiement  from reserve join voyage_date join voyage on reserve.voyage_date_id=voyage_date.voyage_date_id and voyage.voyage_id=voyage_date.voyage_id where reserve.client_id=".$_SESSION["client_id"] );
+           $result_resevation = $database->query("select reserve.reserve_id,voyage.nom as voyage_nom,DATE_FORMAT(date_depart,'%d/%m/%Y') as date_depart,DATE_FORMAT(date_retour,'%d/%m/%Y') as date_retour ,DATE_FORMAT(date_rendezvous,'%d/%m/%Y') as date_rendez_vous,type_paiement,etat_paiement  from reserve join voyage_date join voyage on reserve.voyage_date_id=voyage_date.voyage_date_id and voyage.voyage_id=voyage_date.voyage_id where reserve.client_id=".$_SESSION["client_id"] );
            while($row=mysqli_fetch_assoc($result_resevation)):
           ?>
           <div class="formulaire_table_row_5item">
             <label for="" class="formulaire_row_item_label"><?php echo $row["voyage_nom"];?></label>
             <label for="" class="formulaire_row_item_label"><?php echo "Du ".$row["date_depart"]." Au ".$row["date_retour"];?></label>
-            <label for="" class="formulaire_row_item_label"><?php echo $row["date_rendez_vous"];?></label>
-            <label for="" class="formulaire_row_item_label"><?php echo $row["etat_paiement"];?></label>
+            <label for="" class="formulaire_row_item_label"><?php if(($row["type_paiement"]==0)&&($row["etat_paiement"]==-1)) echo $row["date_rendez_vous"]; ?></label>
+            <label for="" class="formulaire_row_item_label"><?php 
+            if($row["etat_paiement"]==1){
+              echo "paye";
+            }else{
+              echo "pas encore";
+            } ?></label>
+            <a href="ListReservation.php?reserve_id=<?php echo $row["reserve_id"];?>" class="produitbtn produitbtnsupprime" style="width: 58px;">Annuler</a>
           </div>
           <?php endwhile;?>
         </form>

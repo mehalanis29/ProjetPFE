@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <?php
-require '../php/Admin/standard.php';
+
+require '../php/database.inc';
+$database=new database();
  session_start();
+
+require '../php/Admin/verefieuser.php';
+require '../php/Admin/standard.php';
 
  ?>
 <html lang="en" dir="ltr">
